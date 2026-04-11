@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { updateStatutSoumission } from "@/app/actions/soumissions";
-import { makeConversationId } from "@/app/actions/messages";
+import { makeConversationId } from "@/lib/utils";
 
 type StatutSoumission = "en_attente" | "acceptee" | "refusee" | "retiree" | string;
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { makeConversationId } from "@/app/actions/messages";
+import { makeConversationId } from "@/lib/utils";
 
 type Statut = "en_attente" | "acceptee" | "refusee" | "retiree" | string;
 
