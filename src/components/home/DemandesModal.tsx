@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react'
+import FiltresCategories from './FiltresCategories'
 
 const DEMANDES = [
   {
+    cat: 'Électricité',
     icon: '⚡', name: 'Électricité commerciale — Phase 2', gc: 'GC Construction Laval · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '14 avr.', sector: 'Commercial', offres: '6 offres',
@@ -12,6 +14,7 @@ const DEMANDES = [
     files: [{ name: 'Plans électriques - Phase 2.pdf', size: '4.2 MB' }, { name: 'Devis technique.pdf', size: '1.8 MB' }],
   },
   {
+    cat: 'Toiture',
     icon: '🏠', name: 'Toiture membrane — Bâtiment commercial', gc: 'Immeubles Beaumont · Montréal',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '30 avr.', sector: 'Commercial', offres: '2 offres',
@@ -21,6 +24,7 @@ const DEMANDES = [
     files: [{ name: 'Plan de toiture.pdf', size: '2.9 MB' }],
   },
   {
+    cat: 'Fondation',
     icon: '🏗️', name: 'Dalle de béton — Entrepôt 8 000 pc', gc: 'Groupe Industriel RS · Rive-Sud',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '1 mai', sector: 'Industriel', offres: '4 offres',
@@ -30,6 +34,7 @@ const DEMANDES = [
     files: [{ name: 'Plan architectural.pdf', size: '6.1 MB' }],
   },
   {
+    cat: 'HVAC',
     icon: '❄️', name: 'Système HVAC — Multilogement 32 unités', gc: 'Développement Nordique · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '22 avr.', sector: 'Résidentiel', offres: '1 offre',
@@ -39,6 +44,7 @@ const DEMANDES = [
     files: [{ name: 'Schéma HVAC.pdf', size: '3.4 MB' }],
   },
   {
+    cat: 'Charpenterie',
     icon: '🪵', name: 'Charpenterie — Structure bois 3 étages', gc: 'Constructions Paradis · Québec',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '5 mai', sector: 'Résidentiel', offres: '3 offres',
@@ -48,6 +54,7 @@ const DEMANDES = [
     files: [{ name: 'Plans structuraux.pdf', size: '8.7 MB' }],
   },
   {
+    cat: 'Plomberie',
     icon: '🔧', name: 'Plomberie — Immeuble 24 unités', gc: 'Les Résidences Dion · Longueuil',
     badge: 'Actif', badgeBg: '#EDFBF0', badgeColor: '#1A8A38',
     date: '10 mai', sector: 'Résidentiel', offres: '5 offres',
@@ -62,10 +69,14 @@ const cols = '1fr 90px 90px 100px 80px 110px 28px'
 
 export default function DemandesTableauInteractif() {
   const [selected, setSelected] = useState<number | null>(null)
+  const [activeFilter, setActiveFilter] = useState('Tous')
+
+  const filtered = activeFilter === 'Tous' ? DEMANDES : DEMANDES.filter(d => d.cat === activeFilter)
   const demande = selected !== null ? DEMANDES[selected] : null
 
   return (
     <>
+      <FiltresCategories onFilter={cat => { setActiveFilter(cat); setSelected(null) }} />
       <div style={{ border: '1px solid #DDDDDD', borderRadius: '16px', overflow: 'hidden', background: 'white' }}>
         {/* Header */}
         <div style={{ display: 'grid', gridTemplateColumns: cols, gap: '12px', padding: '10px 20px', background: '#F7F7F7', borderBottom: '1px solid #DDDDDD' }}>
@@ -77,13 +88,13 @@ export default function DemandesTableauInteractif() {
         </div>
 
         {/* Rows */}
-        {DEMANDES.map((d, i) => (
+        {filtered.map((d, i) => (
           <div
             key={i}
-            onClick={() => setSelected(i)}
+            onClick={() => setSelected(DEMANDES.indexOf(d))}
             onMouseEnter={e => (e.currentTarget.style.background = '#F9F8F6')}
             onMouseLeave={e => (e.currentTarget.style.background = 'white')}
-            style={{ display: 'grid', gridTemplateColumns: cols, gap: '12px', padding: '14px 20px', borderBottom: i < DEMANDES.length - 1 ? '1px solid #DDDDDD' : 'none', alignItems: 'center', cursor: 'pointer', background: 'white' }}
+            style={{ display: 'grid', gridTemplateColumns: cols, gap: '12px', padding: '14px 20px', borderBottom: i < filtered.length - 1 ? '1px solid #DDDDDD' : 'none', alignItems: 'center', cursor: 'pointer', background: 'white' }}
           >
             {/* Project */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
