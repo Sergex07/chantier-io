@@ -30,7 +30,7 @@ const CTA_ITEMS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen min-h-[600px] flex flex-col items-center justify-center text-center overflow-hidden">
+    <section className="relative h-screen min-h-[600px] flex flex-col items-center justify-center text-center">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
