@@ -1,2 +1,2 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Inter, sans-serif; color: #18170F; background: white; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, -apple-system, sans-serif; color: #18170F; background: white; }

@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 import Navbar from '@/components/home/Navbar'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Chantier.io',
@@ -13,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body style={{margin:0, padding:0, fontFamily:'Inter, sans-serif'}}>
+      <body style={{ margin: 0, padding: 0, fontFamily: inter.style.fontFamily }}>
         <Navbar />
         {children}
       </body>
