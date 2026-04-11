@@ -4,7 +4,7 @@ import FiltresCategories from './FiltresCategories'
 
 const DEMANDES = [
   {
-    cat: 'Électricité',
+    specialite: 'Électricité',
     icon: '⚡', name: 'Électricité commerciale — Phase 2', gc: 'GC Construction Laval · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '14 avr.', sector: 'Commercial', offres: '6 offres',
@@ -14,7 +14,7 @@ const DEMANDES = [
     files: [{ name: 'Plans électriques - Phase 2.pdf', size: '4.2 MB' }, { name: 'Devis technique.pdf', size: '1.8 MB' }],
   },
   {
-    cat: 'Toiture',
+    specialite: 'Toiture',
     icon: '🏠', name: 'Toiture membrane — Bâtiment commercial', gc: 'Immeubles Beaumont · Montréal',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '30 avr.', sector: 'Commercial', offres: '2 offres',
@@ -24,7 +24,7 @@ const DEMANDES = [
     files: [{ name: 'Plan de toiture.pdf', size: '2.9 MB' }],
   },
   {
-    cat: 'Fondation',
+    specialite: 'Fondation',
     icon: '🏗️', name: 'Dalle de béton — Entrepôt 8 000 pc', gc: 'Groupe Industriel RS · Rive-Sud',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '1 mai', sector: 'Industriel', offres: '4 offres',
@@ -34,7 +34,7 @@ const DEMANDES = [
     files: [{ name: 'Plan architectural.pdf', size: '6.1 MB' }],
   },
   {
-    cat: 'HVAC',
+    specialite: 'HVAC',
     icon: '❄️', name: 'Système HVAC — Multilogement 32 unités', gc: 'Développement Nordique · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '22 avr.', sector: 'Résidentiel', offres: '1 offre',
@@ -44,7 +44,7 @@ const DEMANDES = [
     files: [{ name: 'Schéma HVAC.pdf', size: '3.4 MB' }],
   },
   {
-    cat: 'Charpenterie',
+    specialite: 'Charpenterie',
     icon: '🪵', name: 'Charpenterie — Structure bois 3 étages', gc: 'Constructions Paradis · Québec',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '5 mai', sector: 'Résidentiel', offres: '3 offres',
@@ -54,7 +54,7 @@ const DEMANDES = [
     files: [{ name: 'Plans structuraux.pdf', size: '8.7 MB' }],
   },
   {
-    cat: 'Plomberie',
+    specialite: 'Plomberie',
     icon: '🔧', name: 'Plomberie — Immeuble 24 unités', gc: 'Les Résidences Dion · Longueuil',
     badge: 'Actif', badgeBg: '#EDFBF0', badgeColor: '#1A8A38',
     date: '10 mai', sector: 'Résidentiel', offres: '5 offres',
@@ -71,7 +71,7 @@ export default function DemandesTableauInteractif() {
   const [selected, setSelected] = useState<number | null>(null)
   const [activeFilter, setActiveFilter] = useState('Tous')
 
-  const filtered = activeFilter === 'Tous' ? DEMANDES : DEMANDES.filter(d => d.cat === activeFilter)
+  const filtered = activeFilter === 'Tous' ? DEMANDES : DEMANDES.filter(d => d.specialite === activeFilter)
   const demande = selected !== null ? DEMANDES[selected] : null
 
   return (
