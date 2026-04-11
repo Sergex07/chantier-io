@@ -123,6 +123,7 @@ export default function DemandesTableauInteractif() {
         >
           <div
             onClick={e => e.stopPropagation()}
+            className="modal-enter"
             style={{ background: 'white', borderRadius: '20px', padding: '40px', maxWidth: '560px', width: '100%', position: 'relative', boxShadow: '0 20px 60px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}
           >
             <button onClick={() => setSelected(null)} style={{ position: 'absolute', top: '16px', right: '16px', width: '32px', height: '32px', borderRadius: '50%', border: '1px solid #DDDDDD', background: 'white', cursor: 'pointer', fontSize: '0.85rem', color: '#6B6860' }}>✕</button>
