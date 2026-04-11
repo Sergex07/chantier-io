@@ -1,87 +1,41 @@
-import Image from "next/image";
-import Link from "next/link";
-
-const StarIcon = () => (
-  <svg viewBox="0 0 24 24" style={{ width: 11, height: 11, fill: "#18170F" }}>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-  </svg>
-);
-
-const PROFESSIONNELS = [
-  {
-    img: "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&q=80&auto=format&fit=crop",
-    badge: "Architecture",
-    name: "Atelier Moreau Architectes",
-    rating: "4.96",
-    meta: "Montréal · 83 projets complétés",
-    cat: "Résidentiel & commercial",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?w=600&q=80&auto=format&fit=crop",
-    badge: "Design intérieur",
-    name: "Studio Leblanc Design",
-    rating: "4.94",
-    meta: "Québec · 61 projets complétés",
-    cat: "Résidentiel haut de gamme",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80&auto=format&fit=crop",
-    badge: "Ingénierie",
-    name: "Tremblay Génie-Conseil",
-    rating: "4.91",
-    meta: "Laval · 127 projets complétés",
-    cat: "Structure & mécanique",
-  },
-];
-
 export default function ProfessionnelsSection() {
+  const pros = [
+    { nom: 'Atelier Moreau Architectes', specialite: 'Architecture', ville: 'Montréal',
+      note: '4.96', projets: 83, cat: 'Résidentiel & commercial',
+      img: 'https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=600&q=80' },
+    { nom: 'Studio Leblanc Design', specialite: 'Design intérieur', ville: 'Québec',
+      note: '4.94', projets: 61, cat: 'Résidentiel haut de gamme',
+      img: 'https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?w=600&q=80' },
+    { nom: 'Tremblay Génie-Conseil', specialite: 'Ingénierie', ville: 'Laval',
+      note: '4.91', projets: 127, cat: 'Structure & mécanique',
+      img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80' },
+  ]
   return (
-    <div style={{ padding: "0 40px 64px", background: "#ffffff" }}>
-      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 32 }}>
-          <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#18170F", letterSpacing: "-0.03em" }}>
-            Professionnels en vedette
-          </div>
-          <Link href="/professionnels" style={{ fontSize: "0.875rem", fontWeight: 600, color: "#18170F", textDecoration: "underline", textUnderlineOffset: 3 }}>
-            Voir tous les professionnels →
-          </Link>
+    <section style={{padding: '0 40px 64px', background: '#fff'}}>
+      <div style={{maxWidth: '1280px', margin: '0 auto'}}>
+        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'32px'}}>
+          <h2 style={{fontSize:'1.5rem', fontWeight:700, color:'#18170F'}}>Professionnels en vedette</h2>
+          <a href="#" style={{fontSize:'0.875rem', color:'#18170F', fontWeight:600}}>Voir tous les professionnels →</a>
         </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
-          {PROFESSIONNELS.map((p) => (
-            <div key={p.name} style={{ cursor: "pointer" }}>
-              {/* Image container */}
-              <div style={{ position: "relative", height: 224, width: "100%", borderRadius: 16, overflow: "hidden", background: "#eee" }}>
-                <Image
-                  src={p.img}
-                  alt={p.name}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  unoptimized
-                />
-                <div style={{ position: "absolute", top: 12, left: 12, background: "rgba(0,0,0,0.6)", color: "white", fontSize: "0.7rem", fontWeight: 700, padding: "3px 10px", borderRadius: 999 }}>
-                  {p.badge}
-                </div>
-                <div style={{ position: "absolute", top: 12, right: 12, background: "white", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.875rem", boxShadow: "0 1px 6px rgba(0,0,0,0.15)" }}>
-                  ✓
-                </div>
+        <div style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'24px'}}>
+          {pros.map((p, i) => (
+            <div key={i} style={{border:'1px solid #E8E6E1', borderRadius:'12px', overflow:'hidden', cursor:'pointer'}}>
+              <div style={{height:'224px', backgroundImage:`url(${p.img})`, backgroundSize:'cover', backgroundPosition:'center', position:'relative'}}>
+                <span style={{position:'absolute', top:'12px', left:'12px', background:'rgba(0,0,0,0.6)', color:'white', fontSize:'0.7rem', fontWeight:700, padding:'3px 10px', borderRadius:'100px'}}>{p.specialite}</span>
+                <span style={{position:'absolute', top:'12px', right:'12px', background:'white', borderRadius:'50%', width:'32px', height:'32px', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'0.8rem', fontWeight:700}}>✓</span>
               </div>
-
-              {/* Info */}
-              <div style={{ paddingTop: 12, paddingLeft: 4, paddingRight: 4 }}>
-                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
-                  <div style={{ fontSize: "0.9rem", fontWeight: 600, color: "#18170F", letterSpacing: "-0.01em" }}>{p.name}</div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.82rem", fontWeight: 600, color: "#18170F", whiteSpace: "nowrap" }}>
-                    <StarIcon /> {p.rating}
-                  </div>
+              <div style={{padding:'14px'}}>
+                <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start'}}>
+                  <div style={{fontWeight:600, fontSize:'0.9rem', color:'#18170F'}}>{p.nom}</div>
+                  <div style={{fontSize:'0.82rem', fontWeight:600, color:'#18170F'}}>★ {p.note}</div>
                 </div>
-                <div style={{ fontSize: "0.82rem", color: "#6B6860", marginTop: 3 }}>{p.meta}</div>
-                <div style={{ fontSize: "0.875rem", color: "#18170F", marginTop: 6 }}>{p.cat}</div>
+                <div style={{fontSize:'0.78rem', color:'#6B6860', marginTop:'4px'}}>{p.ville} · {p.projets} projets</div>
+                <div style={{fontSize:'0.875rem', color:'#18170F', marginTop:'6px'}}>{p.cat}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
