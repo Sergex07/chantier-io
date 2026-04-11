@@ -1,31 +1,22 @@
-import HeroSection from "@/components/home/HeroSection";
-import TrustBand from "@/components/home/TrustBand";
-import SousTraitantsSection from "@/components/home/SousTraitantsSection";
-import AppelsSoumissionsSection from "@/components/home/AppelsSoumissionsSection";
-import DetaillantsSection from "@/components/home/DetaillantsSection";
-import ProfessionnelsSection from "@/components/home/ProfessionnelsSection";
-import HowItWorksSection from "@/components/home/HowItWorksSection";
-import ProfilesSplitSection from "@/components/home/ProfilesSplitSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import CTAFinalSection from "@/components/home/CTAFinalSection";
-import PartnersSection from "@/components/home/PartnersSection";
-import FooterSection from "@/components/home/FooterSection";
+import SousTraitantsSection from '@/components/home/SousTraitantsSection'
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      <HeroSection />
-      <TrustBand />
-      <SousTraitantsSection />
-      <AppelsSoumissionsSection />
-      <DetaillantsSection />
-      <ProfessionnelsSection />
-      <HowItWorksSection />
-      <ProfilesSplitSection />
-      <TestimonialsSection />
-      <CTAFinalSection />
-      <PartnersSection />
-      <FooterSection />
-    </>
-  );
+    <div style={{minHeight: '100vh', background: 'white'}}>
+      <div style={{height: '100vh', background: '#333', display: 'flex',
+                   alignItems: 'center', justifyContent: 'center'}}>
+        <h1 style={{color: 'white', fontSize: '3rem'}}>HERO PLACEHOLDER</h1>
+      </div>
+      <div style={{padding: '80px 40px', background: '#f5f5f5'}}>
+        <h2 style={{fontSize: '2rem', marginBottom: '40px', color: '#18170F'}}>
+          Sous-traitants en vedette
+        </h2>
+        <SousTraitantsSection />
+      </div>
+      <div style={{padding: '40px', background: 'red', color: 'white',
+                   fontSize: '2rem', textAlign: 'center'}}>
+        TEST SECTION VISIBLE
+      </div>
+    </div>
+  )
 }
