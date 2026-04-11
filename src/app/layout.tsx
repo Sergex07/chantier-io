@@ -1,28 +1,23 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import { Toaster } from "sonner";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Chantier.io",
-  description: "Plateforme de gestion pour professionnels du bâtiment",
-};
+  title: 'Chantier.io',
+  description: 'La plateforme de la construction québécoise',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="fr" className="antialiased">
-      <body className={inter.className}>
-        <Toaster position="top-right" richColors />
-        <Navbar />
-        <main>{children}</main>
+    <html lang="fr">
+      <body style={{margin: 0, padding: 0, fontFamily: inter.style.fontFamily}}>
+        {children}
       </body>
     </html>
-  );
+  )
 }
