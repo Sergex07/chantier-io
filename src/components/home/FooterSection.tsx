@@ -1,93 +1,70 @@
-import Link from "next/link";
-
-const HouseIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white">
-    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-  </svg>
-);
+const COLS = [
+  {
+    title: 'Plateforme',
+    links: ['Trouver un sous-traitant', 'Publier une demande', 'Répertoire', 'Tarifs'],
+  },
+  {
+    title: 'Spécialités',
+    links: ['Électricité', 'Plomberie', 'Charpenterie', 'HVAC'],
+  },
+  {
+    title: 'Entreprise',
+    links: ['À propos', 'Blogue', 'Contact', 'Confidentialité'],
+  },
+]
 
 export default function FooterSection() {
   return (
-    <footer className="border-t border-[#DDDDDD] px-10 pt-12 pb-8 max-w-[1280px] mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10">
-        {/* Brand */}
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 bg-[#4A5568] rounded-[7px] flex items-center justify-center">
-              <HouseIcon />
+    <footer style={{ borderTop: '1px solid #E8E6E1', background: 'white', padding: '48px 40px 32px' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+        {/* Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '40px', marginBottom: '40px' }}>
+          {/* Brand */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <div style={{ width: 28, height: 28, background: '#4A5568', borderRadius: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <span style={{ fontWeight: 800, fontSize: '1.05rem', color: '#18170F', letterSpacing: '-0.03em' }}>
+                Chantier.io
+              </span>
             </div>
-            <span className="font-extrabold text-[1.05rem] text-[#18170F] tracking-[-0.03em]">
-              Chantier.io
-            </span>
+            <p style={{ fontSize: '0.82rem', color: '#6B6860', lineHeight: 1.65, maxWidth: '28ch' }}>
+              La place de marché B2B de la construction québécoise. Trouvez les meilleurs sous-traitants, obtenez vos soumissions, gérez vos projets.
+            </p>
           </div>
-          <p className="text-[0.82rem] text-[#6B6860] leading-[1.65] max-w-[28ch]">
-            La place de marché B2B de la construction québécoise. Trouvez les meilleurs sous-traitants, obtenez vos soumissions, gérez vos projets.
-          </p>
-        </div>
 
-        {/* Col 2 */}
-        <div>
-          <h4 className="text-[0.8rem] font-bold text-[#18170F] uppercase tracking-[0.08em] mb-4">
-            Plateforme
-          </h4>
-          <ul className="flex flex-col gap-[10px]">
-            {["Trouver un sous-traitant", "Publier une demande", "Répertoire", "Tarifs"].map((l) => (
-              <li key={l}>
-                <Link href="#" className="text-[0.85rem] text-[#6B6860] hover:text-[#18170F] transition-colors">
-                  {l}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Col 3 */}
-        <div>
-          <h4 className="text-[0.8rem] font-bold text-[#18170F] uppercase tracking-[0.08em] mb-4">
-            Spécialités
-          </h4>
-          <ul className="flex flex-col gap-[10px]">
-            {["Électricité", "Plomberie", "Charpenterie", "HVAC"].map((l) => (
-              <li key={l}>
-                <Link href="#" className="text-[0.85rem] text-[#6B6860] hover:text-[#18170F] transition-colors">
-                  {l}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Col 4 */}
-        <div>
-          <h4 className="text-[0.8rem] font-bold text-[#18170F] uppercase tracking-[0.08em] mb-4">
-            Entreprise
-          </h4>
-          <ul className="flex flex-col gap-[10px]">
-            {["À propos", "Blogue", "Contact", "Confidentialité"].map((l) => (
-              <li key={l}>
-                <Link href="#" className="text-[0.85rem] text-[#6B6860] hover:text-[#18170F] transition-colors">
-                  {l}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between pt-6 border-t border-[#DDDDDD]">
-        <div className="text-[0.78rem] text-[#B0B0B0]">© 2025 Chantier.io — Québec, Canada</div>
-        <div className="flex gap-3">
-          {["in", "f", "X"].map((s) => (
-            <a
-              key={s}
-              href="#"
-              className="w-[34px] h-[34px] border border-[#DDDDDD] rounded-full flex items-center justify-center text-[0.75rem] font-bold text-[#6B6860] hover:border-[#18170F] hover:text-[#18170F] transition-all"
-            >
-              {s}
-            </a>
+          {/* Link columns */}
+          {COLS.map((col) => (
+            <div key={col.title}>
+              <h4 style={{ fontSize: '0.8rem', fontWeight: 700, color: '#18170F', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+                {col.title}
+              </h4>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {col.links.map((l) => (
+                  <li key={l}>
+                    <a href="#" style={{ fontSize: '0.85rem', color: '#6B6860', textDecoration: 'none' }}>{l}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '24px', borderTop: '1px solid #E8E6E1' }}>
+          <div style={{ fontSize: '0.78rem', color: '#B0B0B0' }}>© 2025 Chantier.io — Québec, Canada</div>
+          <div style={{ display: 'flex', gap: '12px' }}>
+            {['in', 'f', 'X'].map((s) => (
+              <a key={s} href="#" style={{ width: 34, height: 34, border: '1px solid #DDDDDD', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, color: '#6B6860', textDecoration: 'none' }}>
+                {s}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
-  );
+  )
 }
