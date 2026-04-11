@@ -2,7 +2,7 @@ const PARTNERS = [
   {
     name: "The Home Depot",
     svg: (
-      <svg viewBox="0 0 120 40">
+      <svg viewBox="0 0 120 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="8" width="24" height="24" rx="4" fill="#F96302"/>
         <text x="14" y="24" fontFamily="Arial" fontWeight="900" fontSize="13" fill="white" textAnchor="middle">HD</text>
         <text x="34" y="26" fontFamily="Arial" fontWeight="800" fontSize="14" fill="#1A1916">The Home</text>
@@ -13,7 +13,7 @@ const PARTNERS = [
   {
     name: "RONA",
     svg: (
-      <svg viewBox="0 0 120 40">
+      <svg viewBox="0 0 120 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="10" width="20" height="20" rx="3" fill="#005B99"/>
         <text x="12" y="24" fontFamily="Arial" fontWeight="900" fontSize="11" fill="white" textAnchor="middle">R</text>
         <text x="28" y="26" fontFamily="Arial" fontWeight="800" fontSize="15" fill="#005B99">RONA</text>
@@ -23,7 +23,7 @@ const PARTNERS = [
   {
     name: "Canadian Tire",
     svg: (
-      <svg viewBox="0 0 140 40">
+      <svg viewBox="0 0 140 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <circle cx="18" cy="20" r="12" fill="#CC0000"/>
         <text x="18" y="25" fontFamily="Arial" fontWeight="900" fontSize="12" fill="white" textAnchor="middle">CT</text>
         <text x="36" y="26" fontFamily="Arial" fontWeight="700" fontSize="13" fill="#1A1916">Canadian Tire</text>
@@ -33,7 +33,7 @@ const PARTNERS = [
   {
     name: "BMR",
     svg: (
-      <svg viewBox="0 0 140 40">
+      <svg viewBox="0 0 140 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="8" width="22" height="22" rx="3" fill="#00843D"/>
         <text x="13" y="23" fontFamily="Arial" fontWeight="900" fontSize="11" fill="white" textAnchor="middle">BM</text>
         <text x="30" y="26" fontFamily="Arial" fontWeight="800" fontSize="13" fill="#1A1916">BMR</text>
@@ -44,7 +44,7 @@ const PARTNERS = [
   {
     name: "Richelieu",
     svg: (
-      <svg viewBox="0 0 140 40">
+      <svg viewBox="0 0 140 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="6" width="26" height="26" rx="4" fill="#E31837"/>
         <text x="15" y="23" fontFamily="Arial" fontWeight="900" fontSize="11" fill="white" textAnchor="middle">RC</text>
         <text x="34" y="20" fontFamily="Arial" fontWeight="800" fontSize="12" fill="#1A1916">Richelieu</text>
@@ -55,7 +55,7 @@ const PARTNERS = [
   {
     name: "Canwel",
     svg: (
-      <svg viewBox="0 0 140 40">
+      <svg viewBox="0 0 140 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="8" width="22" height="22" rx="3" fill="#FF6B00"/>
         <text x="13" y="23" fontFamily="Arial" fontWeight="900" fontSize="10" fill="white" textAnchor="middle">CW</text>
         <text x="30" y="26" fontFamily="Arial" fontWeight="800" fontSize="13" fill="#1A1916">Canwel</text>
@@ -66,7 +66,7 @@ const PARTNERS = [
   {
     name: "Lowe's",
     svg: (
-      <svg viewBox="0 0 140 40">
+      <svg viewBox="0 0 140 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="8" width="22" height="22" rx="3" fill="#003087"/>
         <text x="13" y="23" fontFamily="Arial" fontWeight="900" fontSize="10" fill="white" textAnchor="middle">LE</text>
         <text x="30" y="26" fontFamily="Arial" fontWeight="800" fontSize="13" fill="#1A1916">Lowe&apos;s</text>
@@ -77,7 +77,7 @@ const PARTNERS = [
   {
     name: "GPC",
     svg: (
-      <svg viewBox="0 0 140 40">
+      <svg viewBox="0 0 140 40" style={{ width: "100%", maxWidth: 130, height: 40 }}>
         <rect x="2" y="8" width="22" height="22" rx="3" fill="#6B3A8F"/>
         <text x="13" y="23" fontFamily="Arial" fontWeight="900" fontSize="10" fill="white" textAnchor="middle">GP</text>
         <text x="30" y="26" fontFamily="Arial" fontWeight="800" fontSize="13" fill="#1A1916">GPC</text>
@@ -89,35 +89,38 @@ const PARTNERS = [
 
 export default function PartnersSection() {
   return (
-    <div className="bg-[#F7F7F7] border-t border-b border-[#DDDDDD] py-20 px-10">
-      <div className="max-w-[1280px] mx-auto">
-        <div className="text-center mb-[52px]">
-          <div className="text-[0.7rem] font-bold text-[#4A5568] uppercase tracking-[0.1em] mb-[10px]">
+    <div style={{ background: "#F7F7F7", borderTop: "1px solid #DDDDDD", borderBottom: "1px solid #DDDDDD", padding: "80px 40px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#4A5568", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>
             Fournisseurs partenaires
           </div>
-          <div className="text-[clamp(1.4rem,2.5vw,2rem)] font-extrabold tracking-[-0.03em] text-[#18170F] mb-3">
+          <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#18170F", letterSpacing: "-0.03em", marginBottom: 12 }}>
             Les grandes enseignes font confiance à Chantier.io
           </div>
-          <p className="text-[0.9rem] text-[#6B6860] max-w-[46ch] mx-auto leading-[1.65]">
+          <p style={{ fontSize: "0.9rem", color: "#6B6860", maxWidth: "46ch", margin: "0 auto", lineHeight: 1.65 }}>
             Accédez aux meilleurs fournisseurs de matériaux et d&apos;équipements directement depuis la plateforme.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        {/* Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 40 }}>
           {PARTNERS.map((p) => (
             <div
               key={p.name}
-              className="bg-white border border-[#DDDDDD] rounded-[14px] px-6 py-7 flex items-center justify-center hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:border-[#BBBBBB] transition-all cursor-pointer"
+              style={{ background: "white", border: "1px solid #DDDDDD", borderRadius: 14, padding: "28px 24px", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
             >
-              <div className="w-full max-w-[130px] h-10">{p.svg}</div>
+              {p.svg}
             </div>
           ))}
         </div>
 
-        <div className="text-center">
+        {/* CTA */}
+        <div style={{ textAlign: "center" }}>
           <a
             href="#"
-            className="inline-block text-sm font-bold text-[#18170F] px-6 py-3 rounded-[10px] border border-[#DDDDDD] bg-white hover:border-[#18170F] hover:shadow-[0_2px_10px_rgba(0,0,0,0.08)] transition-all"
+            style={{ display: "inline-block", fontSize: "0.875rem", fontWeight: 700, color: "#18170F", padding: "12px 24px", borderRadius: 10, border: "1px solid #DDDDDD", background: "white", textDecoration: "none" }}
           >
             Devenir fournisseur partenaire →
           </a>
