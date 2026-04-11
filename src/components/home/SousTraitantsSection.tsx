@@ -49,7 +49,7 @@ export default function SousTraitantsSection() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
         {SOUS_TRAITANTS.map((p) => (
           <div key={p.name} className="cursor-pointer group">
-            <div className="relative aspect-[3/2] rounded-2xl overflow-hidden bg-[#eee]">
+            <div className="relative h-56 w-full rounded-2xl overflow-hidden bg-[#eee]">
               <Image
                 src={p.img}
                 alt={p.name}

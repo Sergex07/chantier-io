@@ -69,7 +69,7 @@ export default function DetaillantsSection() {
         {DETAILLANTS.map((d) => (
           <div key={d.name} className="cursor-pointer group">
             <div
-              className="aspect-[3/2] rounded-2xl overflow-hidden flex items-center justify-center"
+              className="h-56 w-full rounded-2xl overflow-hidden flex items-center justify-center"
               style={{ background: d.bg }}
             >
               {d.logo}
