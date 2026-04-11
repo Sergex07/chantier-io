@@ -1,3 +1,4 @@
+import ErrorBoundary from '@/components/ErrorBoundary'
 import HeroSection from '@/components/home/HeroSection'
 import SousTraitantsSection from '@/components/home/SousTraitantsSection'
 import AppelsSoumissionsSection from '@/components/home/AppelsSoumissionsSection'
@@ -9,15 +10,17 @@ import FooterSection from '@/components/home/FooterSection'
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      <SousTraitantsSection />
-      <AppelsSoumissionsSection />
-      <DetaillantsSection />
-      <ProfessionnelsSection />
-      <PartnersSection />
-      <CTAFinalSection />
-      <FooterSection />
-    </main>
+    <ErrorBoundary>
+      <main>
+        <HeroSection />
+        <SousTraitantsSection />
+        <AppelsSoumissionsSection />
+        <DetaillantsSection />
+        <ProfessionnelsSection />
+        <PartnersSection />
+        <CTAFinalSection />
+        <FooterSection />
+      </main>
+    </ErrorBoundary>
   )
 }
