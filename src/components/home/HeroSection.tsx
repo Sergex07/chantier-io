@@ -113,7 +113,7 @@ export default function HeroSection() {
                 {item.icon}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', marginBottom: 3, lineHeight: 1.3 }}>
+                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', marginBottom: 3, lineHeight: 1.3 }}>
                   {item.title}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: '#6B6860', lineHeight: 1.4 }}>{item.desc}</div>

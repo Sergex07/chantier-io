@@ -26,7 +26,7 @@ export default function Navbar() {
       display: 'flex', alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0 40px',
-      background: isWhite ? 'rgba(255,255,255,0.97)' : 'transparent',
+      background: isWhite ? 'rgba(255,255,255,0.97)' : 'rgba(0,0,0,0.25)',
       borderBottom: isWhite ? '1px solid #E8E6E1' : 'none',
       boxShadow: isWhite ? '0 1px 3px rgba(0,0,0,0.06)' : 'none',
       transition: 'all 0.3s ease',
@@ -35,7 +35,8 @@ export default function Navbar() {
         display: 'flex', alignItems: 'center', gap: '8px',
         fontWeight: 700, fontSize: '1.05rem',
         color: isWhite ? '#18170F' : '#fff',
-        textDecoration: 'none', transition: 'color 0.3s'
+        textDecoration: 'none', transition: 'color 0.3s',
+        textShadow: isWhite ? 'none' : '0 1px 3px rgba(0,0,0,0.5)'
       }}>
         <div style={{
           width: '28px', height: '28px',
@@ -59,7 +60,8 @@ export default function Navbar() {
             textDecoration: 'none',
             fontSize: '0.875rem', fontWeight: 400,
             padding: '6px 14px', borderRadius: '8px',
-            transition: 'color 0.3s'
+            transition: 'color 0.3s',
+            textShadow: isWhite ? 'none' : '0 1px 3px rgba(0,0,0,0.5)'
           }}>{l}</a>
         ))}
       </div>
