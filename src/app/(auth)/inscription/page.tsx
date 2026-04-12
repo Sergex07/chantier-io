@@ -1,167 +1,104 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+'use client'
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
 
 const PLANS = [
-  {
-    id: "professionnel",
-    label: "Professionnel",
-    price: "10$/mois",
-    description: "Pour les indépendants et freelances",
-  },
-  {
-    id: "entreprise",
-    label: "Entreprise",
-    price: "25$/mois",
-    description: "Pour les équipes et PME",
-  },
-  {
-    id: "detaillant",
-    label: "Détaillant",
-    price: "29$/mois",
-    description: "Pour les commerces de détail",
-  },
-];
+  { id: 'professionnel', label: 'Professionnel', prix: '10$/mois', desc: 'Sous-traitants, designers, architectes' },
+  { id: 'entreprise',    label: 'Entreprise',    prix: '25$/mois', desc: 'GC et promoteurs immobiliers' },
+  { id: 'detaillant',   label: 'Détaillant',    prix: '29$/mois', desc: 'Fournisseurs de matériaux' },
+]
+
+const inputStyle = {
+  width: '100%', padding: '11px 14px', borderRadius: '9px',
+  border: '1px solid #E8E6E1', fontSize: '0.9rem', fontFamily: 'inherit',
+  color: '#18170F', outline: 'none', boxSizing: 'border-box' as const, background: 'white',
+}
 
 export default function InscriptionPage() {
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [plan, setPlan] = useState<string | null>(null)
+  const [nom, setNom] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!selectedPlan) {
-      setError("Veuillez choisir un type de compte.");
-      return;
-    }
-    setLoading(true);
-    setError(null);
-
-    const supabase = createClient();
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
+    e.preventDefault()
+    if (!plan) { setError('Veuillez choisir un type de compte.'); return }
+    setLoading(true); setError(null)
+    const supabase = createClient()
+    const { error: err } = await supabase.auth.signUp({
+      email, password,
       options: {
-        data: { plan: selectedPlan },
+        data: { plan, nom },
         emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
       },
-    });
-
-    if (signUpError) {
-      setError(signUpError.message);
-      setLoading(false);
-      return;
-    }
-
-    window.location.href = "/connexion?registered=1";
+    })
+    if (err) { setError(err.message); setLoading(false); return }
+    window.location.href = '/connexion?registered=1'
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-16 font-sans">
-      <div className="w-full max-w-lg">
-        {/* Logo */}
-        <div className="mb-10 text-center">
-          <span className="text-2xl font-bold tracking-tight text-black">
-            Chantier<span className="text-gray-400">.io</span>
-          </span>
+    <div style={{ minHeight: '100vh', background: '#F9F8F6', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
+      <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', marginBottom: '32px' }}>
+        <div style={{ width: 32, height: 32, background: '#4A5568', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
         </div>
+        <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#18170F', letterSpacing: '-0.03em' }}>Chantier.io</span>
+      </a>
 
-        <h1 className="text-2xl font-semibold text-black mb-1">
-          Créer un compte
-        </h1>
-        <p className="text-sm text-gray-500 mb-8">
-          Déjà inscrit ?{" "}
-          <Link href="/connexion" className="text-black underline underline-offset-2">
-            Se connecter
-          </Link>
+      <div style={{ background: 'white', borderRadius: '20px', padding: '40px', width: '100%', maxWidth: '480px', boxShadow: '0 4px 6px rgba(0,0,0,0.04), 0 20px 40px rgba(0,0,0,0.08)' }}>
+        <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.04em', marginBottom: '6px' }}>Créer un compte</h1>
+        <p style={{ fontSize: '0.875rem', color: '#6B6860', marginBottom: '28px' }}>
+          Déjà inscrit ?{' '}<a href="/connexion" style={{ color: '#18170F', fontWeight: 600 }}>Se connecter</a>
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Plan selector */}
-          <div>
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
-              Type de compte
-            </p>
-            <div className="grid grid-cols-1 gap-3">
-              {PLANS.map((plan) => (
-                <button
-                  key={plan.id}
-                  type="button"
-                  onClick={() => setSelectedPlan(plan.id)}
-                  className={`flex items-center justify-between px-4 py-3 border text-left transition-colors ${
-                    selectedPlan === plan.id
-                      ? "border-black bg-black text-white"
-                      : "border-gray-200 text-black hover:border-gray-400"
-                  }`}
-                >
-                  <div>
-                    <p className="font-medium text-sm">{plan.label}</p>
-                    <p
-                      className={`text-xs mt-0.5 ${
-                        selectedPlan === plan.id ? "text-gray-300" : "text-gray-400"
-                      }`}
-                    >
-                      {plan.description}
-                    </p>
-                  </div>
-                  <span className="text-sm font-semibold ml-4 shrink-0">
-                    {plan.price}
-                  </span>
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '24px' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>Type de compte</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px' }}>
+              {PLANS.map(p => (
+                <button key={p.id} type="button" onClick={() => setPlan(p.id)} style={{
+                  padding: '12px 8px', borderRadius: '10px',
+                  border: `1px solid ${plan === p.id ? '#18170F' : '#E8E6E1'}`,
+                  background: plan === p.id ? '#18170F' : 'white',
+                  color: plan === p.id ? 'white' : '#18170F',
+                  cursor: 'pointer', fontFamily: 'inherit', textAlign: 'center', transition: 'all 0.15s',
+                }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 600, marginBottom: '2px' }}>{p.label}</div>
+                  <div style={{ fontSize: '0.72rem', opacity: 0.7 }}>{p.prix}</div>
                 </button>
               ))}
             </div>
+            <p style={{ fontSize: '0.78rem', color: '#6B6860', marginTop: '8px' }}>
+              {PLANS.find(p => p.id === plan)?.desc ?? 'Choisissez votre type de compte ci-dessus'}
+            </p>
           </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-black mb-1">
-              Courriel
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-200 px-3 py-2 text-sm text-black placeholder-gray-400 outline-none focus:border-black transition-colors"
-              placeholder="vous@exemple.com"
-            />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+            {[
+              { label: 'Nom complet', value: nom, set: setNom, type: 'text', ph: 'Jean Tremblay' },
+              { label: 'Courriel', value: email, set: setEmail, type: 'email', ph: 'vous@exemple.com' },
+              { label: 'Mot de passe', value: password, set: setPassword, type: 'password', ph: '8 caractères minimum' },
+            ].map(f => (
+              <div key={f.label}>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>{f.label}</label>
+                <input type={f.type} required value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.ph} style={inputStyle} />
+              </div>
+            ))}
           </div>
 
-          {/* Password */}
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-black mb-1">
-              Mot de passe
-            </label>
-            <input
-              id="password"
-              type="password"
-              required
-              minLength={8}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-200 px-3 py-2 text-sm text-black placeholder-gray-400 outline-none focus:border-black transition-colors"
-              placeholder="8 caractères minimum"
-            />
-          </div>
+          {error && <p style={{ fontSize: '0.85rem', color: '#C0392B', marginBottom: '16px' }}>{error}</p>}
 
-          {error && (
-            <p className="text-sm text-red-600">{error}</p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-black text-white text-sm font-medium py-2.5 hover:bg-gray-900 transition-colors disabled:opacity-50"
-          >
-            {loading ? "Création..." : "Créer mon compte"}
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: '13px', background: '#18170F', color: 'white', border: 'none', borderRadius: '9px', fontSize: '0.95rem', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.6 : 1 }}>
+            {loading ? 'Création…' : 'Créer mon compte →'}
           </button>
+
+          <p style={{ fontSize: '0.75rem', color: '#6B6860', textAlign: 'center', marginTop: '20px', lineHeight: 1.5 }}>
+            En créant un compte, vous acceptez nos <a href="#" style={{ color: '#18170F' }}>Conditions d'utilisation</a> et notre <a href="#" style={{ color: '#18170F' }}>Politique de confidentialité</a>.
+          </p>
         </form>
       </div>
     </div>
-  );
+  )
 }
