@@ -32,8 +32,8 @@ export default function HomePage() {
           <FeaturedSection />
           <ValuePropSection />
           <ProcessSection />
-          <CategoriesSection />
           <SousTraitantsSection />
+          <CategoriesSection />
           <ProfessionnelsSection />
           <TemoignagesSection />
           <CTAFinalSection />
