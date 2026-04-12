@@ -14,7 +14,7 @@ const MODES = {
   pro: {
     label: 'Professionnel',
     ctas: [
-      { icon: '📋', title: 'Demande de soumission', desc: 'Publiez votre projet et recevez des offres', href: '/demande-soumission' },
+      { icon: '📋', title: 'Demande de soumission', desc: 'Trouver un sous-traitant pour votre projet', href: '/demande-soumission' },
       { icon: '💼', title: 'Trouver un contrat', desc: "Parcourez les appels d'offres disponibles", href: '/demandes' },
       { icon: '👷', title: 'Trouver des employés', desc: 'Recrutez des travailleurs qualifiés', href: '/trouver-travailleur' },
       { icon: '📢', title: "Afficher une offre d'emploi", desc: 'Publiez un poste sur la plateforme', href: '/emplois/publier' },
