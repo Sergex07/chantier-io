@@ -36,12 +36,13 @@ export default function FeaturedSection() {
             textDecoration: 'none',
             borderRadius: '20px', overflow: 'hidden',
             position: 'relative', minHeight: '360px',
-            background: '#18170F',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             padding: '36px',
           }}>
-            {/* Cercle décoratif */}
-            <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '240px', height: '240px', borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: '-40px', left: '-40px', width: '180px', height: '180px', borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
+            {/* Overlay sombre */}
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.62)', pointerEvents: 'none' }} />
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '100px', padding: '5px 12px', marginBottom: '24px' }}>
@@ -49,7 +50,7 @@ export default function FeaturedSection() {
                 <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>247 demandes actives au Québec</span>
               </div>
               <h3 style={{ fontSize: '1.9rem', fontWeight: 500, color: 'white', letterSpacing: '-0.04em', lineHeight: 1.15, margin: '0 0 20px', maxWidth: '320px' }}>
-                Trouvez le bon pro pour vos travaux en 48h
+                Trouvez le bon pro pour votre projet en 48h
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {[
