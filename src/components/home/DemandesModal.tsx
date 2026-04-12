@@ -65,7 +65,15 @@ const DEMANDES = [
   },
 ]
 
-const cols = '1fr 90px 90px 100px 80px 110px 28px'
+const isConnected = false
+
+function masquerNom(nom: string, connecte: boolean): string {
+  if (connecte) return nom
+  const mots = nom.split(' ')
+  return mots.map(m => m.slice(0, 2) + '*'.repeat(Math.max(m.length - 2, 2))).join(' ')
+}
+
+const cols = '2fr 100px 90px 90px 100px 80px 110px 28px'
 
 export default function DemandesTableauInteractif() {
   const [selected, setSelected] = useState<number | null>(null)
@@ -80,7 +88,7 @@ export default function DemandesTableauInteractif() {
       <div style={{ border: '1px solid #DDDDDD', borderRadius: '16px', overflow: 'hidden', background: 'white' }}>
         {/* Header */}
         <div style={{ display: 'grid', gridTemplateColumns: cols, gap: '12px', padding: '10px 20px', background: '#F7F7F7', borderBottom: '1px solid #DDDDDD' }}>
-          {['Projet', 'Statut', 'Début', 'Secteur', 'Offres', 'Action', ''].map((h, i) => (
+          {['Projet', 'Ville', 'Statut', 'Début', 'Secteur', 'Offres', 'Action', ''].map((h, i) => (
             <div key={i} style={{ fontSize: '0.68rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.07em', paddingLeft: i === 0 ? '44px' : 0 }}>
               {h}
             </div>
@@ -103,9 +111,11 @@ export default function DemandesTableauInteractif() {
               </div>
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.name}</div>
-                <div style={{ fontSize: '0.75rem', color: '#6B6860', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.gc}</div>
+                <div style={{ fontSize: '0.75rem', color: isConnected ? '#6B6860' : '#B0AEA8', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontStyle: isConnected ? 'normal' : 'italic' }}>{masquerNom(d.gc, isConnected)}</div>
               </div>
             </div>
+            {/* Ville */}
+            <span style={{ fontSize: '0.78rem', color: '#18170F', fontWeight: 500 }}>{d.region}</span>
             {/* Badge */}
             <span style={{ display: 'inline-block', fontSize: '0.65rem', fontWeight: 700, padding: '3px 9px', borderRadius: '999px', textTransform: 'uppercase', background: d.badgeBg, color: d.badgeColor }}>
               {d.badge}
@@ -125,6 +135,20 @@ export default function DemandesTableauInteractif() {
           </div>
         ))}
       </div>
+
+      {/* Lock banner */}
+      {!isConnected && (
+        <div style={{ marginTop: '12px', padding: '14px 20px', background: '#FFFBF0', border: '1px solid #F0E0A0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '1.1rem' }}>🔒</span>
+            <span style={{ fontSize: '0.85rem', color: '#7A6020', fontWeight: 500 }}>Connectez-vous pour voir les noms complets des demandeurs et soumettre une offre.</span>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <a href="/connexion" style={{ fontSize: '0.78rem', fontWeight: 600, padding: '7px 14px', borderRadius: '8px', border: '1px solid #D4B84A', color: '#7A6020', textDecoration: 'none', background: 'white', display: 'inline-block' }}>Se connecter</a>
+            <a href="/inscription" style={{ fontSize: '0.78rem', fontWeight: 700, padding: '7px 14px', borderRadius: '8px', background: '#18170F', color: 'white', textDecoration: 'none', display: 'inline-block' }}>S'inscrire →</a>
+          </div>
+        </div>
+      )}
 
       {/* Modal */}
       {demande && (
