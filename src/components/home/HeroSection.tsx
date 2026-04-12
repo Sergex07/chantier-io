@@ -1,5 +1,5 @@
 'use client'
-import { useMode, type Mode } from './ModeContext'
+import { useMode, type Mode } from '@/lib/ModeContext'
 
 const MODES = {
   public: {
@@ -31,6 +31,33 @@ const MODES = {
   },
 } satisfies Record<Mode, { label: string; ctas: { icon: string; title: string; desc: string; href: string }[] }>
 
+const HERO_TITLES: Record<Mode, React.ReactNode> = {
+  public: (
+    <>
+      <span style={{ fontWeight: 300 }}>Trouvez les bons</span><br />
+      <span style={{ fontWeight: 600 }}>partenaires pour vos chantiers</span>
+    </>
+  ),
+  pro: (
+    <>
+      <span style={{ fontWeight: 300 }}>Trouvez des contrats</span><br />
+      <span style={{ fontWeight: 600 }}>dans votre spécialité</span>
+    </>
+  ),
+  travailleur: (
+    <>
+      <span style={{ fontWeight: 300 }}>Votre profil construction</span><br />
+      <span style={{ fontWeight: 600 }}>· Gratuit</span>
+    </>
+  ),
+}
+
+const HERO_SUBTITLES: Record<Mode, string> = {
+  public: "Sous-traitants, designers, architectes, détaillants — tous vos partenaires au Québec",
+  pro: "Accédez aux demandes de soumissions d'entrepreneurs et de clients directs",
+  travailleur: "Rejoignez le réseau de travailleurs qualifiés du Québec · Gratuit",
+}
+
 export default function HeroSection() {
   const { mode, setMode } = useMode()
   const current = MODES[mode]
@@ -58,8 +85,7 @@ export default function HeroSection() {
           marginBottom: '20px',
           textShadow: '0 2px 20px rgba(0,0,0,0.2)',
         }}>
-          <span style={{ fontWeight: 300 }}>Trouvez les bons</span><br />
-          <span style={{ fontWeight: 600 }}>partenaires pour vos chantiers</span>
+          {HERO_TITLES[mode]}
         </h1>
 
         <p style={{
@@ -69,7 +95,7 @@ export default function HeroSection() {
           fontWeight: 400,
           lineHeight: 1.55,
         }}>
-          Obtenez 3 soumissions gratuites en moins de 48h
+          {HERO_SUBTITLES[mode]}
         </p>
 
         {/* Pills mode switcher */}

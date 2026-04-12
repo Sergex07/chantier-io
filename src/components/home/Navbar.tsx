@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useMode } from './ModeContext'
+import { useMode } from '@/lib/ModeContext'
 
 const TABS = [
   { id: 'public' as const, label: 'Grand public' },

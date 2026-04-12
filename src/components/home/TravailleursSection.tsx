@@ -1,27 +1,15 @@
 'use client'
 
 const WORKERS = [
-  { nom: 'Marc Bouchard',     metier: 'Électricien',  niveau: 'Compagnon', region: 'Laval',     exp: 12, dispo: 'disponible' },
-  { nom: 'Jean-Philippe Roy', metier: 'Plombier',     niveau: 'Maître',    region: 'Montréal',  exp: 18, dispo: 'ouvert' },
-  { nom: 'Sylvain Gagnon',    metier: 'Charpentier',  niveau: 'Compagnon', region: 'Rive-Nord', exp: 8,  dispo: 'occupe' },
+  { nom: 'Marc Bouchard',     metier: 'Électricien',  niveau: 'Compagnon', region: 'Laval',     exp: 12, dispo: true },
+  { nom: 'Jean-Philippe Roy', metier: 'Plombier',     niveau: 'Maître',    region: 'Montréal',  exp: 18, dispo: true },
+  { nom: 'Sylvain Gagnon',    metier: 'Charpentier',  niveau: 'Compagnon', region: 'Rive-Nord', exp: 8,  dispo: false },
 ]
 
 function getInitials(name: string): string {
   const parts = name.trim().split(' ')
   if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
   return name[0]?.toUpperCase() ?? '?'
-}
-
-function getDispoColor(dispo: string): string {
-  if (dispo === 'disponible') return '#16A34A'
-  if (dispo === 'ouvert') return '#2563EB'
-  return '#6B7280'
-}
-
-function getDispoLabel(dispo: string): string {
-  if (dispo === 'disponible') return 'Disponible'
-  if (dispo === 'ouvert') return 'Ouvert aux opportunités'
-  return 'En poste'
 }
 
 function getNiveauStyle(niveau: string): { bg: string; color: string } {
@@ -34,10 +22,10 @@ type Worker = typeof WORKERS[0]
 
 function WorkerCard({ w }: { w: Worker }) {
   const initials = getInitials(w.nom)
-  const dispoColor = getDispoColor(w.dispo)
-  const dispoLabel = getDispoLabel(w.dispo)
+  const dispoColor = w.dispo ? '#16A34A' : '#6B7280'
+  const dispoBg = w.dispo ? '#F0FDF4' : '#F9FAFB'
+  const dispoLabel = w.dispo ? 'Disponible' : 'En poste'
   const niveauStyle = getNiveauStyle(w.niveau)
-  const dispoBg = dispoColor === '#16A34A' ? '#F0FDF4' : dispoColor === '#2563EB' ? '#EFF6FF' : '#F9FAFB'
 
   return (
     <a
@@ -72,35 +60,41 @@ function WorkerCard({ w }: { w: Worker }) {
 
 export default function TravailleursSection() {
   return (
-    <section style={{ padding: '80px 40px', background: 'white' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
-          <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
-              TRAVAILLEURS
-            </p>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-              Profils en vedette
-            </h2>
+    <>
+      <section style={{ padding: '80px 40px', background: 'white' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
+            <div>
+              <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
+                TRAVAILLEURS
+              </p>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+                Travailleurs en vedette
+              </h2>
+            </div>
+            <a href="/inscription?type=travailleur" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
+              Créez votre profil gratuit →
+            </a>
           </div>
-          <a href="/trouver-travailleur" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
-            Voir tout →
-          </a>
-        </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '32px' }}>
-          {WORKERS.map((w, i) => <WorkerCard key={i} w={w} />)}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            {WORKERS.map((w, i) => <WorkerCard key={i} w={w} />)}
+          </div>
         </div>
+      </section>
 
-        <div style={{ textAlign: 'center' }}>
-          <a
-            href="/inscription?type=travailleur"
-            style={{ display: 'inline-block', padding: '13px 28px', background: '#18170F', color: 'white', borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600 }}
-          >
-            Créer mon profil travailleur gratuitement →
-          </a>
-        </div>
+      {/* Full-width CTA */}
+      <div style={{ background: '#4A5568', padding: '40px', textAlign: 'center' }}>
+        <p style={{ fontSize: '1.1rem', fontWeight: 600, color: 'white', letterSpacing: '-0.02em', marginBottom: '16px' }}>
+          👷 Rejoignez 1 000+ travailleurs sur Chantier.io
+        </p>
+        <a href="/inscription?type=travailleur" style={{
+          display: 'inline-block', padding: '11px 26px', background: 'white', color: '#4A5568',
+          borderRadius: '9px', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600,
+        }}>
+          Créer mon profil gratuit →
+        </a>
       </div>
-    </section>
+    </>
   )
 }
