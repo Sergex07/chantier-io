@@ -187,33 +187,31 @@ export default async function DashboardPage() {
       )}
 
       {/* Actions rapides */}
-      <div style={{ marginBottom: '24px' }}>
-        <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 14px' }}>Actions rapides</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-          {role === 'professionnel' && (
-            <>
-              <QuickCard emoji="📋" label="Voir les demandes disponibles" href="/dashboard/demandes-disponibles" />
-              <QuickCard emoji="👤" label="Compléter mon profil" href="/dashboard/profil" />
-              <QuickCard emoji="✉️" label="Mes messages" href="/dashboard/messages" />
-              <QuickCard emoji="🎁" label="Parrainer un collègue" href="/dashboard/parrainage" />
-            </>
-          )}
-          {role === 'entreprise' && (
-            <>
-              <QuickCard emoji="📝" label="Publier une demande" href="/dashboard/demandes/nouvelle" />
-              <QuickCard emoji="📋" label="Voir mes demandes" href="/dashboard/demandes" />
-              <QuickCard emoji="✉️" label="Mes messages" href="/dashboard/messages" />
-              <QuickCard emoji="🎁" label="Parrainer un collègue" href="/dashboard/parrainage" />
-            </>
-          )}
-          {role === 'detaillant' && (
-            <>
-              <QuickCard emoji="👤" label="Compléter mon profil" href="/dashboard/profil" />
-              <QuickCard emoji="💳" label="Gérer mon abonnement" href="/dashboard/abonnement" />
-              <QuickCard emoji="✉️" label="Mes messages" href="/dashboard/messages" />
-              <QuickCard emoji="🎁" label="Parrainer un collègue" href="/dashboard/parrainage" />
-            </>
-          )}
+      <div style={{ marginBottom: '32px' }}>
+        <h2 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px', margin: '0 0 14px' }}>
+          ACTIONS RAPIDES
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          {[
+            { icon: '📋', title: 'Demandes disponibles', desc: 'Voir les projets ouverts',    href: '/dashboard/demandes-disponibles' },
+            { icon: '👤', title: 'Mon profil',           desc: 'Compléter mes informations',  href: '/dashboard/profil' },
+            { icon: '✉️', title: 'Messages',             desc: 'Voir mes conversations',      href: '/dashboard/messages' },
+            { icon: '🎁', title: 'Parrainer',            desc: 'Inviter un collègue',          href: '/dashboard/parrainage' },
+          ].map((card, i) => (
+            <a key={i} href={card.href} style={{
+              display: 'flex', alignItems: 'center', gap: '16px',
+              padding: '18px 20px', background: 'white',
+              border: '1px solid #E8E6E1', borderRadius: '12px',
+              textDecoration: 'none', transition: 'box-shadow 0.15s',
+            }}>
+              <span style={{ fontSize: '1.4rem' }}>{card.icon}</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F' }}>{card.title}</div>
+                <div style={{ fontSize: '0.75rem', color: '#6B6860', marginTop: '2px' }}>{card.desc}</div>
+              </div>
+              <span style={{ color: '#D0CEC8', fontSize: '1.1rem' }}>›</span>
+            </a>
+          ))}
         </div>
       </div>
 
