@@ -116,9 +116,25 @@ export default async function DashboardPage() {
   const plan = profile?.plan ?? null
   const isTravailleur = plan === 'travailleur'
 
-  const [statsProf, statsEntreprise] = await Promise.all([
+  const [statsProf, statsEntreprise, mesDemandesRecentes, soumissionsRecues] = await Promise.all([
     role === 'professionnel' && !isTravailleur ? fetchStatsProf(supabase, user.id) : null,
     role === 'entreprise'                       ? fetchStatsEntreprise(supabase, user.id) : null,
+    supabase
+      .from('demandes')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(5)
+      .then(r => r.data),
+    role === 'entreprise'
+      ? supabase
+          .from('soumissions')
+          .select('*, demandes(titre)')
+          .eq('demande_user_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(3)
+          .then(r => r.data)
+      : Promise.resolve(null),
   ])
 
   const activiteRecente = statsProf?.activiteRecente ?? statsEntreprise?.activiteRecente ?? []
@@ -298,6 +314,139 @@ export default async function DashboardPage() {
           </div>
         )}
       </div>
+
+      {/* Mes demandes de soumission */}
+      {mesDemandesRecentes && mesDemandesRecentes.length > 0 ? (
+        <div style={{ marginBottom: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <h2 style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>
+              MES DEMANDES DE SOUMISSION
+            </h2>
+            <a href="/dashboard/demandes" style={{ fontSize: '0.78rem', color: '#6B6860', textDecoration: 'none' }}>
+              Voir tout →
+            </a>
+          </div>
+          <div style={{ background: 'white', borderRadius: '14px', border: '1px solid #E8E6E1', overflow: 'hidden' }}>
+            {mesDemandesRecentes.map((d: Record<string, unknown>, i: number) => (
+              <div key={d.id as string} style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                padding: '14px 20px',
+                borderBottom: i < mesDemandesRecentes.length - 1 ? '1px solid #F0EEEA' : 'none',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1 }}>
+                  <div style={{
+                    width: '36px', height: '36px', borderRadius: '9px', flexShrink: 0,
+                    background: d.statut === 'actif' ? '#F0FDF4' : d.statut === 'urgent' ? '#FEF2F2' : '#F4F4F5',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem',
+                  }}>
+                    {d.statut === 'actif' ? '✓' : d.statut === 'urgent' ? '🔴' : '📋'}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {(d.titre as string) || 'Demande sans titre'}
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: '#9B9891' }}>
+                      {(d.specialite as string) || (d.type_travaux as string) || '—'} · {(d.ville as string) || (d.region as string) || '—'}
+                      {' · '}
+                      {new Date(d.created_at as string).toLocaleDateString('fr-CA', { day: 'numeric', month: 'short' })}
+                    </div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F' }}>{(d.nombre_soumissions as number) || 0}</div>
+                    <div style={{ fontSize: '0.65rem', color: '#9B9891' }}>offres</div>
+                  </div>
+                  <span style={{
+                    padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 500,
+                    background: d.statut === 'actif' ? '#F0FDF4' : d.statut === 'urgent' ? '#FEF2F2' : '#F4F4F5',
+                    color: d.statut === 'actif' ? '#16A34A' : d.statut === 'urgent' ? '#DC2626' : '#6B6860',
+                  }}>
+                    {d.statut === 'actif' ? 'Actif' : d.statut === 'urgent' ? 'Urgent' : 'Nouveau'}
+                  </span>
+                  <a href={`/dashboard/demandes/${d.id}`} style={{ color: '#D0CEC8', fontSize: '1.1rem', textDecoration: 'none' }}>›</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+            MES DEMANDES DE SOUMISSION
+          </h2>
+          <div style={{ background: 'white', borderRadius: '14px', border: '1px solid #E8E6E1', padding: '32px', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', marginBottom: '10px' }}>📋</div>
+            <p style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', marginBottom: '6px' }}>
+              Aucune demande pour l'instant
+            </p>
+            <p style={{ fontSize: '0.78rem', color: '#9B9891', marginBottom: '20px' }}>
+              Publiez votre première demande et recevez des soumissions en 24–48h
+            </p>
+            <a href="/demande-soumission" style={{
+              display: 'inline-block', padding: '10px 24px',
+              background: '#18170F', color: 'white',
+              borderRadius: '9px', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 500,
+            }}>
+              Publier une demande →
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Soumissions reçues — entreprise seulement */}
+      {soumissionsRecues && soumissionsRecues.length > 0 && (
+        <div style={{ marginBottom: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <h2 style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>
+              SOUMISSIONS REÇUES
+            </h2>
+            <a href="/dashboard/soumissions" style={{ fontSize: '0.78rem', color: '#6B6860', textDecoration: 'none' }}>
+              Voir tout →
+            </a>
+          </div>
+          <div style={{ background: 'white', borderRadius: '14px', border: '1px solid #E8E6E1', overflow: 'hidden' }}>
+            {soumissionsRecues.map((s: Record<string, unknown>, i: number) => {
+              const demande = s.demandes as Record<string, unknown> | null
+              return (
+                <div key={s.id as string} style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '14px 20px',
+                  borderBottom: i < soumissionsRecues.length - 1 ? '1px solid #F0EEEA' : 'none',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1, minWidth: 0 }}>
+                    <div style={{ width: '36px', height: '36px', borderRadius: '9px', background: '#F4F4F5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', flexShrink: 0 }}>
+                      📄
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {(demande?.titre as string) || 'Demande sans titre'}
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: '#9B9891' }}>
+                        {new Date(s.created_at as string).toLocaleDateString('fr-CA', { day: 'numeric', month: 'short' })}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+                    {s.montant && (
+                      <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F' }}>
+                        {(s.montant as number).toLocaleString('fr-CA')} $
+                      </span>
+                    )}
+                    <a href={`/dashboard/soumissions/${s.id}`} style={{
+                      padding: '5px 14px', borderRadius: '8px', border: '1px solid #E8E6E1',
+                      background: 'white', color: '#18170F', fontSize: '0.78rem',
+                      fontWeight: 500, textDecoration: 'none',
+                    }}>
+                      Voir
+                    </a>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Activité récente */}
       <div style={{ background: 'white', border: '1px solid #E8E6E1', borderRadius: '16px', overflow: 'hidden' }}>
