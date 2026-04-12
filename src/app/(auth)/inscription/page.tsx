@@ -21,6 +21,7 @@ export default function InscriptionPage() {
   const [prenom, setPrenom] = useState('')
   const [nom, setNom] = useState('')
   const [telephone, setTelephone] = useState('')
+  const [entreprise, setEntreprise] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -46,6 +47,7 @@ export default function InscriptionPage() {
       await supabase.from('profiles').update({
         full_name: fullName,
         phone: telephone,
+        company_name: entreprise || null,
       }).eq('id', data.user.id)
       if (!isPublic) await activateProTrial(data.user.id)
     }
@@ -138,6 +140,16 @@ export default function InscriptionPage() {
               <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>Téléphone</label>
               <input type="tel" value={telephone} onChange={e => setTelephone(e.target.value)}
                 placeholder="514 555-1234" style={inputStyle} />
+            </div>
+
+            {/* Entreprise */}
+            <div>
+              <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>
+                Entreprise
+                <span style={{ fontSize: '0.72rem', fontWeight: 400, color: '#6B6860', marginLeft: '6px' }}>(optionnel)</span>
+              </label>
+              <input type="text" value={entreprise} onChange={e => setEntreprise(e.target.value)}
+                placeholder="Construction Tremblay inc." style={inputStyle} />
             </div>
 
             {/* Courriel */}
