@@ -138,14 +138,17 @@ export default function DemandesTableauInteractif() {
 
       {/* Lock banner */}
       {!isConnected && (
-        <div style={{ marginTop: '12px', padding: '14px 20px', background: '#FFFBF0', border: '1px solid #F0E0A0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '1.1rem' }}>🔒</span>
-            <span style={{ fontSize: '0.85rem', color: '#7A6020', fontWeight: 500 }}>Connectez-vous pour voir les noms complets des demandeurs et soumettre une offre.</span>
+        <div style={{ marginTop: '16px', padding: '18px 24px', background: 'linear-gradient(135deg, #18170F 0%, #4A5568 100%)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.12)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', flexShrink: 0 }}>🔒</div>
+            <div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', marginBottom: '3px' }}>Accédez aux informations complètes</div>
+              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>Créez un compte gratuit pour voir les noms des demandeurs et soumettre des offres</div>
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <a href="/connexion" style={{ fontSize: '0.78rem', fontWeight: 600, padding: '7px 14px', borderRadius: '8px', border: '1px solid #D4B84A', color: '#7A6020', textDecoration: 'none', background: 'white', display: 'inline-block' }}>Se connecter</a>
-            <a href="/inscription" style={{ fontSize: '0.78rem', fontWeight: 700, padding: '7px 14px', borderRadius: '8px', background: '#18170F', color: 'white', textDecoration: 'none', display: 'inline-block' }}>S'inscrire →</a>
+          <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
+            <a href="/connexion" style={{ padding: '9px 18px', borderRadius: '9px', border: '1px solid rgba(255,255,255,0.25)', background: 'transparent', color: 'rgba(255,255,255,0.85)', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>Se connecter</a>
+            <a href="/inscription" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>S'inscrire gratuitement →</a>
           </div>
         </div>
       )}
