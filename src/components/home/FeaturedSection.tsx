@@ -27,11 +27,11 @@ export default function FeaturedSection() {
         </div>
 
         {/* Bento grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gridTemplateRows: 'auto auto', gap: '12px' }}>
 
           {/* Grande card value prop */}
           <a href="/demande-soumission" style={{
-            gridColumn: '1',
+            gridColumn: '1', gridRow: '1 / 3',
             display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
             textDecoration: 'none',
             borderRadius: '20px', overflow: 'hidden',
