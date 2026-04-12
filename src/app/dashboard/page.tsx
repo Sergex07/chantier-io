@@ -428,9 +428,9 @@ export default async function DashboardPage() {
                     </div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-                    {s.montant && (
+                    {s.montant != null && (
                       <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F' }}>
-                        {(s.montant as number).toLocaleString('fr-CA')} $
+                        {Number(s.montant).toLocaleString('fr-CA')} $
                       </span>
                     )}
                     <a href={`/dashboard/soumissions/${s.id}`} style={{
