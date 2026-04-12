@@ -82,18 +82,19 @@ function StatCard({ label, value, sub, icon, accent = false }: { label: string; 
   )
 }
 
-// ─── Quick action button ───────────────────────────────────────────────────────
+// ─── Quick action card ─────────────────────────────────────────────────────────
 
-function ActionBtn({ href, label, primary = false }: { href: string; label: string; primary?: boolean }) {
+function QuickCard({ emoji, label, href }: { emoji: string; label: string; href: string }) {
   return (
     <a href={href} style={{
-      display: 'inline-block', padding: '11px 20px', borderRadius: '10px', fontSize: '0.875rem', fontWeight: 600,
-      textDecoration: 'none', transition: 'opacity 0.15s',
-      background: primary ? '#18170F' : 'white',
-      color: primary ? 'white' : '#18170F',
-      border: primary ? 'none' : '1px solid #E8E6E1',
+      display: 'flex', alignItems: 'center', gap: '14px',
+      padding: '20px', background: 'white', border: '1px solid #E8E6E1',
+      borderRadius: '12px', textDecoration: 'none', cursor: 'pointer',
+      transition: 'border-color 0.15s',
     }}>
-      {label}
+      <span style={{ fontSize: '1.4rem', flexShrink: 0 }}>{emoji}</span>
+      <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F' }}>{label}</span>
+      <span style={{ marginLeft: 'auto', color: '#B0AEA8', fontSize: '1rem' }}>›</span>
     </a>
   )
 }
@@ -186,25 +187,31 @@ export default async function DashboardPage() {
       )}
 
       {/* Actions rapides */}
-      <div style={{ background: 'white', border: '1px solid #E8E6E1', borderRadius: '16px', padding: '24px', marginBottom: '24px' }}>
+      <div style={{ marginBottom: '24px' }}>
         <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 14px' }}>Actions rapides</p>
-        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
           {role === 'professionnel' && (
             <>
-              <ActionBtn href="/dashboard/demandes" label="Voir les demandes disponibles →" primary />
-              <ActionBtn href="/dashboard/profil" label="Compléter mon profil →" />
+              <QuickCard emoji="📋" label="Voir les demandes disponibles" href="/dashboard/demandes-disponibles" />
+              <QuickCard emoji="👤" label="Compléter mon profil" href="/dashboard/profil" />
+              <QuickCard emoji="✉️" label="Mes messages" href="/dashboard/messages" />
+              <QuickCard emoji="🎁" label="Parrainer un collègue" href="/dashboard/parrainage" />
             </>
           )}
           {role === 'entreprise' && (
             <>
-              <ActionBtn href="/dashboard/demandes/nouvelle" label="Publier une demande →" primary />
-              <ActionBtn href="/dashboard/soumissions" label="Voir mes soumissions →" />
+              <QuickCard emoji="📝" label="Publier une demande" href="/dashboard/demandes/nouvelle" />
+              <QuickCard emoji="📋" label="Voir mes demandes" href="/dashboard/demandes" />
+              <QuickCard emoji="✉️" label="Mes messages" href="/dashboard/messages" />
+              <QuickCard emoji="🎁" label="Parrainer un collègue" href="/dashboard/parrainage" />
             </>
           )}
           {role === 'detaillant' && (
             <>
-              <ActionBtn href="/dashboard/profil" label="Compléter mon profil →" primary />
-              <ActionBtn href="/dashboard/abonnement" label="Gérer mon abonnement →" />
+              <QuickCard emoji="👤" label="Compléter mon profil" href="/dashboard/profil" />
+              <QuickCard emoji="💳" label="Gérer mon abonnement" href="/dashboard/abonnement" />
+              <QuickCard emoji="✉️" label="Mes messages" href="/dashboard/messages" />
+              <QuickCard emoji="🎁" label="Parrainer un collègue" href="/dashboard/parrainage" />
             </>
           )}
         </div>
