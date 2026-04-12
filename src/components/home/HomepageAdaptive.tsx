@@ -7,7 +7,7 @@ import TravailleursSection from './TravailleursSection'
 import CTAFinalSection from './CTAFinalSection'
 
 const PRO_AVANTAGES = [
-  { icon: '📋', titre: 'Visibilité accrue', desc: 'Votre profil apparaît en premier dans les résultats de recherche des GC.' },
+  { icon: '📋', titre: 'Visibilité accrue', desc: 'Votre profil apparaît en premier dans les résultats de recherche des entrepreneurs généraux.' },
   { icon: '🔔', titre: 'Alertes en temps réel', desc: 'Recevez les nouvelles demandes correspondant à votre spécialité dès leur publication.' },
   { icon: '📊', titre: 'Statistiques de profil', desc: "Sachez combien d'entrepreneurs ont consulté votre profil chaque semaine." },
 ]

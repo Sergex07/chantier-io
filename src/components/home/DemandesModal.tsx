@@ -6,7 +6,7 @@ const DEMANDES = [
   {
     specialite: 'Électricité',
     sourceType: 'pro' as const,
-    name: 'Électricité commerciale — Phase 2', gc: 'GC Construction Laval · Laval',
+    name: 'Électricité commerciale — Phase 2', gc: 'Construction Laval inc. · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '14 avr.', sector: 'Commercial', offres: '6 offres',
     budget: '40 000 – 55 000 $', region: 'Laval',
@@ -101,7 +101,7 @@ function BadgeSource({ type }: { type: 'client' | 'pro' }) {
       padding: '2px 7px', borderRadius: '4px',
       marginTop: '2px',
     }}>
-      🏗️ Entrepreneur / GC
+      🏗️ Entrepreneur général
     </span>
   ) : (
     <span style={{
@@ -323,7 +323,7 @@ export default function DemandesTableauInteractif() {
                 fontSize: '0.75rem', fontWeight: 500,
                 color: demande.sourceType === 'pro' ? '#4A5568' : '#6B6860',
               }}>
-                {demande.sourceType === 'pro' ? "🏗️ Demande d'un entrepreneur / GC" : "🏠 Demande d'un client direct"}
+                {demande.sourceType === 'pro' ? "🏗️ Demande d'un entrepreneur général" : "🏠 Demande d'un client direct"}
               </div>
             </div>
 

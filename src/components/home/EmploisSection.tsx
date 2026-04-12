@@ -1,7 +1,7 @@
 const emplois = [
   {
     titre: 'Électricien certifié — Chantiers commerciaux',
-    entreprise: 'GC Construction Laval',
+    entreprise: 'Construction Laval inc.',
     ville: 'Laval', region: 'Rive-Nord',
     type: 'Permanent', salaire: '38–45 $/h',
     specialite: 'Électricité',

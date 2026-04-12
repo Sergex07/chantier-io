@@ -66,7 +66,7 @@ export default function DemandesoumissionPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             {[
               { id: 'particulier', label: '🏠 Particulier', desc: 'Propriétaire cherchant un entrepreneur' },
-              { id: 'entrepreneur', label: '🏗️ Entrepreneur / GC', desc: 'Cherche des sous-traitants spécialisés' },
+              { id: 'entrepreneur', label: '🏗️ Entrepreneur général', desc: 'Cherche des sous-traitants spécialisés' },
             ].map(t => (
               <button key={t.id} onClick={() => setTypeClient(t.id as 'particulier' | 'entrepreneur')} style={{
                 padding: '16px', borderRadius: '12px', cursor: 'pointer', textAlign: 'left',
@@ -389,7 +389,7 @@ export default function DemandesoumissionPage() {
                     Résumé de la demande
                   </p>
                   {[
-                    { label: 'Type', val: typeClient === 'entrepreneur' ? 'Entrepreneur / GC' : 'Particulier' },
+                    { label: 'Type', val: typeClient === 'entrepreneur' ? 'Entrepreneur général' : 'Particulier' },
                     { label: 'Spécialité', val: specialite },
                     { label: 'Secteur', val: secteur },
                     { label: 'Adresse', val: `${adresse}, ${ville}, ${province} ${codePostal}`.trim().replace(/,\s*$/, '') },

@@ -25,7 +25,7 @@ const MODES = {
     ctas: [
       { icon: '👷', title: 'Mon profil travailleur', desc: 'Créez votre profil gratuit', href: '/inscription?type=travailleur' },
       { icon: '🏗️', title: "Offres d'emploi", desc: 'Trouvez du travail près de chez vous', href: '/emplois' },
-      { icon: '📍', title: 'Entreprises qui recrutent', desc: 'Contactez directement les GC', href: '/trouver-travailleur' },
+      { icon: '📍', title: 'Entreprises qui recrutent', desc: 'Contactez directement les entrepreneurs', href: '/trouver-travailleur' },
       { icon: '🚀', title: 'Passer au Pro', desc: 'Badge disponible + priorité', href: '/inscription?type=travailleur' },
     ],
   },

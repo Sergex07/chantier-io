@@ -7,7 +7,7 @@ const PLANS = [
   { id: 'travailleur', label: '👷 Travailleur', prix: 'Gratuit', desc: 'Électricien, plombier, charpentier...' },
   { id: 'public',      label: 'Grand public',  prix: 'Gratuit',   desc: 'Propriétaires qui cherchent un entrepreneur' },
   { id: 'pro',         label: 'Professionnel', prix: '10$/mois',  desc: 'Sous-traitants, designers, architectes' },
-  { id: 'entreprise',  label: 'Entreprise',    prix: '25$/mois',  desc: 'GC et promoteurs' },
+  { id: 'entreprise',  label: 'Entreprise',    prix: '25$/mois',  desc: 'Entrepreneurs et promoteurs' },
   { id: 'detaillant',  label: 'Détaillant',    prix: '29$/mois',  desc: 'Fournisseurs de matériaux' },
 ]
 

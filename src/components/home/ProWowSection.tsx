@@ -45,10 +45,10 @@ export default function ProWowSection() {
         {/* Header */}
         <div style={{ marginBottom: '56px', maxWidth: '600px' }}>
           <p style={{ fontSize: '0.72rem', fontWeight: 600, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '16px' }}>
-            POUR LES GC ET ENTREPRENEURS
+            POUR LES ENTREPRENEURS GÉNÉRAUX
           </p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 300, color: 'white', letterSpacing: '-0.03em', lineHeight: 1.15, marginBottom: '16px' }}>
-            Tout ce dont un GC a besoin,{' '}
+            Tout ce dont un entrepreneur général a besoin,{' '}
             <span style={{ fontWeight: 600 }}>au même endroit</span>
           </h2>
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.65, margin: 0 }}>

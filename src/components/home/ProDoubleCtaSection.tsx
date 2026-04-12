@@ -22,7 +22,7 @@ export default function ProDoubleCtaSection() {
           {[
             {
               icon: '📂',
-              label: 'SOUS-TRAITANT · GC',
+              label: 'SOUS-TRAITANT · ENT. GÉNÉRAL',
               titre: 'Je cherche des contrats',
               desc: 'Parcourez les demandes ouvertes dans votre spécialité et soumissionnez directement.',
               cta: 'Voir les demandes →',
