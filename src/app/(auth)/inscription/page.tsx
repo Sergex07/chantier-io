@@ -88,6 +88,11 @@ export default function InscriptionPage() {
                   color: plan === p.id ? 'white' : '#18170F',
                   cursor: 'pointer', fontFamily: 'inherit', textAlign: 'center', transition: 'all 0.15s',
                 }}>
+                  {p.id === 'pro' && (
+                    <div style={{ fontSize: '0.65rem', fontWeight: 700, color: plan === p.id ? 'rgba(255,255,255,0.85)' : '#16A34A', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '2px' }}>
+                      🎁 30 jours gratuits
+                    </div>
+                  )}
                   <div style={{ fontSize: '0.82rem', fontWeight: 600, marginBottom: '2px' }}>{p.label}</div>
                   <div style={{ fontSize: '0.72rem', opacity: 0.7 }}>{p.prix}</div>
                 </button>
@@ -96,6 +101,12 @@ export default function InscriptionPage() {
             <p style={{ fontSize: '0.78rem', color: '#6B6860', marginTop: '8px' }}>
               {PLANS.find(p => p.id === plan)?.desc ?? 'Choisissez votre type de compte ci-dessus'}
             </p>
+            {plan === 'pro' && (
+              <div style={{ marginTop: '10px', padding: '10px 14px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '10px', fontSize: '0.78rem', color: '#15803D', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>✓</span>
+                <span><strong>30 jours gratuits</strong> · Aucune carte de crédit · Sans engagement · Accès complet pendant l'essai</span>
+              </div>
+            )}
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
@@ -114,7 +125,7 @@ export default function InscriptionPage() {
           {error && <p style={{ fontSize: '0.85rem', color: '#C0392B', marginBottom: '16px' }}>{error}</p>}
 
           <button type="submit" disabled={loading} style={{ width: '100%', padding: '13px', background: '#18170F', color: 'white', border: 'none', borderRadius: '9px', fontSize: '0.95rem', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.6 : 1 }}>
-            {loading ? 'Création…' : isPublic ? 'Créer mon compte gratuit →' : 'Créer mon compte →'}
+            {loading ? 'Création…' : plan === 'pro' ? 'Commencer mon essai gratuit →' : plan === 'public' ? 'Créer mon compte gratuit →' : plan === 'entreprise' || plan === 'detaillant' ? 'Commencer mon essai de 30 jours →' : 'Créer mon compte →'}
           </button>
 
           <p style={{ fontSize: '0.75rem', color: '#6B6860', textAlign: 'center', marginTop: '20px', lineHeight: 1.5 }}>
