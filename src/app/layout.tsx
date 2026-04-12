@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body style={{ margin: 0, padding: 0, fontFamily: inter.style.fontFamily }}>
+      <body style={{ margin: 0, padding: 0, fontFamily: inter.style.fontFamily, paddingTop: '62px' }}>
         <NavbarConditional />
         {children}
       </body>
