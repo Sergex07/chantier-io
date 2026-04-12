@@ -59,7 +59,7 @@ const HERO_SUBTITLES: Record<Mode, string> = {
 }
 
 export default function HeroSection() {
-  const { mode } = useMode()
+  const { mode, setMode } = useMode()
   const current = MODES[mode]
 
   return (
@@ -97,6 +97,41 @@ export default function HeroSection() {
         }}>
           {HERO_SUBTITLES[mode]}
         </p>
+
+        {/* Mode switcher */}
+        <div style={{
+          display: 'inline-flex',
+          background: 'rgba(255,255,255,0.15)',
+          backdropFilter: 'blur(8px)',
+          borderRadius: '100px',
+          padding: '4px',
+          gap: '2px',
+          marginBottom: '28px',
+        }}>
+          {[
+            { id: 'public', label: 'Grand public' },
+            { id: 'pro', label: 'Professionnel' },
+            { id: 'travailleur', label: 'Travailleur' },
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setMode(tab.id as 'public' | 'pro' | 'travailleur')}
+              style={{
+                padding: '8px 18px',
+                borderRadius: '100px',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '0.82rem',
+                fontWeight: mode === tab.id ? 600 : 400,
+                background: mode === tab.id ? 'white' : 'transparent',
+                color: mode === tab.id ? '#18170F' : 'rgba(255,255,255,0.85)',
+                transition: 'all 0.15s',
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
         {/* CTA cards grid */}
         <div style={{
