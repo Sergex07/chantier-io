@@ -37,7 +37,7 @@ export default function SousTraitantsSection() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
           <div>
             <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', margin: '0 0 6px' }}>
-              SOUS-TRAITANTS
+              ENTREPRENEUR GÉNÉRAL
             </p>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
               En vedette cette semaine
