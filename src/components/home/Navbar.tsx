@@ -9,6 +9,7 @@ import type { User } from '@supabase/supabase-js'
 const PRO_SUBTABS = [
   { id: 'entrepreneur' as const, label: 'Entrepreneur' },
   { id: 'professionnel' as const, label: 'Professionnel' },
+  { id: 'soustraitant' as const, label: 'Sous-traitant' },
   { id: 'detaillant' as const, label: 'Détaillant' },
 ]
 

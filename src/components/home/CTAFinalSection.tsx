@@ -1,7 +1,7 @@
 'use client'
 import { useMode } from '@/lib/ModeContext'
 
-const PRO_MODES = ['entrepreneur', 'professionnel', 'detaillant']
+const PRO_MODES = ['entrepreneur', 'professionnel', 'soustraitant', 'detaillant']
 
 export default function CTAFinalSection() {
   const { mode } = useMode()

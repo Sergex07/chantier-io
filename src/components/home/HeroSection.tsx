@@ -5,6 +5,7 @@ import { useMode, type Mode } from '@/lib/ModeContext'
 const PRO_SUBTABS = [
   { id: 'entrepreneur' as const, label: 'Entrepreneur' },
   { id: 'professionnel' as const, label: 'Professionnel' },
+  { id: 'soustraitant' as const, label: 'Sous-traitant' },
   { id: 'detaillant' as const, label: 'Détaillant' },
 ]
 const PRO_MODES = PRO_SUBTABS.map(t => t.id)
@@ -28,6 +29,7 @@ const MODES: Record<Mode, { label: string; ctas: { icon: string; title: string; 
   },
   entrepreneur: { label: 'Entrepreneur', ctas: PRO_CTAS },
   professionnel: { label: 'Professionnel', ctas: PRO_CTAS },
+  soustraitant: { label: 'Sous-traitant', ctas: PRO_CTAS },
   detaillant: { label: 'Détaillant', ctas: PRO_CTAS },
   travailleur: {
     label: 'Travailleur',
@@ -59,6 +61,12 @@ const HERO_TITLES: Record<Mode, React.ReactNode> = {
       <span style={{ fontWeight: 600 }}>dans votre spécialité</span>
     </>
   ),
+  soustraitant: (
+    <>
+      <span style={{ fontWeight: 300 }}>Décrochez des contrats</span><br />
+      <span style={{ fontWeight: 600 }}>en sous-traitance au Québec</span>
+    </>
+  ),
   detaillant: (
     <>
       <span style={{ fontWeight: 300 }}>Rejoignez le réseau</span><br />
@@ -77,6 +85,7 @@ const HERO_SUBTITLES: Record<Mode, string> = {
   public: "Entrepreneurs généraux, professionnels, boutiques — tous vos partenaires au Québec",
   entrepreneur: "Accédez aux demandes de soumissions d'entrepreneurs et de clients directs",
   professionnel: "Accédez aux demandes de soumissions d'entrepreneurs et de clients directs",
+  soustraitant: "Trouvez des entrepreneurs généraux qui cherchent vos services au Québec",
   detaillant: "Connectez-vous avec les entrepreneurs et propriétaires du Québec",
   travailleur: "Rejoignez le réseau de travailleurs qualifiés du Québec · Gratuit",
 }

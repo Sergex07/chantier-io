@@ -40,7 +40,7 @@ export default function HomePage() {
         </>
       )}
 
-      {(mode === 'entrepreneur' || mode === 'professionnel' || mode === 'detaillant') && (
+      {(mode === 'entrepreneur' || mode === 'professionnel' || mode === 'soustraitant' || mode === 'detaillant') && (
         <>
           <ProDoubleCtaSection />
           <AppelsSoumissionsSection />
