@@ -83,11 +83,11 @@ export default function FeaturedSection() {
         {/* Rangée détaillants */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginTop: '12px' }}>
           {[
-            { nom: 'The Home Depot', cat: 'Matériaux · Outils', bg: '#F96302', initiales: 'HD', delai: '24–48h' },
-            { nom: 'RONA inc.', cat: 'Bois · Toiture · Fenestration', bg: '#005B99', initiales: 'RONA', delai: 'Même jour' },
-            { nom: 'Groupe BMR', cat: 'Béton · Isolation · Revêtement', bg: '#00843D', initiales: 'BMR', delai: '24h' },
+            { icon: '🏦', label: 'Refinancer ma maison', desc: 'Évaluez vos options de refinancement', href: '/demande-soumission?type=Refinancement' },
+            { icon: '🏷️', label: 'Vendre ma maison', desc: 'Préparez votre propriété pour la vente', href: '/demande-soumission?type=Vente' },
+            { icon: '🏗️', label: 'Construction neuve', desc: 'Bâtissez votre projet de A à Z', href: '/demande-soumission?type=Construction+neuve' },
           ].map((d, i) => (
-            <a key={i} href="#" style={{
+            <a key={i} href={d.href} style={{
               display: 'flex', alignItems: 'center', gap: '14px',
               padding: '16px 18px',
               background: '#F9F8F6', borderRadius: '14px',
@@ -97,16 +97,14 @@ export default function FeaturedSection() {
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#F0EEEA' }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#F9F8F6' }}
             >
-              <div style={{ width: 40, height: 40, borderRadius: '10px', background: d.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: d.initiales.length > 2 ? '0.65rem' : '0.82rem', fontWeight: 700, flexShrink: 0 }}>
-                {d.initiales}
+              <div style={{ width: 40, height: 40, borderRadius: '10px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', flexShrink: 0, boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+                {d.icon}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', marginBottom: '2px' }}>{d.nom}</div>
-                <div style={{ fontSize: '0.72rem', color: '#9B9891' }}>{d.cat}</div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', marginBottom: '2px' }}>{d.label}</div>
+                <div style={{ fontSize: '0.72rem', color: '#9B9891' }}>{d.desc}</div>
               </div>
-              <span style={{ fontSize: '0.68rem', fontWeight: 600, color: '#6B6860', background: 'white', padding: '3px 8px', borderRadius: '100px', whiteSpace: 'nowrap', flexShrink: 0 }}>
-                {d.delai}
-              </span>
+              <span style={{ color: '#D0CEC8', fontSize: '1.1rem', flexShrink: 0 }}>›</span>
             </a>
           ))}
         </div>
