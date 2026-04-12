@@ -1,6 +1,6 @@
 export default function ProDoubleCtaSection() {
   return (
-    <section style={{ padding: '48px 40px 0', background: 'white' }}>
+    <section style={{ padding: '48px 40px 0', background: '#F9F8F6' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         <p style={{
@@ -48,19 +48,12 @@ export default function ProDoubleCtaSection() {
             <a key={i} href={card.href} style={{
               display: 'block', textDecoration: 'none',
               padding: '24px', borderRadius: '14px',
-              border: '1px solid #E8E6E1', background: 'white',
-              transition: 'box-shadow 0.15s, border-color 0.15s',
+              border: 'none', background: 'white',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+              transition: 'box-shadow 0.15s',
             }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLAnchorElement
-                el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.07)'
-                el.style.borderColor = '#D0CEC8'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLAnchorElement
-                el.style.boxShadow = 'none'
-                el.style.borderColor = '#E8E6E1'
-              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 16px rgba(0,0,0,0.09)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 1px 4px rgba(0,0,0,0.06)' }}
             >
               <div style={{ fontSize: '1.4rem', marginBottom: '12px' }}>{card.icon}</div>
               <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#9B9891', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>

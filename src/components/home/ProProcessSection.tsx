@@ -1,13 +1,13 @@
 export default function ProProcessSection() {
   const steps = [
-    { icon: '👤', titre: 'Créez votre profil', desc: 'Spécialités, région, certifications CCQ/RBQ. Gratuit, 5 minutes.' },
-    { icon: '🔔', titre: 'Recevez des alertes', desc: 'Nouvelles demandes dans votre spécialité et votre région.' },
-    { icon: '📝', titre: 'Soumissionnez', desc: 'Envoyez votre offre directement au demandeur.' },
-    { icon: '🤝', titre: 'Décrochez le contrat', desc: 'Le client vous contacte. Vous négociez et commencez.' },
+    { titre: 'Créez votre profil', desc: 'Spécialités, région, certifications CCQ/RBQ. Gratuit, 5 minutes.' },
+    { titre: 'Recevez des alertes', desc: 'Nouvelles demandes dans votre spécialité et votre région.' },
+    { titre: 'Soumissionnez', desc: 'Envoyez votre offre directement au demandeur.' },
+    { titre: 'Décrochez le contrat', desc: 'Le client vous contacte. Vous négociez et commencez.' },
   ]
 
   return (
-    <section style={{ padding: '64px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
@@ -19,14 +19,24 @@ export default function ProProcessSection() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', background: '#E8E6E1', borderRadius: '16px', overflow: 'hidden' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '24px' }}>
           {steps.map((step, i) => (
-            <div key={i} style={{ padding: '32px 24px', background: 'white', textAlign: 'center' }}>
-              <div style={{ fontSize: '1.8rem', marginBottom: '16px' }}>{step.icon}</div>
-              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#9B9891', letterSpacing: '0.1em', marginBottom: '8px' }}>
-                ÉTAPE {i + 1}
+            <div key={i} style={{
+              background: 'white',
+              borderRadius: '14px',
+              border: '1px solid #F0EEEA',
+              padding: '28px 20px',
+              textAlign: 'center',
+            }}>
+              <div style={{
+                width: '32px', height: '32px', borderRadius: '50%',
+                background: '#18170F', color: 'white',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '0.78rem', fontWeight: 600, margin: '0 auto 16px',
+              }}>
+                {i + 1}
               </div>
-              <h3 style={{ fontSize: '0.9rem', fontWeight: 500, color: '#18170F', marginBottom: '8px', letterSpacing: '-0.01em', margin: '0 0 8px' }}>
+              <h3 style={{ fontSize: '0.9rem', fontWeight: 500, color: '#18170F', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
                 {step.titre}
               </h3>
               <p style={{ fontSize: '0.78rem', color: '#6B6860', lineHeight: 1.6, margin: 0 }}>
