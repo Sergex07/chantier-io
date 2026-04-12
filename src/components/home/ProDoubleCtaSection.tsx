@@ -1,110 +1,83 @@
 export default function ProDoubleCtaSection() {
   return (
-    <section style={{ padding: '64px 40px', background: 'white' }}>
+    <section style={{ padding: '48px 40px 0', background: 'white' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.03em', marginBottom: '10px' }}>
-            Que cherchez-vous à faire?
-          </h2>
-          <p style={{ fontSize: '0.9rem', color: '#6B6860', margin: 0 }}>
-            Chantier.io s'adapte à votre rôle
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-
-          {/* Carte 1 — Trouver un contrat */}
-          <a href="/dashboard/demandes-disponibles" style={{
-            display: 'block', textDecoration: 'none',
-            padding: '40px 36px', borderRadius: '20px',
-            background: '#18170F', color: 'white',
-            position: 'relative', overflow: 'hidden',
-          }}>
-            <div style={{
-              position: 'absolute', top: '-20px', right: '-20px',
-              width: '120px', height: '120px', borderRadius: '50%',
-              background: 'rgba(255,255,255,0.05)',
-            }} />
-            <div style={{
-              width: '48px', height: '48px', borderRadius: '12px',
-              background: 'rgba(255,255,255,0.12)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1.4rem', marginBottom: '20px',
-            }}>📂</div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', marginBottom: '10px' }}>
-              SOUS-TRAITANT · GC
-            </div>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 500, color: 'white', letterSpacing: '-0.02em', marginBottom: '12px', lineHeight: 1.2 }}>
-              Je cherche<br />des contrats
-            </h3>
-            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, marginBottom: '28px' }}>
-              Parcourez les demandes de soumissions ouvertes dans votre spécialité
-              et votre région. Soumissionnez directement.
-            </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: 500, color: 'white' }}>
-              Voir les demandes disponibles
-              <span style={{ fontSize: '1.1rem' }}>→</span>
-            </div>
-          </a>
-
-          {/* Carte 2 — Trouver un sous-traitant */}
-          <a href="/demande-soumission" style={{
-            display: 'block', textDecoration: 'none',
-            padding: '40px 36px', borderRadius: '20px',
-            background: '#F9F8F6', color: '#18170F',
-            border: '1px solid #E8E6E1',
-            position: 'relative', overflow: 'hidden',
-          }}>
-            <div style={{
-              position: 'absolute', top: '-20px', right: '-20px',
-              width: '120px', height: '120px', borderRadius: '50%',
-              background: 'rgba(0,0,0,0.03)',
-            }} />
-            <div style={{
-              width: '48px', height: '48px', borderRadius: '12px',
-              background: 'white', border: '1px solid #E8E6E1',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1.4rem', marginBottom: '20px',
-            }}>🔍</div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', color: '#9B9891', textTransform: 'uppercase', marginBottom: '10px' }}>
-              ENTREPRENEUR GÉNÉRAL · PROMOTEUR
-            </div>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', marginBottom: '12px', lineHeight: 1.2 }}>
-              Je cherche<br />un sous-traitant
-            </h3>
-            <p style={{ fontSize: '0.85rem', color: '#6B6860', lineHeight: 1.6, marginBottom: '28px' }}>
-              Publiez une demande de soumission et recevez des offres
-              de sous-traitants qualifiés de votre région en 24–48h.
-            </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: 500, color: '#18170F' }}>
-              Publier une demande
-              <span style={{ fontSize: '1.1rem' }}>→</span>
-            </div>
-          </a>
-
-        </div>
-
-        {/* Ligne du bas */}
-        <a href="/trouver-travailleur" style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          marginTop: '16px', padding: '20px 28px',
-          background: 'white', border: '1px solid #E8E6E1',
-          borderRadius: '14px', textDecoration: 'none',
+        <p style={{
+          fontSize: '0.75rem', fontWeight: 600, color: '#9B9891',
+          textTransform: 'uppercase', letterSpacing: '0.1em',
+          marginBottom: '8px', textAlign: 'center',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <span style={{ fontSize: '1.3rem' }}>👷</span>
-            <div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>
-                Trouver un travailleur de la construction
+          SELON VOTRE BESOIN
+        </p>
+        <h2 style={{
+          fontSize: '1.2rem', fontWeight: 400, color: '#18170F',
+          letterSpacing: '-0.02em', marginBottom: '28px',
+          textAlign: 'center', lineHeight: 1.4,
+        }}>
+          Chantier.io s'adapte à ce que vous cherchez
+        </h2>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '12px' }}>
+          {[
+            {
+              icon: '📂',
+              label: 'SOUS-TRAITANT · GC',
+              titre: 'Je cherche des contrats',
+              desc: 'Parcourez les demandes ouvertes dans votre spécialité et soumissionnez directement.',
+              cta: 'Voir les demandes →',
+              href: '/dashboard/demandes-disponibles',
+            },
+            {
+              icon: '📋',
+              label: 'ENTREPRENEUR GÉNÉRAL',
+              titre: 'Je cherche un sous-traitant',
+              desc: 'Publiez une demande et recevez des offres de pros qualifiés en 24–48h.',
+              cta: 'Publier une demande →',
+              href: '/demande-soumission',
+            },
+            {
+              icon: '👷',
+              label: 'RECRUTEMENT',
+              titre: 'Je cherche des employés',
+              desc: 'Accédez au réseau de travailleurs qualifiés disponibles dans votre région.',
+              cta: 'Trouver des travailleurs →',
+              href: '/trouver-travailleur',
+            },
+          ].map((card, i) => (
+            <a key={i} href={card.href} style={{
+              display: 'block', textDecoration: 'none',
+              padding: '24px', borderRadius: '14px',
+              border: '1px solid #E8E6E1', background: 'white',
+              transition: 'box-shadow 0.15s, border-color 0.15s',
+            }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLAnchorElement
+                el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.07)'
+                el.style.borderColor = '#D0CEC8'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLAnchorElement
+                el.style.boxShadow = 'none'
+                el.style.borderColor = '#E8E6E1'
+              }}
+            >
+              <div style={{ fontSize: '1.4rem', marginBottom: '12px' }}>{card.icon}</div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#9B9891', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>
+                {card.label}
               </div>
-              <div style={{ fontSize: '0.78rem', color: '#9B9891', marginTop: '2px' }}>
-                Électriciens, plombiers, charpentiers disponibles dans votre région
-              </div>
-            </div>
-          </div>
-          <span style={{ color: '#D0CEC8', fontSize: '1.2rem' }}>›</span>
-        </a>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: 500, color: '#18170F', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
+                {card.titre}
+              </h3>
+              <p style={{ fontSize: '0.82rem', color: '#6B6860', lineHeight: 1.6, margin: '0 0 16px' }}>
+                {card.desc}
+              </p>
+              <span style={{ fontSize: '0.82rem', fontWeight: 500, color: '#18170F' }}>
+                {card.cta}
+              </span>
+            </a>
+          ))}
+        </div>
 
       </div>
     </section>
