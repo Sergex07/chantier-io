@@ -1,4 +1,5 @@
 'use client'
+import { useRegion } from '@/lib/useRegion'
 
 const CATEGORIES = [
   { icon: '🏠', label: 'Toiture', count: '47 pros', href: '/demande-soumission?type=Toiture' },
@@ -16,6 +17,8 @@ const CATEGORIES = [
 ]
 
 export default function CategoriesSection() {
+  const { region } = useRegion()
+
   return (
     <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -29,7 +32,7 @@ export default function CategoriesSection() {
               Quel type de travaux?
             </h2>
             <p style={{ color: '#6B6860', fontSize: '0.9rem', margin: 0 }}>
-              Cliquez sur une catégorie pour démarrer votre demande
+              {region ? `Professionnels disponibles près de ${region}` : 'Cliquez sur une catégorie pour démarrer votre demande'}
             </p>
           </div>
           <a href="/demande-soumission" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>
