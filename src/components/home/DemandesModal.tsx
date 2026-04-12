@@ -73,7 +73,21 @@ function masquerNom(nom: string, connecte: boolean): string {
   return mots.map(m => m.slice(0, 2) + '*'.repeat(Math.max(m.length - 2, 2))).join(' ')
 }
 
-const cols = '2fr 100px 90px 90px 100px 80px 110px 28px'
+function BadgeStatut({ statut }: { statut: string }) {
+  const colors: Record<string, string> = { 'Urgent': '#dc2626', 'Nouveau': '#2563eb', 'Actif': '#16a34a' }
+  return (
+    <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.75rem', fontWeight: 500, color: '#18170F' }}>
+      <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: colors[statut] || '#6B6860', flexShrink: 0 }} />
+      {statut}
+    </span>
+  )
+}
+
+function SecteurCourt({ secteur }: { secteur: string }) {
+  return <span style={{ fontSize: '0.78rem', color: '#6B6860' }}>{secteur.slice(0, 3)}.</span>
+}
+
+const cols = '2fr 90px 70px 80px 60px 70px 100px 24px'
 
 export default function DemandesTableauInteractif() {
   const [selected, setSelected] = useState<number | null>(null)
@@ -117,17 +131,15 @@ export default function DemandesTableauInteractif() {
             {/* Ville */}
             <span style={{ fontSize: '0.78rem', color: '#18170F', fontWeight: 500 }}>{d.region}</span>
             {/* Badge */}
-            <span style={{ display: 'inline-block', fontSize: '0.65rem', fontWeight: 700, padding: '3px 9px', borderRadius: '999px', textTransform: 'uppercase', background: d.badgeBg, color: d.badgeColor }}>
-              {d.badge}
-            </span>
+            <BadgeStatut statut={d.badge} />
             {/* Date */}
             <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#18170F' }}>{d.date}</span>
             {/* Sector */}
-            <span style={{ fontSize: '0.72rem', fontWeight: 600, color: '#6B6860', background: '#F7F7F7', border: '1px solid #DDDDDD', padding: '3px 8px', borderRadius: '999px', display: 'inline-block' }}>{d.sector}</span>
+            <SecteurCourt secteur={d.sector} />
             {/* Offres */}
             <span style={{ fontSize: '0.78rem', color: '#6B6860' }}>{d.offres}</span>
             {/* CTA */}
-            <a href="/inscription" onClick={e => e.stopPropagation()} style={{ fontSize: '0.72rem', fontWeight: 700, padding: '7px 10px', borderRadius: '8px', background: '#4A5568', color: 'white', textDecoration: 'none', textAlign: 'center', display: 'inline-block' }}>
+            <a href="/inscription" onClick={e => e.stopPropagation()} style={{ fontSize: '0.72rem', fontWeight: 700, padding: '6px 10px', borderRadius: '8px', background: '#4A5568', color: 'white', textDecoration: 'none', textAlign: 'center', display: 'inline-block' }}>
               Soumettre
             </a>
             {/* Arrow */}
