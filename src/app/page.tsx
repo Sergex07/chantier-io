@@ -6,6 +6,8 @@ import AppelsSoumissionsSection from '@/components/home/AppelsSoumissionsSection
 import EmploisSection from '@/components/home/EmploisSection'
 import TravailleursSection from '@/components/home/TravailleursSection'
 import ProStatsSection from '@/components/home/ProStatsSection'
+import ProWowSection from '@/components/home/ProWowSection'
+import DetaillantsSection from '@/components/home/DetaillantsSection'
 import CTAFinalSection from '@/components/home/CTAFinalSection'
 import FooterSection from '@/components/home/FooterSection'
 
@@ -27,9 +29,10 @@ export default function HomePage() {
 
       {mode === 'pro' && (
         <>
-          <ProStatsSection />
-          <AppelsSoumissionsSection />
           <SousTraitantsSection />
+          <ProWowSection />
+          <AppelsSoumissionsSection />
+          <DetaillantsSection />
           <CTAFinalSection />
         </>
       )}
