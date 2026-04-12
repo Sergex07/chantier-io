@@ -16,14 +16,19 @@ export default async function DashboardLayout({ children }: { children: React.Re
     .single()
 
   const role = (profile?.role ?? 'professionnel') as Role
-  const fullName = profile?.full_name ?? null
+  const fullName =
+    profile?.full_name ||
+    (user.user_metadata?.full_name as string | undefined) ||
+    (user.user_metadata?.name as string | undefined) ||
+    null
   const plan = profile?.plan ?? null
 
   const initiales = fullName
     ? fullName.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
     : (user.email?.[0] ?? '?').toUpperCase()
 
-  const prenom = fullName?.split(' ')[0] ?? 'vous'
+  const emailPrefix = user.email?.split('@')[0] ?? null
+  const prenom = fullName?.split(' ')[0] ?? emailPrefix ?? 'vous'
 
   const trialDaysLeft =
     plan === 'pro_trial' && profile?.trial_ends_at
