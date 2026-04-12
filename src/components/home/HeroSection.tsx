@@ -1,127 +1,64 @@
 import Link from 'next/link'
 
-const CTA_ITEMS = [
-  {
-    href: '/demande-soumission',
-    icon: '📋',
-    title: 'Publier une demande de soumission',
-    desc: 'Trouvez des sous-traitants qualifiés en quelques heures',
-  },
-  {
-    href: '/professionnels',
-    icon: '🔍',
-    title: 'Trouver un professionnel',
-    desc: 'Sous-traitants, designers, architectes, détaillants',
-  },
-  {
-    href: '/demandes',
-    icon: '💼',
-    title: 'Trouver un contrat',
-    desc: 'Parcourez les demandes ouvertes dans votre spécialité',
-  },
-  {
-    href: '/emplois',
-    icon: '👔',
-    title: 'Trouver un emploi',
-    desc: 'Postes disponibles dans la construction au Québec',
-  },
-]
-
 export default function HeroSection() {
   return (
     <section style={{
-      minHeight: '100vh',
+      minHeight: '92vh',
       backgroundImage: 'url(https://images.unsplash.com/photo-1590579491624-f98f36d4c763?w=1800&q=80)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       position: 'relative',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      textAlign: 'center',
     }}>
-      {/* Gradient overlay */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%)',
-      }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
 
-      {/* Content */}
-      <div style={{ position: 'relative', zIndex: 10, padding: '0 20px', maxWidth: 768, width: '100%', margin: '0 auto' }}>
+      <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 20px', maxWidth: '700px', width: '100%' }}>
         <h1 style={{
           fontSize: 'clamp(2.8rem, 5vw, 4.5rem)',
-          fontWeight: 600,
           color: 'white',
           lineHeight: 1.1,
           letterSpacing: '-0.03em',
-          marginBottom: 18,
-          textShadow: '0 2px 20px rgba(0,0,0,0.3)',
+          marginBottom: '20px',
+          textShadow: '0 2px 20px rgba(0,0,0,0.2)',
         }}>
-          Trouvez les bons partenaires pour vos chantiers
+          <span style={{ fontWeight: 300 }}>Trouvez les bons</span><br />
+          <span style={{ fontWeight: 600 }}>partenaires pour vos chantiers</span>
         </h1>
         <p style={{
-          fontSize: '1rem',
-          color: 'rgba(255,255,255,0.88)',
-          marginBottom: 36,
+          fontSize: '1.05rem',
+          color: 'rgba(255,255,255,0.82)',
+          marginBottom: '36px',
           fontWeight: 400,
-          opacity: 0.75,
-          textShadow: '0 1px 8px rgba(0,0,0,0.3)',
-          lineHeight: 1.5,
+          lineHeight: 1.55,
         }}>
-          Sous-traitants, designers, architectes, détaillants — tous vos partenaires au Québec
+          Obtenez 3 soumissions gratuites en moins de 48h
         </p>
-
-        {/* CTA Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          background: 'white',
-          borderRadius: 18,
-          boxShadow: '0 4px 30px rgba(0,0,0,0.22)',
-          overflow: 'hidden',
-          maxWidth: 680,
-          margin: '0 auto',
-        }}>
-          {CTA_ITEMS.map((item, i) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-                padding: '20px 22px',
-                textDecoration: 'none',
-                textAlign: 'left',
-                borderRight: i % 2 === 0 ? '1px solid #eee' : 'none',
-                borderBottom: i < 2 ? '1px solid #eee' : 'none',
-                background: 'white',
-              }}
-            >
-              <div style={{
-                width: 44,
-                height: 44,
-                background: '#4A5568',
-                borderRadius: 12,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.25rem',
-                flexShrink: 0,
-              }}>
-                {item.icon}
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', marginBottom: 3, lineHeight: 1.3 }}>
-                  {item.title}
-                </div>
-                <div style={{ fontSize: '0.75rem', color: '#6B6860', lineHeight: 1.4 }}>{item.desc}</div>
-              </div>
-              <div style={{ fontSize: '1.4rem', color: '#B0B0B0', flexShrink: 0, lineHeight: 1 }}>›</div>
-            </Link>
-          ))}
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/demande-soumission" style={{
+            padding: '13px 26px', background: '#18170F', color: 'white',
+            borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500,
+            display: 'inline-block',
+          }}>
+            Publier une demande gratuitement →
+          </Link>
+          <Link href="/professionnels" style={{
+            padding: '13px 26px', background: 'transparent', color: 'white',
+            border: '1px solid rgba(255,255,255,0.5)',
+            borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 400,
+            display: 'inline-block',
+          }}>
+            Voir les professionnels
+          </Link>
         </div>
+      </div>
+
+      <div style={{ position: 'absolute', bottom: '40px', left: 0, right: 0, zIndex: 10, textAlign: 'center' }}>
+        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', fontWeight: 400, margin: 0, letterSpacing: '0.02em' }}>
+          1 458 entrepreneurs · 247 demandes actives · 89 villes
+        </p>
       </div>
     </section>
   )

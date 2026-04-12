@@ -37,6 +37,7 @@ function WorkerCard({ w }: { w: Worker }) {
   const dispoColor = getDispoColor(w.dispo)
   const dispoLabel = getDispoLabel(w.dispo)
   const niveauStyle = getNiveauStyle(w.niveau)
+  const dispoBg = dispoColor === '#16A34A' ? '#F0FDF4' : dispoColor === '#2563EB' ? '#EFF6FF' : '#F9FAFB'
 
   return (
     <a
@@ -45,7 +46,6 @@ function WorkerCard({ w }: { w: Worker }) {
       onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; el.style.transform = 'translateY(-4px)' }}
       onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
     >
-      {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
         <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: dispoColor, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 700, flexShrink: 0 }}>
           {initials}
@@ -55,21 +55,15 @@ function WorkerCard({ w }: { w: Worker }) {
           <div style={{ fontSize: '0.82rem', color: '#6B6860', marginTop: '2px' }}>{w.metier} · {w.region}</div>
         </div>
       </div>
-
-      {/* Niveau CCQ badge */}
       <div style={{ marginBottom: '10px' }}>
         <span style={{ display: 'inline-block', padding: '4px 10px', borderRadius: '100px', background: niveauStyle.bg, color: niveauStyle.color, fontSize: '0.75rem', fontWeight: 600 }}>
           {w.niveau} CCQ
         </span>
       </div>
-
-      {/* Exp */}
       <div style={{ fontSize: '0.82rem', color: '#6B6860', marginBottom: '10px' }}>
         🔨 {w.exp} ans d'expérience
       </div>
-
-      {/* Dispo */}
-      <div style={{ display: 'inline-block', padding: '4px 10px', borderRadius: '100px', background: dispoColor === '#16A34A' ? '#F0FDF4' : dispoColor === '#2563EB' ? '#EFF6FF' : '#F9FAFB', color: dispoColor, fontSize: '0.75rem', fontWeight: 600 }}>
+      <div style={{ display: 'inline-block', padding: '4px 10px', borderRadius: '100px', background: dispoBg, color: dispoColor, fontSize: '0.75rem', fontWeight: 600 }}>
         {dispoLabel}
       </div>
     </a>
@@ -78,20 +72,19 @@ function WorkerCard({ w }: { w: Worker }) {
 
 export default function TravailleursSection() {
   return (
-    <section style={{ padding: '64px 40px', background: 'white' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
           <div>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.03em', margin: '0 0 6px' }}>
-              Votre profil construction · Gratuit
-            </h2>
-            <p style={{ fontSize: '0.9rem', color: '#6B6860', margin: 0 }}>
-              Rejoignez 1 000+ travailleurs qui utilisent Chantier.io pour trouver du travail
+            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
+              TRAVAILLEURS
             </p>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              Profils en vedette
+            </h2>
           </div>
-          <a href="/trouver-travailleur" style={{ fontSize: '0.875rem', color: '#18170F', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: 3, whiteSpace: 'nowrap', flexShrink: 0 }}>
-            Voir tous les profils →
+          <a href="/trouver-travailleur" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
+            Voir tout →
           </a>
         </div>
 
@@ -99,22 +92,14 @@ export default function TravailleursSection() {
           {WORKERS.map((w, i) => <WorkerCard key={i} w={w} />)}
         </div>
 
-        {/* CTA */}
         <div style={{ textAlign: 'center' }}>
           <a
             href="/inscription?type=travailleur"
-            style={{ display: 'inline-block', padding: '13px 28px', background: '#18170F', color: 'white', borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 700, marginBottom: '12px' }}
+            style={{ display: 'inline-block', padding: '13px 28px', background: '#18170F', color: 'white', borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600 }}
           >
             Créer mon profil travailleur gratuitement →
           </a>
-          <div style={{ fontSize: '0.82rem', color: '#6B6860' }}>
-            Déjà membre?{' '}
-            <a href="/connexion" style={{ color: '#18170F', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 2 }}>
-              Se connecter
-            </a>
-          </div>
         </div>
-
       </div>
     </section>
   )

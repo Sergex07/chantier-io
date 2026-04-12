@@ -32,11 +32,20 @@ function Card({ p }: { p: typeof PROS[0] }) {
 
 export default function SousTraitantsSection() {
   return (
-    <section style={{ padding: '64px 40px', background: '#fff' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.03em' }}>Sous-traitants en vedette</h2>
-          <a href="#" style={{ fontSize: '0.875rem', color: '#18170F', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: 3 }}>Voir tous les profils →</a>
+    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
+          <div>
+            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', margin: '0 0 6px' }}>
+              SOUS-TRAITANTS
+            </p>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              En vedette cette semaine
+            </h2>
+          </div>
+          <a href="/professionnels" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
+            Voir tout →
+          </a>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
           {PROS.map((p, i) => <Card key={i} p={p} />)}

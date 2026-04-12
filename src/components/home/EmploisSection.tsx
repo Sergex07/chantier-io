@@ -32,28 +32,25 @@ const typeBadge: Record<string, { bg: string; color: string }> = {
 
 export default function EmploisSection() {
   return (
-    <div style={{ background: '#F9F8F6', padding: '80px 40px' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        {/* Header */}
-        <div style={{ marginBottom: '40px' }}>
-          <div style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>
-            Offres d'emploi
-          </div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
-            <h2 style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)', fontWeight: 600, color: '#18170F', letterSpacing: '-0.04em', lineHeight: 1.15, margin: 0 }}>
+    <section style={{ background: '#F9F8F6', padding: '80px 40px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
+          <div>
+            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
+              OFFRES D'EMPLOI
+            </p>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
               Emplois en vedette
             </h2>
-            <a href="/emplois" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#6B6860', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-              Voir toutes les offres →
-            </a>
           </div>
+          <a href="/emplois" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
+            Voir tout →
+          </a>
         </div>
 
-        {/* Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
           {emplois.map((e, i) => (
             <div key={i} style={{ background: 'white', border: '1px solid #E8E6E1', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
-              {/* Top row: badges + salaire */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', background: '#F4F4F5', borderRadius: '100px', padding: '3px 10px' }}>
@@ -66,21 +63,16 @@ export default function EmploisSection() {
                 <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#18170F', whiteSpace: 'nowrap' }}>{e.salaire}</span>
               </div>
 
-              {/* Title + company */}
               <div style={{ marginTop: '10px', marginBottom: '4px', fontSize: '1rem', fontWeight: 600, color: '#18170F', lineHeight: 1.35 }}>
                 {e.titre}
               </div>
               <div style={{ fontSize: '0.82rem', color: '#6B6860', flexGrow: 1 }}>{e.entreprise}</div>
 
-              {/* Footer */}
               <div style={{ borderTop: '1px solid #F0EEEA', marginTop: '16px', paddingTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
-                <span style={{ fontSize: '0.75rem', color: '#6B6860' }}>
-                  {e.ville} · {e.region}
-                </span>
+                <span style={{ fontSize: '0.75rem', color: '#6B6860' }}>{e.ville} · {e.region}</span>
                 <span style={{ fontSize: '0.72rem', color: '#B0AEA8' }}>{e.publie}</span>
               </div>
 
-              {/* CTA */}
               <a href="/emplois" style={{ marginTop: '16px', display: 'block', textAlign: 'center', padding: '8px 20px', fontSize: '0.82rem', fontWeight: 500, color: '#18170F', border: '1px solid #E8E6E1', borderRadius: '8px', textDecoration: 'none', background: 'white' }}>
                 Voir l'offre →
               </a>
@@ -88,6 +80,6 @@ export default function EmploisSection() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
