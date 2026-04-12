@@ -192,11 +192,33 @@ export default async function DashboardPage() {
           ACTIONS RAPIDES
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          {/* CTA pleine largeur */}
+          <a href="/demande-soumission" style={{
+            gridColumn: '1 / -1',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '20px 24px',
+            background: '#18170F', color: 'white',
+            borderRadius: '12px', textDecoration: 'none',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <span style={{ fontSize: '1.4rem' }}>📋</span>
+              <div>
+                <div style={{ fontSize: '0.95rem', fontWeight: 500, marginBottom: '2px' }}>
+                  Publier une demande de soumission
+                </div>
+                <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
+                  Recevez des soumissions de professionnels qualifiés en 24h
+                </div>
+              </div>
+            </div>
+            <span style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.5)' }}>→</span>
+          </a>
+
           {[
-            { icon: '📋', title: 'Demandes disponibles', desc: 'Voir les projets ouverts',    href: '/dashboard/demandes-disponibles' },
             { icon: '👤', title: 'Mon profil',           desc: 'Compléter mes informations',  href: '/dashboard/profil' },
             { icon: '✉️', title: 'Messages',             desc: 'Voir mes conversations',      href: '/dashboard/messages' },
             { icon: '🎁', title: 'Parrainer',            desc: 'Inviter un collègue',          href: '/dashboard/parrainage' },
+            { icon: '🔍', title: 'Demandes disponibles', desc: 'Voir les projets ouverts',    href: '/dashboard/demandes-disponibles' },
           ].map((card, i) => (
             <a key={i} href={card.href} style={{
               display: 'flex', alignItems: 'center', gap: '16px',

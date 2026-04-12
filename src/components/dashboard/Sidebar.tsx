@@ -128,6 +128,20 @@ export default function Sidebar({ role, fullName, avatarInitials, plan }: Props)
         </div>
       </div>
 
+      {/* CTA publier */}
+      <div style={{ padding: '12px 16px 0' }}>
+        <a href="/demande-soumission" style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          gap: '8px', padding: '10px 16px',
+          background: 'white', color: '#18170F',
+          borderRadius: '9px', textDecoration: 'none',
+          fontSize: '0.82rem', fontWeight: 500,
+          transition: 'opacity 0.15s',
+        }}>
+          <span>+</span> Publier une demande
+        </a>
+      </div>
+
       {/* Nav */}
       <nav style={{ flex: 1, padding: '8px 12px 0' }}>
         {groups.map(group => (
