@@ -20,18 +20,16 @@ function navFor(role: Role): NavGroup[] {
 
   const activites: NavGroup = {
     label: 'Mes activités',
-    items: role === 'professionnel'
-      ? [
-          { label: 'Demandes disponibles', href: '/dashboard/demandes-disponibles', icon: <IcSearch /> },
-          { label: 'Mes soumissions',      href: '/dashboard/mes-soumissions',      icon: <IcSend /> },
-          { label: 'Mes demandes publiées',href: '/dashboard/demandes',             icon: <IcList /> },
-        ]
-      : role === 'entreprise'
-      ? [
-          { label: 'Mes demandes publiées', href: '/dashboard/demandes', icon: <IcList /> },
-          { label: "Mes offres d'emploi",   href: '/dashboard/emplois',  icon: <IcBriefcase /> },
-        ]
-      : [],
+    items: [
+      { label: 'Demandes disponibles', href: '/dashboard/demandes-disponibles', icon: <IcSearch /> },
+      { label: 'Mes soumissions',      href: '/dashboard/mes-soumissions',      icon: <IcSend /> },
+      ...(role === 'entreprise' || role === 'professionnel'
+        ? [{ label: 'Mes demandes publiées', href: '/dashboard/demandes', icon: <IcList /> }]
+        : []),
+      ...(role === 'entreprise'
+        ? [{ label: "Mes offres d'emploi", href: '/dashboard/emplois', icon: <IcBriefcase /> }]
+        : []),
+    ],
   }
 
   const trouver: NavGroup = {
