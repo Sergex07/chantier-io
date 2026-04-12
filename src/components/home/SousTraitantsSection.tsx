@@ -8,10 +8,11 @@ const PROS = [
 
 function Card({ p }: { p: typeof PROS[0] }) {
   return (
-    <div
-      style={{ borderRadius: 16, overflow: 'hidden', cursor: 'pointer', border: '1px solid #E8E6E1', transition: 'box-shadow 0.2s, transform 0.2s', background: 'white' }}
-      onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; el.style.transform = 'translateY(-4px)' }}
-      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
+    <a
+      href="/profil/demo-id"
+      style={{ borderRadius: 16, overflow: 'hidden', cursor: 'pointer', border: '1px solid #E8E6E1', transition: 'box-shadow 0.2s, transform 0.2s', background: 'white', textDecoration: 'none', display: 'block' }}
+      onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; el.style.transform = 'translateY(-4px)' }}
+      onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
     >
       <div style={{ height: 224, backgroundImage: `url(${p.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative', overflow: 'hidden' }}>
         <span style={{ position: 'absolute', top: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '0.7rem', fontWeight: 600, padding: '3px 10px', borderRadius: 100 }}>{p.specialite}</span>
@@ -25,7 +26,7 @@ function Card({ p }: { p: typeof PROS[0] }) {
         <div style={{ fontSize: '0.78rem', color: '#6B6860', marginTop: 4 }}>{p.ville} · {p.projets} projets</div>
         <div style={{ fontSize: '0.875rem', color: '#18170F', marginTop: 8 }}>À partir de <strong>{p.tarif}</strong></div>
       </div>
-    </div>
+    </a>
   )
 }
 
