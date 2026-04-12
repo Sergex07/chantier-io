@@ -18,7 +18,8 @@ export default async function ProfilPage() {
   const selectedSpecialites = (selResult.data ?? []).map(r => r.specialite_id as string)
 
   // Completion score
-  const fields = [profile.full_name, profile.avatar_url, profile.region, profile.description, profile.rbq_numero]
+  const p = profileResult.data
+  const fields = [p?.full_name, p?.avatar_url, p?.region, p?.description, p?.rbq_numero]
   const completed = fields.filter(Boolean).length
   const pct = Math.round((completed / fields.length) * 100)
 

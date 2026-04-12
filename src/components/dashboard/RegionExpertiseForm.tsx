@@ -35,7 +35,7 @@ const initialState: ProfileFormState = { success: false }
 interface Props {
   region: string | null
   ville: string | null
-  specialites: Specialite[]
+  specialites: Pick<Specialite, 'id' | 'nom'>[]
   selectedSpecialites: string[]
 }
 
