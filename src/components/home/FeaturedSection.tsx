@@ -29,35 +29,48 @@ export default function FeaturedSection() {
         {/* Bento grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '12px' }}>
 
-          {/* Grande card pro — span 2 rows */}
-          <a href="/profil/demo-id" style={{
-            gridColumn: '1', gridRow: '1 / 3',
-            display: 'block', textDecoration: 'none',
+          {/* Grande card value prop */}
+          <a href="/demande-soumission" style={{
+            gridColumn: '1',
+            display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+            textDecoration: 'none',
             borderRadius: '20px', overflow: 'hidden',
             position: 'relative', minHeight: '360px',
-            backgroundImage: 'url(https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80)',
-            backgroundSize: 'cover', backgroundPosition: 'center',
-          }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1.01)'; (e.currentTarget as HTMLAnchorElement).style.transition = 'transform 0.3s' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)' }}
-          >
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
-            <div style={{ position: 'absolute', top: '16px', left: '16px' }}>
-              <span style={{ background: 'white', fontSize: '0.68rem', fontWeight: 600, padding: '4px 10px', borderRadius: '100px', color: '#18170F' }}>
-                ✓ Vérifié
-              </span>
+            background: '#18170F',
+            padding: '36px',
+          }}>
+            {/* Cercle décoratif */}
+            <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '240px', height: '240px', borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: '-40px', left: '-40px', width: '180px', height: '180px', borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
+
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '100px', padding: '5px 12px', marginBottom: '24px' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ADE80', flexShrink: 0, display: 'block' }} />
+                <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>247 demandes actives au Québec</span>
+              </div>
+              <h3 style={{ fontSize: '1.9rem', fontWeight: 500, color: 'white', letterSpacing: '-0.04em', lineHeight: 1.15, margin: '0 0 20px', maxWidth: '320px' }}>
+                Trouvez le bon pro pour vos travaux en 48h
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {[
+                  '1 458 entrepreneurs vérifiés',
+                  'Soumissions gratuites, sans engagement',
+                  'Partout au Québec',
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ width: 18, height: 18, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                    <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.65)' }}>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ position: 'absolute', bottom: '24px', left: '24px', right: '24px' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                ÉLECTRICITÉ · MONTRÉAL
-              </div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 500, color: 'white', letterSpacing: '-0.02em', marginBottom: '4px' }}>
-                Voltex Électrique inc.
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.8)' }}>★ 4.97 · 148 projets</span>
-                <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.6)' }}>À partir de 85$/h</span>
-              </div>
+
+            <div style={{ position: 'relative', zIndex: 1, marginTop: '32px' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'white', color: '#18170F', fontSize: '0.875rem', fontWeight: 500, padding: '11px 22px', borderRadius: '100px' }}>
+                Publier une demande gratuitement →
+              </span>
             </div>
           </a>
 
