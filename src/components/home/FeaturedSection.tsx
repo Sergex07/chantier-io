@@ -1,9 +1,9 @@
 'use client'
 
 const CATEGORIES = [
-  { icon: '⚡', label: 'Électricité', href: '/demande-soumission?type=Électricité' },
-  { icon: '🔧', label: 'Plomberie', href: '/demande-soumission?type=Plomberie' },
-  { icon: '🏠', label: 'Toiture', href: '/demande-soumission?type=Toiture' },
+  { icon: '🍳', label: 'Rénover sa cuisine', href: '/demande-soumission?type=Cuisine' },
+  { icon: '🚿', label: 'Rénover sa salle de bain', href: '/demande-soumission?type=Salle+de+bain' },
+  { icon: '🔨', label: 'Rénovation générale', href: '/demande-soumission?type=Rénovation' },
   { icon: '🎨', label: 'Peinture', href: '/demande-soumission?type=Peinture' },
 ]
 
