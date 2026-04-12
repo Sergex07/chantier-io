@@ -39,7 +39,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar role={role} fullName={fullName} avatarInitials={initiales} plan={plan} />
 
-      <div style={{ marginLeft: '240px', flex: 1, minHeight: '100vh', background: '#F9F8F6', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ marginLeft: '260px', flex: 1, minHeight: '100vh', background: '#F9F8F6', display: 'flex', flexDirection: 'column' }}>
         {/* Content header */}
         <div style={{ padding: '32px 40px 0' }}>
           {/* Trial banner */}
