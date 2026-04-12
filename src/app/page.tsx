@@ -16,6 +16,8 @@ import ProcessSection from '@/components/home/ProcessSection'
 import ProfessionnelsSection from '@/components/home/ProfessionnelsSection'
 import ProDoubleCtaSection from '@/components/home/ProDoubleCtaSection'
 import ProProcessSection from '@/components/home/ProProcessSection'
+import FeaturedSection from '@/components/home/FeaturedSection'
+import ValuePropSection from '@/components/home/ValuePropSection'
 import FooterSection from '@/components/home/FooterSection'
 
 export default function HomePage() {
@@ -27,11 +29,12 @@ export default function HomePage() {
 
       {mode === 'public' && (
         <>
+          <FeaturedSection />
+          <ValuePropSection />
           <ProcessSection />
           <CategoriesSection />
           <SousTraitantsSection />
           <ProfessionnelsSection />
-          <DetaillantsSection />
           <TemoignagesSection />
           <CTAFinalSection />
         </>
