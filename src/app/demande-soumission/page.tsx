@@ -409,6 +409,8 @@ export default function DemandesoumissionPage() {
                     border: '1px solid #E8E6E1', borderRadius: '9px', fontSize: '0.9rem',
                     fontWeight: 400, cursor: 'pointer', fontFamily: 'inherit'
                   }}>← Retour</button>
+                  {/* On submit: save typeClient as source_type in DB.
+                      Mapping: 'particulier' → 'client', 'entrepreneur' → 'pro' */}
                   <button onClick={() => setSubmitted(true)} disabled={!email || !nom.trim()} style={{
                     flex: 2, padding: '13px',
                     background: !email || !nom.trim() ? '#E8E6E1' : '#18170F',

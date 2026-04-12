@@ -5,6 +5,7 @@ import FiltresCategories from './FiltresCategories'
 const DEMANDES = [
   {
     specialite: 'Électricité',
+    sourceType: 'pro' as const,
     name: 'Électricité commerciale — Phase 2', gc: 'GC Construction Laval · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '14 avr.', sector: 'Commercial', offres: '6 offres',
@@ -15,6 +16,7 @@ const DEMANDES = [
   },
   {
     specialite: 'Toiture',
+    sourceType: 'pro' as const,
     name: 'Toiture membrane — Bâtiment commercial', gc: 'Immeubles Beaumont · Montréal',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '30 avr.', sector: 'Commercial', offres: '2 offres',
@@ -25,6 +27,7 @@ const DEMANDES = [
   },
   {
     specialite: 'Fondation',
+    sourceType: 'pro' as const,
     name: 'Dalle de béton — Entrepôt 8 000 pc', gc: 'Groupe Industriel RS · Rive-Sud',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '1 mai', sector: 'Industriel', offres: '4 offres',
@@ -35,6 +38,7 @@ const DEMANDES = [
   },
   {
     specialite: 'HVAC',
+    sourceType: 'pro' as const,
     name: 'Système HVAC — Multilogement 32 unités', gc: 'Développement Nordique · Laval',
     badge: 'Urgent', badgeBg: '#FFF0ED', badgeColor: '#C0392B',
     date: '22 avr.', sector: 'Résidentiel', offres: '1 offre',
@@ -45,6 +49,7 @@ const DEMANDES = [
   },
   {
     specialite: 'Charpenterie',
+    sourceType: 'pro' as const,
     name: 'Charpenterie — Structure bois 3 étages', gc: 'Constructions Paradis · Québec',
     badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
     date: '5 mai', sector: 'Résidentiel', offres: '3 offres',
@@ -55,6 +60,7 @@ const DEMANDES = [
   },
   {
     specialite: 'Plomberie',
+    sourceType: 'pro' as const,
     name: 'Plomberie — Immeuble 24 unités', gc: 'Les Résidences Dion · Longueuil',
     badge: 'Actif', badgeBg: '#EDFBF0', badgeColor: '#1A8A38',
     date: '10 mai', sector: 'Résidentiel', offres: '5 offres',
@@ -62,6 +68,17 @@ const DEMANDES = [
     desc: 'Plomberie complète pour un immeuble résidentiel neuf de 24 unités.',
     reqs: ['Licence maître-plombier', 'CCQ obligatoire'],
     files: [{ name: 'Plans plomberie.pdf', size: '5.3 MB' }],
+  },
+  {
+    specialite: 'Peinture',
+    sourceType: 'client' as const,
+    name: 'Peinture extérieure — Condo 3 étages', gc: 'Syndic Condo Laval · Laval',
+    badge: 'Nouveau', badgeBg: '#EDF8FF', badgeColor: '#1A7ABF',
+    date: '20 mai', sector: 'Résidentiel', offres: '0 offre',
+    budget: '12 000 – 18 000 $', region: 'Laval',
+    desc: "Peinture complète de l'extérieur d'un immeuble de 3 étages, incluant préparation de surface, calfeutrage et application de 2 couches.",
+    reqs: ["Expérience peinture extérieure bâtiment", "Assurance responsabilité civile"],
+    files: [],
   },
 ]
 
@@ -74,6 +91,30 @@ function masquerNom(nom: string, connecte: boolean): string {
 }
 
 const STATUT_COLORS: Record<string, string> = { Urgent: '#dc2626', Nouveau: '#2563eb', Actif: '#16a34a' }
+
+function BadgeSource({ type }: { type: 'client' | 'pro' }) {
+  return type === 'pro' ? (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: '3px',
+      fontSize: '0.65rem', fontWeight: 500,
+      color: '#4A5568', background: '#EEF2F7',
+      padding: '2px 7px', borderRadius: '4px',
+      marginTop: '2px',
+    }}>
+      🏗️ Entrepreneur / GC
+    </span>
+  ) : (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: '3px',
+      fontSize: '0.65rem', fontWeight: 500,
+      color: '#6B6860', background: '#F4F4F5',
+      padding: '2px 7px', borderRadius: '4px',
+      marginTop: '2px',
+    }}>
+      🏠 Client direct
+    </span>
+  )
+}
 
 function SpecialiteIcon({ specialite }: { specialite: string }) {
   const s = { width: 36, height: 36, borderRadius: '8px', background: '#F4F4F5', border: '1px solid #E4E4E7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 } as const
@@ -110,6 +151,12 @@ function SpecialiteIcon({ specialite }: { specialite: string }) {
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A5568" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2v6M12 22v-6M12 8a4 4 0 0 0 0 8" />
         <path d="M12 16a4 4 0 0 1 0-8" />
+      </svg>
+    ),
+    'Peinture': (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A5568" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M19 3H5a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" />
+        <path d="M12 12v9" /><path d="M9 21h6" />
       </svg>
     ),
   }
@@ -166,9 +213,10 @@ export default function DemandesTableauInteractif() {
               <SpecialiteIcon specialite={d.specialite} />
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.name}</div>
-                <div style={{ fontSize: '0.75rem', color: isConnected ? '#6B6860' : '#B8B5AF', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontStyle: isConnected ? 'normal' : 'italic' }}>
+                <div style={{ fontSize: '0.75rem', color: isConnected ? '#6B6860' : '#B8B5AF', marginTop: '1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontStyle: isConnected ? 'normal' : 'italic' }}>
                   {masquerNom(d.gc, isConnected)}
                 </div>
+                <BadgeSource type={d.sourceType} />
               </div>
             </div>
 
@@ -207,10 +255,10 @@ export default function DemandesTableauInteractif() {
             </div>
           </div>
         ))}
+
         {/* Lock banner */}
         {!isConnected && (
           <div style={{
-            marginTop: '0',
             borderTop: '1px solid #E8E6E1',
             padding: '20px 24px',
             background: '#FAFAFA',
@@ -260,10 +308,25 @@ export default function DemandesTableauInteractif() {
           >
             <button onClick={() => setSelected(null)} style={{ position: 'absolute', top: '16px', right: '16px', width: '32px', height: '32px', borderRadius: '50%', border: '1px solid #DDDDDD', background: 'white', cursor: 'pointer', fontSize: '0.85rem', color: '#6B6860' }}>✕</button>
 
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.68rem', fontWeight: 500, padding: '4px 12px', borderRadius: '999px', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', background: demande.badgeBg, color: demande.badgeColor }}>
+            {/* Status badge */}
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.68rem', fontWeight: 500, padding: '4px 12px', borderRadius: '999px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em', background: demande.badgeBg, color: demande.badgeColor }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: STATUT_COLORS[demande.badge] || '#6B6860' }} />
               {demande.badge}
             </span>
+
+            {/* Source badge */}
+            <div style={{ marginBottom: '12px' }}>
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '4px 12px', borderRadius: '100px',
+                background: demande.sourceType === 'pro' ? '#EEF2F7' : '#F4F4F5',
+                fontSize: '0.75rem', fontWeight: 500,
+                color: demande.sourceType === 'pro' ? '#4A5568' : '#6B6860',
+              }}>
+                {demande.sourceType === 'pro' ? "🏗️ Demande d'un entrepreneur / GC" : "🏠 Demande d'un client direct"}
+              </div>
+            </div>
+
             <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.03em', marginBottom: '6px', lineHeight: 1.25 }}>{demande.name}</div>
             <div style={{ fontSize: '0.875rem', color: '#6B6860', marginBottom: '24px' }}>{masquerNom(demande.gc, isConnected)} · {demande.region}</div>
 
