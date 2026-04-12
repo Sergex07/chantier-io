@@ -20,7 +20,7 @@ export default function CategoriesSection() {
   const { region } = useRegion()
 
   return (
-    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
