@@ -188,13 +188,19 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, role")
+    .select("full_name, role, plan, trial_ends_at")
     .eq("id", user.id)
     .single();
 
   const role = (profile?.role ?? "professionnel") as Role;
   const fullName = profile?.full_name ?? null;
   const prenom = fullName?.split(" ")[0] ?? "vous";
+
+  const trialDaysLeft =
+    profile?.plan === "pro_trial" && profile?.trial_ends_at
+      ? Math.max(0, Math.ceil((new Date(profile.trial_ends_at).getTime() - Date.now()) / 86_400_000))
+      : null;
+  const showTrialBanner = trialDaysLeft !== null && trialDaysLeft > 0;
 
   const subtitles: Record<Role, string> = {
     professionnel: "Tableau de bord professionnel",
@@ -217,6 +223,26 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto">
+      {/* Pro trial banner */}
+      {showTrialBanner && (
+        <div style={{ marginBottom: '24px', padding: '16px 20px', background: 'linear-gradient(135deg, #18170F 0%, #4A5568 100%)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ fontSize: '1.2rem' }}>🎁</span>
+            <div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', marginBottom: '2px' }}>
+                Votre essai Pro se termine dans {trialDaysLeft} jour{trialDaysLeft === 1 ? '' : 's'}
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
+                Profitez de toutes les fonctionnalités Pro pendant votre période d'essai
+              </div>
+            </div>
+          </div>
+          <a href="/dashboard/abonnement" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+            Activer mon abonnement →
+          </a>
+        </div>
+      )}
+
       {/* Greeting */}
       <div className="mb-8">
         <h1 className="text-2xl font-semibold text-black">

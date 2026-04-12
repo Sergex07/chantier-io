@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 
 export type ProfileFormState = {
@@ -90,4 +91,15 @@ export async function updateProfile(
 
   revalidatePath("/dashboard/profil");
   return { success: true };
+}
+
+/** Called right after signUp — sets pro_trial + 14-day expiry via service role (user not yet confirmed). */
+export async function activateProTrial(userId: string): Promise<{ error?: string }> {
+  const supabase = createAdminClient();
+  const trialEndsAt = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString();
+  const { error } = await supabase
+    .from("profiles")
+    .update({ plan: "pro_trial", trial_ends_at: trialEndsAt })
+    .eq("id", userId);
+  return { error: error?.message };
 }

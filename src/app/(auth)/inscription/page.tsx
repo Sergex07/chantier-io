@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { activateProTrial } from '@/app/actions/profile'
 
 const PLANS = [
   { id: 'professionnel', label: 'Professionnel', prix: '10$/mois', desc: 'Sous-traitants, designers, architectes' },
@@ -27,7 +28,7 @@ export default function InscriptionPage() {
     if (!plan) { setError('Veuillez choisir un type de compte.'); return }
     setLoading(true); setError(null)
     const supabase = createClient()
-    const { error: err } = await supabase.auth.signUp({
+    const { data, error: err } = await supabase.auth.signUp({
       email, password,
       options: {
         data: { plan, nom },
@@ -35,6 +36,9 @@ export default function InscriptionPage() {
       },
     })
     if (err) { setError(err.message); setLoading(false); return }
+    if (data.user) {
+      await activateProTrial(data.user.id)
+    }
     window.location.href = '/connexion?registered=1'
   }
 
