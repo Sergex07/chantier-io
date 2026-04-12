@@ -18,7 +18,9 @@ const inputStyle = {
 
 export default function InscriptionPage() {
   const [plan, setPlan] = useState<string | null>(null)
+  const [prenom, setPrenom] = useState('')
   const [nom, setNom] = useState('')
+  const [telephone, setTelephone] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -31,16 +33,21 @@ export default function InscriptionPage() {
     if (!plan) { setError('Veuillez choisir un type de compte.'); return }
     setLoading(true); setError(null)
     const supabase = createClient()
+    const fullName = `${prenom} ${nom}`.trim()
     const { data, error: err } = await supabase.auth.signUp({
       email, password,
       options: {
-        data: { plan, nom },
+        data: { plan, full_name: fullName },
         emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
       },
     })
     if (err) { setError(err.message); setLoading(false); return }
-    if (data.user && !isPublic) {
-      await activateProTrial(data.user.id)
+    if (data.user) {
+      await supabase.from('profiles').update({
+        full_name: fullName,
+        phone: telephone,
+      }).eq('id', data.user.id)
+      if (!isPublic) await activateProTrial(data.user.id)
     }
     window.location.href = '/connexion?registered=1'
   }
@@ -77,6 +84,7 @@ export default function InscriptionPage() {
         </p>
 
         <form onSubmit={handleSubmit}>
+          {/* Type de compte */}
           <div style={{ marginBottom: '24px' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>Type de compte</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '8px' }}>
@@ -109,17 +117,42 @@ export default function InscriptionPage() {
             )}
           </div>
 
+          {/* Champs */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
-            {[
-              { label: 'Nom complet', value: nom, set: setNom, type: 'text', ph: 'Jean Tremblay' },
-              { label: 'Courriel', value: email, set: setEmail, type: 'email', ph: 'vous@exemple.com' },
-              { label: 'Mot de passe', value: password, set: setPassword, type: 'password', ph: '8 caractères minimum' },
-            ].map(f => (
-              <div key={f.label}>
-                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>{f.label}</label>
-                <input type={f.type} required value={f.value} onChange={e => f.set(e.target.value)} placeholder={f.ph} style={inputStyle} />
+            {/* Prénom + Nom */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>Prénom</label>
+                <input type="text" value={prenom} onChange={e => setPrenom(e.target.value)}
+                  placeholder="Jean" required style={inputStyle} />
               </div>
-            ))}
+              <div>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>Nom</label>
+                <input type="text" value={nom} onChange={e => setNom(e.target.value)}
+                  placeholder="Tremblay" required style={inputStyle} />
+              </div>
+            </div>
+
+            {/* Téléphone */}
+            <div>
+              <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>Téléphone</label>
+              <input type="tel" value={telephone} onChange={e => setTelephone(e.target.value)}
+                placeholder="514 555-1234" style={inputStyle} />
+            </div>
+
+            {/* Courriel */}
+            <div>
+              <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>Courriel</label>
+              <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
+                placeholder="vous@exemple.com" style={inputStyle} />
+            </div>
+
+            {/* Mot de passe */}
+            <div>
+              <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#18170F', display: 'block', marginBottom: '6px' }}>Mot de passe</label>
+              <input type="password" required value={password} onChange={e => setPassword(e.target.value)}
+                placeholder="8 caractères minimum" style={inputStyle} />
+            </div>
           </div>
 
           {error && <p style={{ fontSize: '0.85rem', color: '#C0392B', marginBottom: '16px' }}>{error}</p>}
