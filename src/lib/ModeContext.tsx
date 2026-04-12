@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-type Mode = 'public' | 'pro' | 'travailleur'
+type Mode = 'public' | 'entrepreneur' | 'professionnel' | 'detaillant' | 'travailleur'
 
 const ModeContext = createContext<{ mode: Mode; setMode: (m: Mode) => void }>({
   mode: 'public', setMode: () => {}

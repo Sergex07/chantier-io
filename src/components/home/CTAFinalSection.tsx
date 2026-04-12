@@ -1,10 +1,12 @@
 'use client'
 import { useMode } from '@/lib/ModeContext'
 
+const PRO_MODES = ['entrepreneur', 'professionnel', 'detaillant']
+
 export default function CTAFinalSection() {
   const { mode } = useMode()
 
-  const isPro = mode === 'pro'
+  const isPro = PRO_MODES.includes(mode)
 
   const content = isPro ? {
     titre: "Commencez à décrocher des contrats aujourd'hui",

@@ -6,17 +6,23 @@ import { usePathname } from 'next/navigation'
 import { useMode } from '@/lib/ModeContext'
 import type { User } from '@supabase/supabase-js'
 
-const TABS = [
-  { id: 'public' as const, label: 'Grand public' },
-  { id: 'pro' as const, label: 'Professionnel' },
-  { id: 'travailleur' as const, label: 'Travailleur' },
+const PRO_SUBTABS = [
+  { id: 'entrepreneur' as const, label: 'Entrepreneur' },
+  { id: 'professionnel' as const, label: 'Professionnel' },
+  { id: 'detaillant' as const, label: 'Détaillant' },
 ]
+
+const PRO_MODES = PRO_SUBTABS.map(t => t.id)
 
 export default function Navbar() {
   const pathname = usePathname()
   const { mode, setMode } = useMode()
   const [user, setUser] = useState<User | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [proDropdownOpen, setProDropdownOpen] = useState(false)
+
+  const isProMode = PRO_MODES.includes(mode as typeof PRO_MODES[number])
+  const activeProLabel = PRO_SUBTABS.find(t => t.id === mode)?.label ?? 'Entrepreneur'
 
   const supabase = createClient()
 
@@ -66,25 +72,104 @@ export default function Navbar() {
           display: 'flex', background: '#F4F4F5', borderRadius: '100px',
           padding: '3px', gap: '2px',
         }}>
-          {TABS.map(tab => (
+          {/* Grand public */}
+          <button
+            type="button"
+            onClick={() => { setMode('public'); setProDropdownOpen(false) }}
+            style={{
+              padding: '6px 18px', borderRadius: '100px',
+              border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+              fontSize: '0.82rem', fontWeight: mode === 'public' ? 500 : 400,
+              background: mode === 'public' ? 'white' : 'transparent',
+              color: mode === 'public' ? '#18170F' : '#6B6860',
+              boxShadow: mode === 'public' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              transition: 'all 0.2s', whiteSpace: 'nowrap',
+            }}
+          >
+            Grand public
+          </button>
+
+          {/* Dropdown pro */}
+          <div style={{ position: 'relative' }}>
             <button
-              key={tab.id}
               type="button"
-              onClick={() => setMode(tab.id)}
+              onClick={() => setProDropdownOpen(!proDropdownOpen)}
               style={{
+                display: 'flex', alignItems: 'center', gap: '5px',
                 padding: '6px 18px', borderRadius: '100px',
                 border: 'none', cursor: 'pointer', fontFamily: 'inherit',
-                fontSize: '0.82rem', fontWeight: mode === tab.id ? 500 : 400,
-                background: mode === tab.id ? 'white' : 'transparent',
-                color: mode === tab.id ? '#18170F' : '#6B6860',
-                boxShadow: mode === tab.id ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
+                fontSize: '0.82rem', fontWeight: isProMode ? 500 : 400,
+                background: isProMode ? 'white' : 'transparent',
+                color: isProMode ? '#18170F' : '#6B6860',
+                boxShadow: isProMode ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                transition: 'all 0.2s', whiteSpace: 'nowrap',
               }}
             >
-              {tab.label}
+              {isProMode ? activeProLabel : 'Professionnel'}
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5"
+                style={{ transform: proDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', flexShrink: 0 }}>
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
             </button>
-          ))}
+
+            {proDropdownOpen && (
+              <>
+                <div
+                  onClick={() => setProDropdownOpen(false)}
+                  style={{ position: 'fixed', inset: 0, zIndex: 298 }}
+                />
+                <div style={{
+                  position: 'absolute', top: 'calc(100% + 8px)', left: '50%',
+                  transform: 'translateX(-50%)',
+                  background: 'white', borderRadius: '12px',
+                  border: '1px solid #E8E6E1',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.10)',
+                  minWidth: '160px', zIndex: 299, overflow: 'hidden',
+                  padding: '4px',
+                }}>
+                  {PRO_SUBTABS.map(sub => (
+                    <button
+                      key={sub.id}
+                      type="button"
+                      onClick={() => { setMode(sub.id); setProDropdownOpen(false) }}
+                      style={{
+                        display: 'block', width: '100%', textAlign: 'left',
+                        padding: '9px 14px', borderRadius: '8px',
+                        border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                        fontSize: '0.83rem',
+                        fontWeight: mode === sub.id ? 500 : 400,
+                        background: mode === sub.id ? '#F4F4F5' : 'transparent',
+                        color: mode === sub.id ? '#18170F' : '#6B6860',
+                        whiteSpace: 'nowrap',
+                      }}
+                      onMouseEnter={e => { if (mode !== sub.id) e.currentTarget.style.background = '#F9F8F6' }}
+                      onMouseLeave={e => { e.currentTarget.style.background = mode === sub.id ? '#F4F4F5' : 'transparent' }}
+                    >
+                      {sub.label}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Travailleur */}
+          <button
+            type="button"
+            onClick={() => { setMode('travailleur'); setProDropdownOpen(false) }}
+            style={{
+              padding: '6px 18px', borderRadius: '100px',
+              border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+              fontSize: '0.82rem', fontWeight: mode === 'travailleur' ? 500 : 400,
+              background: mode === 'travailleur' ? 'white' : 'transparent',
+              color: mode === 'travailleur' ? '#18170F' : '#6B6860',
+              boxShadow: mode === 'travailleur' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+              transition: 'all 0.2s', whiteSpace: 'nowrap',
+            }}
+          >
+            Travailleur
+          </button>
         </div>
       )}
 
