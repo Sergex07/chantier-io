@@ -53,7 +53,7 @@ const HERO_TITLES: Record<Mode, React.ReactNode> = {
 }
 
 const HERO_SUBTITLES: Record<Mode, string> = {
-  public: "Sous-traitants, designers, architectes, détaillants — tous vos partenaires au Québec",
+  public: "Entrepreneur général, professionnel, boutique — tous vos partenaires au Québec",
   pro: "Accédez aux demandes de soumissions d'entrepreneurs et de clients directs",
   travailleur: "Rejoignez le réseau de travailleurs qualifiés du Québec · Gratuit",
 }
