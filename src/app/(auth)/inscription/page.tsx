@@ -4,9 +4,10 @@ import { createClient } from '@/lib/supabase/client'
 import { activateProTrial } from '@/app/actions/profile'
 
 const PLANS = [
-  { id: 'professionnel', label: 'Professionnel', prix: '10$/mois', desc: 'Sous-traitants, designers, architectes' },
-  { id: 'entreprise',    label: 'Entreprise',    prix: '25$/mois', desc: 'GC et promoteurs immobiliers' },
-  { id: 'detaillant',   label: 'Détaillant',    prix: '29$/mois', desc: 'Fournisseurs de matériaux' },
+  { id: 'public',      label: 'Grand public',  prix: 'Gratuit',   desc: 'Propriétaires qui cherchent un entrepreneur' },
+  { id: 'pro',         label: 'Professionnel', prix: '10$/mois',  desc: 'Sous-traitants, designers, architectes' },
+  { id: 'entreprise',  label: 'Entreprise',    prix: '25$/mois',  desc: 'GC et promoteurs' },
+  { id: 'detaillant',  label: 'Détaillant',    prix: '29$/mois',  desc: 'Fournisseurs de matériaux' },
 ]
 
 const inputStyle = {
@@ -23,6 +24,8 @@ export default function InscriptionPage() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
+  const isPublic = plan === 'public'
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!plan) { setError('Veuillez choisir un type de compte.'); return }
@@ -36,7 +39,7 @@ export default function InscriptionPage() {
       },
     })
     if (err) { setError(err.message); setLoading(false); return }
-    if (data.user) {
+    if (data.user && !isPublic) {
       await activateProTrial(data.user.id)
     }
     window.location.href = '/connexion?registered=1'
@@ -51,19 +54,35 @@ export default function InscriptionPage() {
         <span style={{ fontWeight: 800, fontSize: '1.1rem', color: '#18170F', letterSpacing: '-0.03em' }}>Chantier.io</span>
       </a>
 
-      <div style={{ background: 'white', borderRadius: '20px', padding: '40px', width: '100%', maxWidth: '480px', boxShadow: '0 4px 6px rgba(0,0,0,0.04), 0 20px 40px rgba(0,0,0,0.08)' }}>
-        <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.04em', marginBottom: '6px' }}>Créer un compte</h1>
-        <p style={{ fontSize: '0.875rem', color: '#6B6860', marginBottom: '28px' }}>
+      <div style={{ background: 'white', borderRadius: '20px', padding: '40px', width: '100%', maxWidth: '560px', boxShadow: '0 4px 6px rgba(0,0,0,0.04), 0 20px 40px rgba(0,0,0,0.08)' }}>
+        <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.04em', marginBottom: '12px' }}>Créer un compte</h1>
+
+        {/* Badge */}
+        <div style={{ marginBottom: '20px' }}>
+          {plan === null ? null : isPublic ? (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '100px', padding: '5px 12px', fontSize: '0.78rem', fontWeight: 600, color: '#16A34A' }}>
+              <span>✅</span>
+              <span>Toujours gratuit — aucune carte requise</span>
+            </div>
+          ) : (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '100px', padding: '5px 12px', fontSize: '0.78rem', fontWeight: 600, color: '#16A34A' }}>
+              <span>🎁</span>
+              <span>30 jours gratuits — aucune carte de crédit requise</span>
+            </div>
+          )}
+        </div>
+
+        <p style={{ fontSize: '0.875rem', color: '#6B6860', marginBottom: '24px' }}>
           Déjà inscrit ?{' '}<a href="/connexion" style={{ color: '#18170F', fontWeight: 600 }}>Se connecter</a>
         </p>
 
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '24px' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>Type de compte</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '8px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '8px' }}>
               {PLANS.map(p => (
                 <button key={p.id} type="button" onClick={() => setPlan(p.id)} style={{
-                  padding: '12px 8px', borderRadius: '10px',
+                  padding: '12px 10px', borderRadius: '10px',
                   border: `1px solid ${plan === p.id ? '#18170F' : '#E8E6E1'}`,
                   background: plan === p.id ? '#18170F' : 'white',
                   color: plan === p.id ? 'white' : '#18170F',
@@ -95,7 +114,7 @@ export default function InscriptionPage() {
           {error && <p style={{ fontSize: '0.85rem', color: '#C0392B', marginBottom: '16px' }}>{error}</p>}
 
           <button type="submit" disabled={loading} style={{ width: '100%', padding: '13px', background: '#18170F', color: 'white', border: 'none', borderRadius: '9px', fontSize: '0.95rem', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.6 : 1 }}>
-            {loading ? 'Création…' : 'Créer mon compte →'}
+            {loading ? 'Création…' : isPublic ? 'Créer mon compte gratuit →' : 'Créer mon compte →'}
           </button>
 
           <p style={{ fontSize: '0.75rem', color: '#6B6860', textAlign: 'center', marginTop: '20px', lineHeight: 1.5 }}>
