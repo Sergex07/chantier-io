@@ -8,18 +8,15 @@ const specialites = [
   'Revêtement extérieur', 'Isolation', 'Gypse & Plâtre', 'Béton', 'Autre'
 ]
 
-const regions = [
-  'Grand Montréal', 'Rive-Nord', 'Rive-Sud', 'Laval', 'Québec',
-  'Estrie', 'Outaouais', 'Laurentides', 'Lanaudière', 'Autre'
-]
-
 export default function DemandesoumissionPage() {
   const [typeClient, setTypeClient] = useState<'particulier' | 'entrepreneur'>('particulier')
   const [etape, setEtape] = useState(1)
   const [specialite, setSpecialite] = useState('')
   const [secteur, setSecteur] = useState('')
-  const [region, setRegion] = useState('')
+  const [adresse, setAdresse] = useState('')
   const [ville, setVille] = useState('')
+  const [province, setProvince] = useState('QC')
+  const [codePostal, setCodePostal] = useState('')
   const [titre, setTitre] = useState('')
   const [description, setDescription] = useState('')
   const [budget, setBudget] = useState('')
@@ -30,6 +27,10 @@ export default function DemandesoumissionPage() {
   const [telephone, setTelephone] = useState('')
   const [entreprise, setEntreprise] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [plans, setPlans] = useState<File[]>([])
+  const [photos, setPhotos] = useState<File[]>([])
+  const [dragOver, setDragOver] = useState(false)
+  const [dragOverPhotos, setDragOverPhotos] = useState(false)
 
   const inputStyle = {
     width: '100%', padding: '11px 14px', borderRadius: '9px',
@@ -73,12 +74,8 @@ export default function DemandesoumissionPage() {
                 background: typeClient === t.id ? '#18170F' : 'white',
                 fontFamily: 'inherit', transition: 'all 0.15s'
               }}>
-                <div style={{ fontSize: '0.95rem', fontWeight: 500, color: typeClient === t.id ? 'white' : '#18170F', marginBottom: '4px' }}>
-                  {t.label}
-                </div>
-                <div style={{ fontSize: '0.75rem', color: typeClient === t.id ? 'rgba(255,255,255,0.65)' : '#6B6860' }}>
-                  {t.desc}
-                </div>
+                <div style={{ fontSize: '0.95rem', fontWeight: 500, color: typeClient === t.id ? 'white' : '#18170F', marginBottom: '4px' }}>{t.label}</div>
+                <div style={{ fontSize: '0.75rem', color: typeClient === t.id ? 'rgba(255,255,255,0.65)' : '#6B6860' }}>{t.desc}</div>
               </button>
             ))}
           </div>
@@ -97,9 +94,7 @@ export default function DemandesoumissionPage() {
               }}>
                 {etape > i + 1 ? '✓' : i + 1}
               </div>
-              <span style={{ fontSize: '0.8rem', color: etape === i + 1 ? '#18170F' : '#9B9891', fontWeight: etape === i + 1 ? 500 : 400 }}>
-                {e}
-              </span>
+              <span style={{ fontSize: '0.8rem', color: etape === i + 1 ? '#18170F' : '#9B9891', fontWeight: etape === i + 1 ? 500 : 400 }}>{e}</span>
               {i < 2 && <div style={{ width: '32px', height: '1px', background: '#E8E6E1', margin: '0 4px' }} />}
             </div>
           ))}
@@ -112,9 +107,7 @@ export default function DemandesoumissionPage() {
             {/* ÉTAPE 1 — Projet */}
             {etape === 1 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F', marginBottom: '4px' }}>
-                  Décrivez votre projet
-                </h2>
+                <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F', marginBottom: '4px' }}>Décrivez votre projet</h2>
 
                 <div>
                   <label style={labelStyle}>{typeClient === 'entrepreneur' ? 'Spécialité recherchée' : 'Type de travaux'}</label>
@@ -158,6 +151,93 @@ export default function DemandesoumissionPage() {
                     style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.5 }} />
                 </div>
 
+                {/* Upload plans */}
+                <div>
+                  <label style={labelStyle}>Plans et documents <span style={{ fontWeight: 400, color: '#9B9891' }}>(optionnel)</span></label>
+                  <div
+                    onDragOver={e => { e.preventDefault(); setDragOver(true) }}
+                    onDragLeave={() => setDragOver(false)}
+                    onDrop={e => {
+                      e.preventDefault(); setDragOver(false)
+                      const files = Array.from(e.dataTransfer.files)
+                      setPlans(prev => [...prev, ...files].slice(0, 5))
+                    }}
+                    style={{
+                      border: '2px dashed ' + (dragOver ? '#18170F' : '#E8E6E1'),
+                      borderRadius: '10px', padding: '24px', textAlign: 'center',
+                      background: dragOver ? '#F9F8F6' : 'white',
+                      transition: 'all 0.15s', cursor: 'pointer'
+                    }}
+                    onClick={() => document.getElementById('plans-input')?.click()}>
+                    <input id="plans-input" type="file" multiple accept=".pdf,.dwg,.jpg,.jpeg,.png"
+                      style={{ display: 'none' }}
+                      onChange={e => {
+                        const files = Array.from(e.target.files || [])
+                        setPlans(prev => [...prev, ...files].slice(0, 5))
+                      }} />
+                    <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>📎</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 500, color: '#18170F', marginBottom: '4px' }}>
+                      Glissez vos fichiers ici ou cliquez pour parcourir
+                    </div>
+                    <div style={{ fontSize: '0.75rem', color: '#9B9891' }}>PDF, DWG, JPG, PNG · Max 5 fichiers · 10 MB chacun</div>
+                  </div>
+                  {plans.length > 0 && (
+                    <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                      {plans.map((f, i) => (
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: '#F9F8F6', borderRadius: '8px', border: '1px solid #E8E6E1' }}>
+                          <span style={{ fontSize: '0.8rem', color: '#18170F' }}>📄 {f.name}</span>
+                          <button onClick={() => setPlans(prev => prev.filter((_, j) => j !== i))}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9B9891', fontSize: '0.8rem', padding: '2px 6px' }}>✕</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Upload photos */}
+                <div>
+                  <label style={labelStyle}>Photos du chantier <span style={{ fontWeight: 400, color: '#9B9891' }}>(optionnel)</span></label>
+                  <div
+                    onDragOver={e => { e.preventDefault(); setDragOverPhotos(true) }}
+                    onDragLeave={() => setDragOverPhotos(false)}
+                    onDrop={e => {
+                      e.preventDefault(); setDragOverPhotos(false)
+                      const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'))
+                      setPhotos(prev => [...prev, ...files].slice(0, 10))
+                    }}
+                    style={{
+                      border: '2px dashed ' + (dragOverPhotos ? '#18170F' : '#E8E6E1'),
+                      borderRadius: '10px', padding: '20px', textAlign: 'center',
+                      background: dragOverPhotos ? '#F9F8F6' : 'white',
+                      transition: 'all 0.15s', cursor: 'pointer'
+                    }}
+                    onClick={() => document.getElementById('photos-input')?.click()}>
+                    <input id="photos-input" type="file" multiple accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={e => {
+                        const files = Array.from(e.target.files || [])
+                        setPhotos(prev => [...prev, ...files].slice(0, 10))
+                      }} />
+                    <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>📷</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 500, color: '#18170F', marginBottom: '4px' }}>Ajouter des photos</div>
+                    <div style={{ fontSize: '0.75rem', color: '#9B9891' }}>JPG, PNG, HEIC · Max 10 photos</div>
+                  </div>
+                  {photos.length > 0 && (
+                    <div style={{ marginTop: '10px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                      {photos.map((f, i) => {
+                        const url = URL.createObjectURL(f)
+                        return (
+                          <div key={i} style={{ position: 'relative', aspectRatio: '1', borderRadius: '8px', overflow: 'hidden' }}>
+                            <img src={url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <button onClick={() => setPhotos(prev => prev.filter((_, j) => j !== i))}
+                              style={{ position: 'absolute', top: '4px', right: '4px', background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', color: 'white', width: '20px', height: '20px', cursor: 'pointer', fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', border: '1px solid #E8E6E1', borderRadius: '9px', cursor: 'pointer' }}
                   onClick={() => setUrgence(!urgence)}>
                   <input type="checkbox" checked={urgence} onChange={() => setUrgence(!urgence)}
@@ -183,21 +263,35 @@ export default function DemandesoumissionPage() {
             {/* ÉTAPE 2 — Détails */}
             {etape === 2 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F', marginBottom: '4px' }}>
-                  Localisation et budget
-                </h2>
+                <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F', marginBottom: '4px' }}>Localisation et budget</h2>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <label style={labelStyle}>Adresse des travaux</label>
+                  <input type="text" value={adresse} onChange={e => setAdresse(e.target.value)}
+                    placeholder="123 Rue des Érables" style={inputStyle} />
+                  <p style={{ fontSize: '0.72rem', color: '#9B9891', marginTop: '5px' }}>
+                    📍 L'autocomplétion Google sera disponible prochainement
+                  </p>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 100px', gap: '12px' }}>
                   <div>
-                    <label style={labelStyle}>Région</label>
-                    <select value={region} onChange={e => setRegion(e.target.value)} style={{ ...inputStyle, appearance: 'none' as const }}>
-                      <option value="">Choisir...</option>
-                      {regions.map(r => <option key={r} value={r}>{r}</option>)}
+                    <label style={labelStyle}>Ville</label>
+                    <input type="text" value={ville} onChange={e => setVille(e.target.value)} placeholder="Laval" style={inputStyle} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Province</label>
+                    <select value={province} onChange={e => setProvince(e.target.value)} style={{ ...inputStyle, appearance: 'none' as const }}>
+                      <option value="QC">Québec</option>
+                      <option value="ON">Ontario</option>
+                      <option value="BC">Colombie-Britannique</option>
+                      <option value="AB">Alberta</option>
                     </select>
                   </div>
                   <div>
-                    <label style={labelStyle}>Ville</label>
-                    <input type="text" value={ville} onChange={e => setVille(e.target.value)} placeholder="Ex: Laval" style={inputStyle} />
+                    <label style={labelStyle}>Code postal</label>
+                    <input type="text" value={codePostal} onChange={e => setCodePostal(e.target.value.toUpperCase())}
+                      placeholder="H7V 1A1" maxLength={7} style={inputStyle} />
                   </div>
                 </div>
 
@@ -236,12 +330,12 @@ export default function DemandesoumissionPage() {
                     border: '1px solid #E8E6E1', borderRadius: '9px', fontSize: '0.9rem',
                     fontWeight: 400, cursor: 'pointer', fontFamily: 'inherit'
                   }}>← Retour</button>
-                  <button onClick={() => setEtape(3)} disabled={!region} style={{
+                  <button onClick={() => setEtape(3)} disabled={!adresse || !ville} style={{
                     flex: 2, padding: '13px',
-                    background: !region ? '#E8E6E1' : '#18170F',
-                    color: !region ? '#9B9891' : 'white',
+                    background: !adresse || !ville ? '#E8E6E1' : '#18170F',
+                    color: !adresse || !ville ? '#9B9891' : 'white',
                     border: 'none', borderRadius: '9px', fontSize: '0.9rem',
-                    fontWeight: 500, cursor: !region ? 'not-allowed' : 'pointer',
+                    fontWeight: 500, cursor: !adresse || !ville ? 'not-allowed' : 'pointer',
                     fontFamily: 'inherit', transition: 'all 0.15s'
                   }}>Continuer →</button>
                 </div>
@@ -251,9 +345,7 @@ export default function DemandesoumissionPage() {
             {/* ÉTAPE 3 — Contact */}
             {etape === 3 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F', marginBottom: '4px' }}>
-                  Vos coordonnées
-                </h2>
+                <h2 style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F', marginBottom: '4px' }}>Vos coordonnées</h2>
                 <p style={{ fontSize: '0.82rem', color: '#6B6860', marginTop: '-12px' }}>
                   Vos informations sont confidentielles et ne sont partagées qu'avec les soumissionnaires retenus.
                 </p>
@@ -300,7 +392,7 @@ export default function DemandesoumissionPage() {
                     { label: 'Type', val: typeClient === 'entrepreneur' ? 'Entrepreneur / GC' : 'Particulier' },
                     { label: 'Spécialité', val: specialite },
                     { label: 'Secteur', val: secteur },
-                    { label: 'Région', val: `${ville ? ville + ', ' : ''}${region}` },
+                    { label: 'Adresse', val: `${adresse}, ${ville}, ${province} ${codePostal}`.trim().replace(/,\s*$/, '') },
                     { label: 'Budget', val: budget || 'À déterminer' },
                     { label: 'Urgence', val: urgence ? 'Oui' : 'Non' },
                   ].map(item => (
@@ -338,7 +430,7 @@ export default function DemandesoumissionPage() {
             <h2 style={{ fontSize: '1.3rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', marginBottom: '10px' }}>
               Demande publiée avec succès !
             </h2>
-            <p style={{ fontSize: '0.9rem', color: '#6B6860', lineHeight: 1.65, marginBottom: '28px', maxWidth: '400px', margin: '0 auto 28px' }}>
+            <p style={{ fontSize: '0.9rem', color: '#6B6860', lineHeight: 1.65, maxWidth: '400px', margin: '0 auto 28px' }}>
               Votre demande est maintenant visible par les professionnels qualifiés.
               Vous recevrez vos premières soumissions par courriel sous 24–48h.
             </p>
