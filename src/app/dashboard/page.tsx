@@ -113,10 +113,12 @@ export default async function DashboardPage() {
     .single()
 
   const role = (profile?.role ?? 'professionnel') as Role
+  const plan = profile?.plan ?? null
+  const isTravailleur = plan === 'travailleur'
 
   const [statsProf, statsEntreprise] = await Promise.all([
-    role === 'professionnel' ? fetchStatsProf(supabase, user.id) : null,
-    role === 'entreprise'    ? fetchStatsEntreprise(supabase, user.id) : null,
+    role === 'professionnel' && !isTravailleur ? fetchStatsProf(supabase, user.id) : null,
+    role === 'entreprise'                       ? fetchStatsEntreprise(supabase, user.id) : null,
   ])
 
   const activiteRecente = statsProf?.activiteRecente ?? statsEntreprise?.activiteRecente ?? []
@@ -186,55 +188,115 @@ export default async function DashboardPage() {
         </div>
       )}
 
+      {/* Travailleur upgrade banner */}
+      {isTravailleur && (
+        <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '12px', padding: '14px 20px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+          <span style={{ fontSize: '0.875rem', color: '#1D4ED8', fontWeight: 500 }}>
+            🚀 Passez au Pro — Activez le badge Ouvert aux opportunités et soyez vu en premier · 9$/mois
+          </span>
+          <a href="/dashboard/abonnement" style={{ display: 'inline-block', padding: '7px 16px', background: '#1D4ED8', color: 'white', borderRadius: '8px', textDecoration: 'none', fontSize: '0.82rem', fontWeight: 600, flexShrink: 0 }}>
+            Upgrader →
+          </a>
+        </div>
+      )}
+
       {/* Actions rapides */}
       <div style={{ marginBottom: '32px' }}>
         <h2 style={{ fontSize: '0.75rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px', margin: '0 0 14px' }}>
           ACTIONS RAPIDES
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-          {/* CTA pleine largeur */}
-          <a href="/demande-soumission" style={{
-            gridColumn: '1 / -1',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '20px 24px',
-            background: '#18170F', color: 'white',
-            borderRadius: '12px', textDecoration: 'none',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <span style={{ fontSize: '1.4rem' }}>📋</span>
-              <div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 500, marginBottom: '2px' }}>
-                  Publier une demande de soumission
-                </div>
-                <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
-                  Recevez des soumissions de professionnels qualifiés en 24h
-                </div>
-              </div>
-            </div>
-            <span style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.5)' }}>→</span>
-          </a>
 
-          {[
-            { icon: '👤', title: 'Mon profil',           desc: 'Compléter mes informations',  href: '/dashboard/profil' },
-            { icon: '✉️', title: 'Messages',             desc: 'Voir mes conversations',      href: '/dashboard/messages' },
-            { icon: '🎁', title: 'Parrainer',            desc: 'Inviter un collègue',          href: '/dashboard/parrainage' },
-            { icon: '🔍', title: 'Demandes disponibles', desc: 'Voir les projets ouverts',    href: '/dashboard/demandes-disponibles' },
-          ].map((card, i) => (
-            <a key={i} href={card.href} style={{
-              display: 'flex', alignItems: 'center', gap: '16px',
-              padding: '18px 20px', background: 'white',
-              border: '1px solid #E8E6E1', borderRadius: '12px',
-              textDecoration: 'none', transition: 'box-shadow 0.15s',
+        {isTravailleur ? (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            {/* CTA pleine largeur travailleur */}
+            <a href="/dashboard/profil" style={{
+              gridColumn: '1 / -1',
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '20px 24px',
+              background: '#18170F', color: 'white',
+              borderRadius: '12px', textDecoration: 'none',
             }}>
-              <span style={{ fontSize: '1.4rem' }}>{card.icon}</span>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>{card.title}</div>
-                <div style={{ fontSize: '0.75rem', color: '#6B6860', marginTop: '2px' }}>{card.desc}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span style={{ fontSize: '1.4rem' }}>👷</span>
+                <div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 500, marginBottom: '2px' }}>
+                    Mon profil travailleur
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
+                    Complétez votre profil pour être trouvé par les entrepreneurs
+                  </div>
+                </div>
               </div>
-              <span style={{ color: '#D0CEC8', fontSize: '1.1rem' }}>›</span>
+              <span style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.5)' }}>→</span>
             </a>
-          ))}
-        </div>
+
+            {[
+              { icon: '💼', title: "Offres d'emploi",       desc: 'Voir les offres disponibles',     href: '/dashboard/offres-emploi' },
+              { icon: '📍', title: 'Ma disponibilité',      desc: 'Région & type de poste',          href: '/dashboard/region-expertise' },
+              { icon: '🏅', title: 'Mes qualifications',    desc: 'Certifications & compétences',    href: '/dashboard/profil' },
+              { icon: '⭐', title: 'Passer au Pro',         desc: 'Visibilité accrue · 9$/mois',    href: '/dashboard/abonnement' },
+            ].map((card, i) => (
+              <a key={i} href={card.href} style={{
+                display: 'flex', alignItems: 'center', gap: '16px',
+                padding: '18px 20px', background: 'white',
+                border: '1px solid #E8E6E1', borderRadius: '12px',
+                textDecoration: 'none', transition: 'box-shadow 0.15s',
+              }}>
+                <span style={{ fontSize: '1.4rem' }}>{card.icon}</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>{card.title}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#6B6860', marginTop: '2px' }}>{card.desc}</div>
+                </div>
+                <span style={{ color: '#D0CEC8', fontSize: '1.1rem' }}>›</span>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            {/* CTA pleine largeur */}
+            <a href="/demande-soumission" style={{
+              gridColumn: '1 / -1',
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              padding: '20px 24px',
+              background: '#18170F', color: 'white',
+              borderRadius: '12px', textDecoration: 'none',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <span style={{ fontSize: '1.4rem' }}>📋</span>
+                <div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 500, marginBottom: '2px' }}>
+                    Publier une demande de soumission
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
+                    Recevez des soumissions de professionnels qualifiés en 24h
+                  </div>
+                </div>
+              </div>
+              <span style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.5)' }}>→</span>
+            </a>
+
+            {[
+              { icon: '👤', title: 'Mon profil',           desc: 'Compléter mes informations',  href: '/dashboard/profil' },
+              { icon: '✉️', title: 'Messages',             desc: 'Voir mes conversations',      href: '/dashboard/messages' },
+              { icon: '🎁', title: 'Parrainer',            desc: 'Inviter un collègue',          href: '/dashboard/parrainage' },
+              { icon: '🔍', title: 'Demandes disponibles', desc: 'Voir les projets ouverts',    href: '/dashboard/demandes-disponibles' },
+            ].map((card, i) => (
+              <a key={i} href={card.href} style={{
+                display: 'flex', alignItems: 'center', gap: '16px',
+                padding: '18px 20px', background: 'white',
+                border: '1px solid #E8E6E1', borderRadius: '12px',
+                textDecoration: 'none', transition: 'box-shadow 0.15s',
+              }}>
+                <span style={{ fontSize: '1.4rem' }}>{card.icon}</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>{card.title}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#6B6860', marginTop: '2px' }}>{card.desc}</div>
+                </div>
+                <span style={{ color: '#D0CEC8', fontSize: '1.1rem' }}>›</span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Activité récente */}

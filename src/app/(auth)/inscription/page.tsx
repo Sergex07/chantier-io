@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/client'
 import { activateProTrial } from '@/app/actions/profile'
 
 const PLANS = [
+  { id: 'travailleur', label: '👷 Travailleur', prix: 'Gratuit', desc: 'Électricien, plombier, charpentier...' },
   { id: 'public',      label: 'Grand public',  prix: 'Gratuit',   desc: 'Propriétaires qui cherchent un entrepreneur' },
   { id: 'pro',         label: 'Professionnel', prix: '10$/mois',  desc: 'Sous-traitants, designers, architectes' },
   { id: 'entreprise',  label: 'Entreprise',    prix: '25$/mois',  desc: 'GC et promoteurs' },
@@ -28,6 +29,7 @@ export default function InscriptionPage() {
   const [loading, setLoading] = useState(false)
 
   const isPublic = plan === 'public'
+  const isTravailleur = plan === 'travailleur'
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -49,7 +51,7 @@ export default function InscriptionPage() {
         phone: telephone,
         company_name: entreprise || null,
       }).eq('id', data.user.id)
-      if (!isPublic) await activateProTrial(data.user.id)
+      if (!isPublic && !isTravailleur) await activateProTrial(data.user.id)
     }
     window.location.href = '/connexion?registered=1'
   }
@@ -68,7 +70,7 @@ export default function InscriptionPage() {
 
         {/* Badge */}
         <div style={{ marginBottom: '20px' }}>
-          {plan === null ? null : isPublic ? (
+          {plan === null ? null : isTravailleur ? null : isPublic ? (
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '100px', padding: '5px 12px', fontSize: '0.78rem', fontWeight: 600, color: '#16A34A' }}>
               <span>✅</span>
               <span>Toujours gratuit — aucune carte requise</span>
@@ -115,6 +117,11 @@ export default function InscriptionPage() {
               <div style={{ marginTop: '10px', padding: '10px 14px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '10px', fontSize: '0.78rem', color: '#15803D', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span>✓</span>
                 <span><strong>30 jours gratuits</strong> · Aucune carte de crédit · Sans engagement · Accès complet pendant l'essai</span>
+              </div>
+            )}
+            {plan === 'travailleur' && (
+              <div style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '10px', padding: '10px 14px', fontSize: '0.78rem', color: '#1D4ED8', marginTop: '10px' }}>
+                🆓 Toujours gratuit · Upgrade disponible pour visibilité accrue
               </div>
             )}
           </div>
@@ -170,7 +177,12 @@ export default function InscriptionPage() {
           {error && <p style={{ fontSize: '0.85rem', color: '#C0392B', marginBottom: '16px' }}>{error}</p>}
 
           <button type="submit" disabled={loading} style={{ width: '100%', padding: '13px', background: '#18170F', color: 'white', border: 'none', borderRadius: '9px', fontSize: '0.95rem', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.6 : 1 }}>
-            {loading ? 'Création…' : plan === 'pro' ? 'Commencer mon essai gratuit →' : plan === 'public' ? 'Créer mon compte gratuit →' : plan === 'entreprise' || plan === 'detaillant' ? 'Commencer mon essai de 30 jours →' : 'Créer mon compte →'}
+            {loading ? 'Création…'
+              : plan === 'pro' ? 'Commencer mon essai gratuit →'
+              : plan === 'public' ? 'Créer mon compte gratuit →'
+              : plan === 'travailleur' ? 'Créer mon profil travailleur →'
+              : plan === 'entreprise' || plan === 'detaillant' ? 'Commencer mon essai de 30 jours →'
+              : 'Créer mon compte →'}
           </button>
 
           <p style={{ fontSize: '0.75rem', color: '#6B6860', textAlign: 'center', marginTop: '20px', lineHeight: 1.5 }}>

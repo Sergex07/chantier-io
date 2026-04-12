@@ -8,7 +8,41 @@ import type { Role } from '@/lib/types'
 type NavItem = { label: string; href: string; icon: React.ReactNode }
 type NavGroup = { label: string; items: NavItem[] }
 
-function navFor(role: Role): NavGroup[] {
+function navFor(role: Role, plan: string | null): NavGroup[] {
+  if (plan === 'travailleur') {
+    return [
+      {
+        label: 'Principal',
+        items: [
+          { label: 'Tableau de bord', href: '/dashboard',          icon: <IcGrid /> },
+          { label: 'Messages',        href: '/dashboard/messages', icon: <IcMsg /> },
+        ],
+      },
+      {
+        label: 'Mon activité',
+        items: [
+          { label: 'Mes candidatures',  href: '/dashboard/mes-soumissions',      icon: <IcSend /> },
+          { label: "Offres d'emploi",   href: '/dashboard/offres-emploi',        icon: <IcBriefcase /> },
+        ],
+      },
+      {
+        label: 'Trouver',
+        items: [
+          { label: 'Trouver du travail',          href: '/trouver-travailleur',              icon: <IcSearch /> },
+          { label: 'Entrepreneurs qui recrutent', href: '/dashboard/trouver-professionnel',  icon: <IcUser /> },
+        ],
+      },
+      {
+        label: 'Mon profil',
+        items: [
+          { label: 'Mon profil',        href: '/dashboard/profil',           icon: <IcUser /> },
+          { label: 'Mes qualifications',href: '/dashboard/profil',           icon: <IcTools /> },
+          { label: 'Disponibilité',     href: '/dashboard/region-expertise', icon: <IcMap /> },
+          { label: 'Upgrade Pro',       href: '/dashboard/abonnement',       icon: <IcStar /> },
+        ],
+      },
+    ]
+  }
   const principal: NavGroup = {
     label: 'Principal',
     items: [
@@ -81,7 +115,7 @@ interface Props {
 export default function Sidebar({ role, fullName, avatarInitials, plan }: Props) {
   const pathname = usePathname()
   const router = useRouter()
-  const groups = navFor(role)
+  const groups = navFor(role, plan)
   const badge = plan ? PLAN_BADGE[plan] : null
 
   async function handleSignOut() {
@@ -226,6 +260,9 @@ function IcCard() {
 }
 function IcGift() {
   return <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+}
+function IcStar() {
+  return <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
 }
 function IcSignOut() {
   return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
