@@ -32,7 +32,7 @@ const TEMOIGNAGES = [
 
 export default function TemoignagesSection() {
   return (
-    <section style={{ padding: '80px 40px', background: 'white' }}>
+    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
@@ -51,8 +51,8 @@ export default function TemoignagesSection() {
             <div key={i} style={{
               background: 'white',
               borderRadius: '16px',
-              padding: '28px 24px',
-              boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+              padding: '28px',
+              boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
               display: 'flex',
               flexDirection: 'column',
               gap: '16px',

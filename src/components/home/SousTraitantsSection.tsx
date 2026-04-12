@@ -37,10 +37,10 @@ export default function SousTraitantsSection() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
           <div>
             <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
-              ENTREPRENEUR GÉNÉRAL
+              PROFESSIONNELS VÉRIFIÉS
             </p>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-              Professionnels en vedette
+              Sous-traitants en vedette
             </h2>
           </div>
           <a href="/profil/demo-id" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>

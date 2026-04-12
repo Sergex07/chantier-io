@@ -1,66 +1,57 @@
 export default function ProcessSection() {
+  const steps = [
+    {
+      num: '1',
+      titre: 'Décrivez votre projet',
+      desc: 'En 2 minutes. Type de travaux, superficie, budget, photos optionnelles.',
+      img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80',
+    },
+    {
+      num: '2',
+      titre: 'Recevez des soumissions',
+      desc: 'Des pros qualifiés de votre région vous contactent sous 24–48h.',
+      img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80',
+    },
+    {
+      num: '3',
+      titre: 'Choisissez votre entrepreneur',
+      desc: 'Comparez les profils, notes et prix. Choisissez en confiance.',
+      img: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80',
+    },
+  ]
+
   return (
-    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <p style={{ fontSize: '0.72rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '10px' }}>
-            COMMENT ÇA MARCHE
-          </p>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.03em', margin: 0 }}>
-            Trouvez votre entrepreneur en 3 étapes simples
+
+        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.03em', marginBottom: '12px' }}>
+            Simple, rapide, gratuit
           </h2>
+          <p style={{ fontSize: '1rem', color: '#6B6860', maxWidth: '480px', margin: '0 auto', lineHeight: 1.6 }}>
+            Trouvez le bon entrepreneur pour vos travaux en 3 étapes simples
+          </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '2px' }}>
-          {[
-            {
-              icon: (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18170F" strokeWidth="1.5">
-                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                </svg>
-              ),
-              num: '01',
-              titre: 'Décrivez votre projet',
-              desc: 'En 2 minutes, expliquez vos travaux, votre budget et votre calendrier. Photos et plans bienvenus.',
-            },
-            {
-              icon: (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18170F" strokeWidth="1.5">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.13 1.2 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.45-.45a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                </svg>
-              ),
-              num: '02',
-              titre: 'Recevez des soumissions',
-              desc: 'Des entrepreneurs qualifiés de votre région vous contactent directement sous 24 à 48 heures.',
-            },
-            {
-              icon: (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18170F" strokeWidth="1.5">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              ),
-              num: '03',
-              titre: 'Choisissez votre pro',
-              desc: 'Comparez les profils, les évaluations et les prix. Choisissez en toute confiance.',
-            },
-          ].map((step, i) => (
-            <div key={i} style={{
-              padding: '40px 32px',
-              background: 'white',
-              borderRadius: i === 0 ? '16px 0 0 16px' : i === 2 ? '0 16px 16px 0' : '0',
-              borderRight: i < 2 ? '1px solid #F0EEEA' : 'none',
-              textAlign: 'left',
-            }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '32px' }}>
+          {steps.map((step, i) => (
+            <div key={i} style={{ textAlign: 'center' }}>
               <div style={{
-                width: '52px', height: '52px', borderRadius: '14px',
-                background: '#F4F4F5', display: 'flex', alignItems: 'center',
-                justifyContent: 'center', marginBottom: '20px',
+                height: '200px',
+                backgroundImage: `url(${step.img})`,
+                backgroundSize: 'cover', backgroundPosition: 'center',
+                borderRadius: '16px', marginBottom: '24px', position: 'relative',
+                overflow: 'hidden',
               }}>
-                {step.icon}
-              </div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#9B9891', letterSpacing: '0.08em', marginBottom: '8px' }}>
-                ÉTAPE {step.num}
+                <div style={{
+                  position: 'absolute', top: '12px', left: '12px',
+                  width: '32px', height: '32px', borderRadius: '50%',
+                  background: 'white', display: 'flex', alignItems: 'center',
+                  justifyContent: 'center', fontSize: '0.85rem', fontWeight: 700,
+                  color: '#18170F', boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                }}>
+                  {step.num}
+                </div>
               </div>
               <h3 style={{ fontSize: '1rem', fontWeight: 500, color: '#18170F', marginBottom: '10px', letterSpacing: '-0.01em', margin: '0 0 10px' }}>
                 {step.titre}
@@ -72,16 +63,20 @@ export default function ProcessSection() {
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '32px' }}>
+        <div style={{ textAlign: 'center', marginTop: '48px' }}>
           <a href="/demande-soumission" style={{
-            display: 'inline-block', padding: '12px 28px',
-            background: '#18170F', color: 'white',
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            padding: '13px 32px', background: '#18170F', color: 'white',
             borderRadius: '100px', textDecoration: 'none',
-            fontSize: '0.875rem', fontWeight: 500,
+            fontSize: '0.9rem', fontWeight: 500,
           }}>
             Publier une demande gratuitement →
           </a>
+          <p style={{ fontSize: '0.78rem', color: '#9B9891', marginTop: '10px' }}>
+            Gratuit · Sans engagement · Jusqu'à 3 soumissions
+          </p>
         </div>
+
       </div>
     </section>
   )

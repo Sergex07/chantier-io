@@ -25,14 +25,12 @@ export default function HomePage() {
 
       {mode === 'public' && (
         <>
-          <CategoriesSection />
           <ProcessSection />
+          <CategoriesSection />
           <SousTraitantsSection />
-          <DetaillantsSection />
           <ProfessionnelsSection />
-          <EmploisSection />
+          <DetaillantsSection />
           <TemoignagesSection />
-          <PartenaireVedetteSection />
           <CTAFinalSection />
         </>
       )}

@@ -33,15 +33,15 @@ function Card({ d }: { d: typeof DETAILLANTS[0] }) {
 
 export default function DetaillantsSection() {
   return (
-    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
           <div>
             <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
-              DÉTAILLANTS
+              FOURNISSEURS DE MATÉRIAUX
             </p>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-              Fournisseurs de matériaux
+              Détaillants partenaires
             </h2>
           </div>
           <a href="#" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>
