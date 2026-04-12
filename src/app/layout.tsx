@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import NavbarConditional from '@/components/home/NavbarConditional'
+import Navbar from '@/components/home/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body style={{ margin: 0, padding: 0, fontFamily: inter.style.fontFamily, paddingTop: '62px' }}>
-        <NavbarConditional />
+        <Navbar />
         {children}
       </body>
     </html>
