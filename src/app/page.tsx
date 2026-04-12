@@ -14,6 +14,8 @@ import TemoignagesSection from '@/components/home/TemoignagesSection'
 import PartenaireVedetteSection from '@/components/home/PartenaireVedetteSection'
 import ProcessSection from '@/components/home/ProcessSection'
 import ProfessionnelsSection from '@/components/home/ProfessionnelsSection'
+import ProDoubleCtaSection from '@/components/home/ProDoubleCtaSection'
+import ProProcessSection from '@/components/home/ProProcessSection'
 import FooterSection from '@/components/home/FooterSection'
 
 export default function HomePage() {
@@ -37,9 +39,10 @@ export default function HomePage() {
 
       {mode === 'pro' && (
         <>
+          <ProDoubleCtaSection />
+          <ProProcessSection />
           <AppelsSoumissionsSection />
           <ProStatsSection />
-          <SousTraitantsSection />
           <CTAFinalSection />
         </>
       )}

@@ -1,6 +1,6 @@
 export default function ProStatsSection() {
   return (
-    <section style={{ padding: '64px 40px', background: 'white', borderTop: '1px solid #F0EEEA' }}>
+    <section style={{ padding: '48px 40px', background: 'white', borderTop: '1px solid #F0EEEA' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         <div style={{ marginBottom: '40px' }}>

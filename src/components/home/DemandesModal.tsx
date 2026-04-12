@@ -276,10 +276,10 @@ export default function DemandesTableauInteractif() {
               </div>
               <div>
                 <div style={{ fontSize: '0.82rem', fontWeight: 500, color: '#18170F', marginBottom: '1px' }}>
-                  Connectez-vous pour voir les noms complets
+                  🔒 Connectez-vous pour voir les noms et soumettre une offre
                 </div>
                 <div style={{ fontSize: '0.75rem', color: '#9B9891' }}>
-                  Créez un compte gratuit — accès immédiat, aucune carte requise
+                  Créez un compte Pro — 30 jours gratuits, accès immédiat
                 </div>
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function DemandesTableauInteractif() {
                 Se connecter
               </a>
               <a href="/inscription" style={{ padding: '8px 16px', borderRadius: '8px', background: '#18170F', color: 'white', fontSize: '0.78rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                S'inscrire gratuitement →
+                Créer mon profil Pro →
               </a>
             </div>
           </div>
