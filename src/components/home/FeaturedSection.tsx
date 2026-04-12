@@ -27,7 +27,7 @@ export default function FeaturedSection() {
         </div>
 
         {/* Bento grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gridTemplateRows: 'auto auto', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '12px' }}>
 
           {/* Grande card pro — span 2 rows */}
           <a href="/profil/demo-id" style={{
@@ -77,29 +77,6 @@ export default function FeaturedSection() {
               <span style={{ fontSize: '0.82rem', fontWeight: 500, color: '#18170F' }}>{cat.label}</span>
             </a>
           ))}
-
-          {/* Offre d'emploi */}
-          <a href="/emplois" style={{
-            gridColumn: '2 / 4',
-            display: 'flex', alignItems: 'center', gap: '16px',
-            padding: '20px 24px',
-            background: '#18170F', borderRadius: '16px',
-            textDecoration: 'none',
-          }}>
-            <div style={{ fontSize: '1.6rem', flexShrink: 0 }}>👷</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                OFFRE D'EMPLOI · LAVAL
-              </div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 500, color: 'white', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                Électricien certifié — Chantiers commerciaux
-              </div>
-              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)' }}>
-                Construction Laval inc. · 38–45 $/h
-              </div>
-            </div>
-            <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '1.3rem', flexShrink: 0 }}>›</span>
-          </a>
 
         </div>
 
