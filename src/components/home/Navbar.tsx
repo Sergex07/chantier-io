@@ -16,6 +16,7 @@ export default function Navbar() {
   const pathname = usePathname()
   const { mode, setMode } = useMode()
   const [user, setUser] = useState<User | null>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const supabase = createClient()
 
@@ -89,23 +90,105 @@ export default function Navbar() {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
         {user ? (
-          <Link href="/dashboard" style={{
-            display: 'flex', alignItems: 'center', gap: '8px',
-            padding: '6px 14px', borderRadius: '9px',
-            border: '1px solid #E8E6E1', textDecoration: 'none',
-            fontSize: '0.84rem', fontWeight: 400, color: '#18170F',
-            background: 'white',
-          }}>
-            <div style={{
-              width: '24px', height: '24px', borderRadius: '50%',
-              background: '#18170F', color: 'white',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '0.65rem', fontWeight: 600, flexShrink: 0,
-            }}>
-              {user.email?.[0].toUpperCase() ?? 'U'}
-            </div>
-            Mon compte
-          </Link>
+          <div style={{position:'relative'}}>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              style={{
+                display:'flex', alignItems:'center', gap:'8px',
+                padding:'6px 14px', borderRadius:'9px',
+                border:'1px solid #E8E6E1', cursor:'pointer',
+                fontSize:'0.84rem', fontWeight:400, color:'#18170F',
+                background:'white', fontFamily:'inherit'
+              }}>
+              <div style={{
+                width:'24px', height:'24px', borderRadius:'50%',
+                background:'#18170F', color:'white',
+                display:'flex', alignItems:'center', justifyContent:'center',
+                fontSize:'0.65rem', fontWeight:600, flexShrink:0
+              }}>
+                {user.email?.[0].toUpperCase() || 'U'}
+              </div>
+              Mon compte
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2"
+                style={{transform: menuOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition:'transform 0.2s'}}>
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+
+            {menuOpen && (
+              <>
+                <div
+                  onClick={() => setMenuOpen(false)}
+                  style={{position:'fixed', inset:0, zIndex:299}}
+                />
+
+                <div style={{
+                  position:'absolute', top:'calc(100% + 8px)', right:0,
+                  background:'white', borderRadius:'12px',
+                  border:'1px solid #E8E6E1',
+                  boxShadow:'0 8px 24px rgba(0,0,0,0.10)',
+                  minWidth:'200px', zIndex:300, overflow:'hidden'
+                }}>
+
+                  <div style={{
+                    padding:'14px 16px', borderBottom:'1px solid #F0EEEA'
+                  }}>
+                    <div style={{fontSize:'0.82rem', fontWeight:500, color:'#18170F'}}>
+                      {user.email}
+                    </div>
+                    <div style={{fontSize:'0.72rem', color:'#9B9891', marginTop:'2px'}}>
+                      Essai Pro · 30 jours
+                    </div>
+                  </div>
+
+                  {[
+                    { label:'Tableau de bord', href:'/dashboard', icon:'⊞' },
+                    { label:'Mon profil', href:'/dashboard/profil', icon:'👤' },
+                    { label:'Mes demandes', href:'/dashboard/demandes', icon:'📋' },
+                    { label:'Messages', href:'/dashboard/messages', icon:'✉️' },
+                    { label:'Abonnement', href:'/dashboard/abonnement', icon:'⭐' },
+                  ].map(item => (
+                    <a key={item.href} href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        display:'flex', alignItems:'center', gap:'10px',
+                        padding:'10px 16px', textDecoration:'none',
+                        fontSize:'0.84rem', color:'#18170F',
+                        transition:'background 0.1s'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#F9F8F6'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <span style={{fontSize:'0.9rem'}}>{item.icon}</span>
+                      {item.label}
+                    </a>
+                  ))}
+
+                  <div style={{borderTop:'1px solid #F0EEEA'}}>
+                    <button
+                      onClick={async () => {
+                        setMenuOpen(false)
+                        await supabase.auth.signOut()
+                        window.location.href = '/'
+                      }}
+                      style={{
+                        display:'flex', alignItems:'center', gap:'10px',
+                        width:'100%', padding:'10px 16px',
+                        background:'none', border:'none', cursor:'pointer',
+                        fontSize:'0.84rem', color:'#DC2626', fontFamily:'inherit',
+                        textAlign:'left'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#FEF2F2'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <span>↩</span>
+                      Déconnexion
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         ) : (
           <>
             <Link href="/connexion" style={{
