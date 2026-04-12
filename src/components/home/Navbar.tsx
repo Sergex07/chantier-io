@@ -1,7 +1,10 @@
 'use client'
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMode } from '@/lib/ModeContext'
+import type { User } from '@supabase/supabase-js'
 
 const TABS = [
   { id: 'public' as const, label: 'Grand public' },
@@ -12,6 +15,19 @@ const TABS = [
 export default function Navbar() {
   const pathname = usePathname()
   const { mode, setMode } = useMode()
+  const [user, setUser] = useState<User | null>(null)
+
+  const supabase = createClient()
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null)
+    })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_, session) => setUser(session?.user ?? null)
+    )
+    return () => subscription.unsubscribe()
+  }, [])
 
   if (pathname?.startsWith('/dashboard')) return null
 
@@ -72,21 +88,43 @@ export default function Navbar() {
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto' }}>
-        <Link href="/connexion" style={{
-          padding: '6px 14px', fontSize: '0.84rem',
-          fontWeight: 400, color: '#6B6860', textDecoration: 'none',
-        }}>
-          Connexion
-        </Link>
-        <Link href="/inscription" style={{
-          padding: '7px 16px',
-          background: '#18170F', color: 'white',
-          fontSize: '0.84rem', fontWeight: 500,
-          borderRadius: '8px', textDecoration: 'none',
-          letterSpacing: '-0.01em',
-        }}>
-          S'inscrire
-        </Link>
+        {user ? (
+          <Link href="/dashboard" style={{
+            display: 'flex', alignItems: 'center', gap: '8px',
+            padding: '6px 14px', borderRadius: '9px',
+            border: '1px solid #E8E6E1', textDecoration: 'none',
+            fontSize: '0.84rem', fontWeight: 400, color: '#18170F',
+            background: 'white',
+          }}>
+            <div style={{
+              width: '24px', height: '24px', borderRadius: '50%',
+              background: '#18170F', color: 'white',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '0.65rem', fontWeight: 600, flexShrink: 0,
+            }}>
+              {user.email?.[0].toUpperCase() ?? 'U'}
+            </div>
+            Mon compte
+          </Link>
+        ) : (
+          <>
+            <Link href="/connexion" style={{
+              padding: '6px 14px', fontSize: '0.84rem',
+              fontWeight: 400, color: '#6B6860', textDecoration: 'none',
+            }}>
+              Connexion
+            </Link>
+            <Link href="/inscription" style={{
+              padding: '7px 16px',
+              background: '#18170F', color: 'white',
+              fontSize: '0.84rem', fontWeight: 500,
+              borderRadius: '8px', textDecoration: 'none',
+              letterSpacing: '-0.01em',
+            }}>
+              S'inscrire
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   )
