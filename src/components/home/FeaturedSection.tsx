@@ -18,7 +18,7 @@ export default function FeaturedSection() {
               EN VEDETTE
             </p>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-              Ce qui se passe sur Chantier.io
+              Trouver les meilleurs partenaires pour votre projet
             </h2>
           </div>
           <a href="/demande-soumission" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
