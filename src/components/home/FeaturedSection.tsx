@@ -36,7 +36,7 @@ export default function FeaturedSection() {
             textDecoration: 'none',
             borderRadius: '20px', overflow: 'hidden',
             position: 'relative', minHeight: '360px',
-            backgroundImage: 'url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             padding: '36px',
