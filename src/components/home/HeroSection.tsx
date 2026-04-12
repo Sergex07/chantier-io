@@ -35,7 +35,7 @@ const HERO_TITLES: Record<Mode, React.ReactNode> = {
   public: (
     <>
       <span style={{ fontWeight: 300 }}>Trouvez les bons</span><br />
-      <span style={{ fontWeight: 600 }}>partenaires pour vos chantiers</span>
+      <span style={{ fontWeight: 600 }}>partenaires pour vos projets</span>
     </>
   ),
   pro: (
