@@ -1,6 +1,40 @@
-import Link from 'next/link'
+'use client'
+import { useMode, type Mode } from './ModeContext'
+
+const MODES = {
+  public: {
+    label: 'Grand public',
+    ctas: [
+      { icon: '📋', title: 'Publier une demande', desc: 'Trouvez un entrepreneur qualifié', href: '/demande-soumission' },
+      { icon: '🔍', title: 'Trouver un pro', desc: 'Sous-traitants, designers, architectes', href: '/trouver-professionnel' },
+      { icon: '⭐', title: 'Voir les évaluations', desc: 'Profils vérifiés et notés', href: '/profil/demo-id' },
+      { icon: '💬', title: 'Comment ça marche', desc: 'Gratuit et sans engagement', href: '#comment' },
+    ],
+  },
+  pro: {
+    label: 'Professionnel',
+    ctas: [
+      { icon: '📂', title: 'Demandes disponibles', desc: 'Soumissionnez sur des projets', href: '/dashboard/demandes-disponibles' },
+      { icon: '👤', title: 'Mon profil Pro', desc: 'Gérez votre vitrine', href: '/dashboard/profil' },
+      { icon: '💼', title: 'Trouver un contrat', desc: "Parcourez les appels d'offres", href: '/demandes' },
+      { icon: '🤝', title: 'Trouver un sous-traitant', desc: 'Élargissez votre réseau', href: '/trouver-travailleur' },
+    ],
+  },
+  travailleur: {
+    label: 'Travailleur',
+    ctas: [
+      { icon: '👷', title: 'Mon profil travailleur', desc: 'Créez votre profil gratuit', href: '/inscription?type=travailleur' },
+      { icon: '🏗️', title: "Offres d'emploi", desc: 'Trouvez du travail près de chez vous', href: '/emplois' },
+      { icon: '📍', title: 'Entreprises qui recrutent', desc: 'Contactez directement les GC', href: '/trouver-travailleur' },
+      { icon: '🚀', title: 'Passer au Pro', desc: 'Badge disponible + priorité', href: '/inscription?type=travailleur' },
+    ],
+  },
+} satisfies Record<Mode, { label: string; ctas: { icon: string; title: string; desc: string; href: string }[] }>
 
 export default function HeroSection() {
+  const { mode, setMode } = useMode()
+  const current = MODES[mode]
+
   return (
     <section style={{
       minHeight: '92vh',
@@ -15,7 +49,7 @@ export default function HeroSection() {
     }}>
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)' }} />
 
-      <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 20px', maxWidth: '700px', width: '100%' }}>
+      <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 20px', maxWidth: '720px', width: '100%' }}>
         <h1 style={{
           fontSize: 'clamp(2.8rem, 5vw, 4.5rem)',
           color: 'white',
@@ -27,31 +61,98 @@ export default function HeroSection() {
           <span style={{ fontWeight: 300 }}>Trouvez les bons</span><br />
           <span style={{ fontWeight: 600 }}>partenaires pour vos chantiers</span>
         </h1>
+
         <p style={{
           fontSize: '1.05rem',
           color: 'rgba(255,255,255,0.82)',
-          marginBottom: '36px',
+          marginBottom: '28px',
           fontWeight: 400,
           lineHeight: 1.55,
         }}>
           Obtenez 3 soumissions gratuites en moins de 48h
         </p>
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/demande-soumission" style={{
-            padding: '13px 26px', background: '#18170F', color: 'white',
-            borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500,
-            display: 'inline-block',
-          }}>
-            Publier une demande gratuitement →
-          </Link>
-          <Link href="/professionnels" style={{
-            padding: '13px 26px', background: 'transparent', color: 'white',
-            border: '1px solid rgba(255,255,255,0.5)',
-            borderRadius: '10px', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 400,
-            display: 'inline-block',
-          }}>
-            Voir les professionnels
-          </Link>
+
+        {/* Pills mode switcher */}
+        <div style={{
+          display: 'inline-flex',
+          background: 'rgba(255,255,255,0.15)',
+          backdropFilter: 'blur(8px)',
+          borderRadius: '100px',
+          padding: '4px',
+          marginBottom: '32px',
+          gap: '2px',
+        }}>
+          {(Object.entries(MODES) as [Mode, typeof MODES[Mode]][]).map(([key, val]) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => setMode(key)}
+              style={{
+                padding: '7px 20px',
+                borderRadius: '100px',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+                fontSize: '0.82rem',
+                fontWeight: mode === key ? 500 : 400,
+                background: mode === key ? 'white' : 'transparent',
+                color: mode === key ? '#18170F' : 'rgba(255,255,255,0.8)',
+                transition: 'all 0.2s',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {val.label}
+            </button>
+          ))}
+        </div>
+
+        {/* CTA cards grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          background: 'white',
+          borderRadius: 18,
+          boxShadow: '0 4px 30px rgba(0,0,0,0.22)',
+          overflow: 'hidden',
+          maxWidth: 680,
+          margin: '0 auto',
+          transition: 'opacity 0.2s',
+          opacity: 1,
+        }}>
+          {current.ctas.map((cta, i) => (
+            <a
+              key={i}
+              href={cta.href}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 14,
+                padding: '20px 22px',
+                textDecoration: 'none',
+                textAlign: 'left',
+                borderRight: i % 2 === 0 ? '1px solid #eee' : 'none',
+                borderBottom: i < 2 ? '1px solid #eee' : 'none',
+                background: 'white',
+              }}
+            >
+              <div style={{
+                width: 44, height: 44,
+                background: '#F4F4F5',
+                borderRadius: 12,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '1.25rem', flexShrink: 0,
+              }}>
+                {cta.icon}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.01em', marginBottom: 3, lineHeight: 1.3 }}>
+                  {cta.title}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: '#6B6860', lineHeight: 1.4 }}>{cta.desc}</div>
+              </div>
+              <span style={{ marginLeft: 'auto', color: '#ccc', fontSize: '1.4rem', flexShrink: 0, lineHeight: 1 }}>›</span>
+            </a>
+          ))}
         </div>
       </div>
 
