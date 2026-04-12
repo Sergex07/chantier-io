@@ -1,5 +1,13 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Inter, -apple-system, sans-serif; color: #18170F; background: white; }
+body {
+  font-family: Inter, -apple-system, sans-serif;
+  color: #18170F;
+  background: white;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(16px) scale(0.98); }

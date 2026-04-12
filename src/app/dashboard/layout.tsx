@@ -48,7 +48,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontSize: '1.1rem' }}>🎁</span>
                 <div>
-                  <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', marginBottom: '2px' }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#fff', marginBottom: '2px' }}>
                     Votre essai Pro se termine dans {trialDaysLeft} jour{trialDaysLeft === 1 ? '' : 's'}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>
@@ -56,7 +56,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
                   </div>
                 </div>
               </div>
-              <a href="/dashboard/abonnement" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+              <a href="/dashboard/abonnement" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
                 Activer mon abonnement →
               </a>
             </div>
@@ -64,7 +64,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
           {/* Greeting */}
           <div style={{ marginBottom: '32px' }}>
-            <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.04em', margin: '0 0 4px' }}>
+            <h1 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#18170F', letterSpacing: '-0.04em', margin: '0 0 4px' }}>
               Bonjour, {prenom} 👋
             </h1>
             <p style={{ fontSize: '0.82rem', color: '#6B6860', margin: 0, textTransform: 'capitalize' }}>

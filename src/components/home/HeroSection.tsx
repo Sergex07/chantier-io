@@ -50,8 +50,8 @@ export default function HeroSection() {
       {/* Content */}
       <div style={{ position: 'relative', zIndex: 10, padding: '0 20px', maxWidth: 768, width: '100%', margin: '0 auto' }}>
         <h1 style={{
-          fontSize: 'clamp(2.6rem, 5vw, 4.2rem)',
-          fontWeight: 800,
+          fontSize: 'clamp(2.8rem, 5vw, 4.5rem)',
+          fontWeight: 600,
           color: 'white',
           lineHeight: 1.1,
           letterSpacing: '-0.03em',
@@ -61,11 +61,13 @@ export default function HeroSection() {
           Trouvez les bons partenaires pour vos chantiers
         </h1>
         <p style={{
-          fontSize: '1.15rem',
+          fontSize: '1rem',
           color: 'rgba(255,255,255,0.88)',
           marginBottom: 36,
           fontWeight: 400,
+          opacity: 0.75,
           textShadow: '0 1px 8px rgba(0,0,0,0.3)',
+          lineHeight: 1.5,
         }}>
           Sous-traitants, designers, architectes, détaillants — tous vos partenaires au Québec
         </p>
@@ -111,7 +113,7 @@ export default function HeroSection() {
                 {item.icon}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#18170F', letterSpacing: '-0.02em', marginBottom: 3, lineHeight: 1.3 }}>
+                <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', marginBottom: 3, lineHeight: 1.3 }}>
                   {item.title}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: '#6B6860', lineHeight: 1.4 }}>{item.desc}</div>

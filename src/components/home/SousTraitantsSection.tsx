@@ -14,8 +14,8 @@ function Card({ p }: { p: typeof PROS[0] }) {
       onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
     >
       <div style={{ height: 224, backgroundImage: `url(${p.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative', overflow: 'hidden' }}>
-        <span style={{ position: 'absolute', top: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '0.7rem', fontWeight: 700, padding: '3px 10px', borderRadius: 100 }}>{p.specialite}</span>
-        <span style={{ position: 'absolute', top: 12, right: 12, background: 'white', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 700, boxShadow: '0 1px 6px rgba(0,0,0,0.15)' }}>✓</span>
+        <span style={{ position: 'absolute', top: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '0.7rem', fontWeight: 600, padding: '3px 10px', borderRadius: 100 }}>{p.specialite}</span>
+        <span style={{ position: 'absolute', top: 12, right: 12, background: 'white', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 600, boxShadow: '0 1px 6px rgba(0,0,0,0.15)' }}>✓</span>
       </div>
       <div style={{ padding: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -34,8 +34,8 @@ export default function SousTraitantsSection() {
     <section style={{ padding: '64px 40px', background: '#fff' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#18170F', letterSpacing: '-0.03em' }}>Sous-traitants en vedette</h2>
-          <a href="#" style={{ fontSize: '0.875rem', color: '#18170F', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>Voir tous les profils →</a>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.03em' }}>Sous-traitants en vedette</h2>
+          <a href="#" style={{ fontSize: '0.875rem', color: '#18170F', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: 3 }}>Voir tous les profils →</a>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
           {PROS.map((p, i) => <Card key={i} p={p} />)}

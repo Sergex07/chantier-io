@@ -69,13 +69,13 @@ function StatCard({ label, value, sub, icon, accent = false }: { label: string; 
   return (
     <div style={{ background: 'white', border: `1px solid ${accent ? '#18170F' : '#E8E6E1'}`, borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
-        <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>{label}</p>
+        <p style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>{label}</p>
         <div style={{ width: 40, height: 40, background: accent ? '#18170F' : '#F4F4F5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: accent ? 'white' : '#4A5568' }}>
           {icon}
         </div>
       </div>
       <div>
-        <p style={{ fontSize: '1.8rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.04em', margin: '0 0 4px', lineHeight: 1 }}>{value}</p>
+        <p style={{ fontSize: '1.8rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.04em', margin: '0 0 4px', lineHeight: 1 }}>{value}</p>
         {sub && <p style={{ fontSize: '0.72rem', color: '#6B6860', margin: 0 }}>{sub}</p>}
       </div>
     </div>
@@ -93,7 +93,7 @@ function QuickCard({ emoji, label, href }: { emoji: string; label: string; href:
       transition: 'border-color 0.15s',
     }}>
       <span style={{ fontSize: '1.4rem', flexShrink: 0 }}>{emoji}</span>
-      <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F' }}>{label}</span>
+      <span style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>{label}</span>
       <span style={{ marginLeft: 'auto', color: '#B0AEA8', fontSize: '1rem' }}>›</span>
     </a>
   )
@@ -188,7 +188,7 @@ export default async function DashboardPage() {
 
       {/* Actions rapides */}
       <div style={{ marginBottom: '32px' }}>
-        <h2 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px', margin: '0 0 14px' }}>
+        <h2 style={{ fontSize: '0.75rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px', margin: '0 0 14px' }}>
           ACTIONS RAPIDES
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
@@ -206,7 +206,7 @@ export default async function DashboardPage() {
             }}>
               <span style={{ fontSize: '1.4rem' }}>{card.icon}</span>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F' }}>{card.title}</div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>{card.title}</div>
                 <div style={{ fontSize: '0.75rem', color: '#6B6860', marginTop: '2px' }}>{card.desc}</div>
               </div>
               <span style={{ color: '#D0CEC8', fontSize: '1.1rem' }}>›</span>
@@ -218,13 +218,13 @@ export default async function DashboardPage() {
       {/* Activité récente */}
       <div style={{ background: 'white', border: '1px solid #E8E6E1', borderRadius: '16px', overflow: 'hidden' }}>
         <div style={{ padding: '18px 24px', borderBottom: '1px solid #F0EEEA' }}>
-          <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>Activité récente</p>
+          <p style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0 }}>Activité récente</p>
         </div>
 
         {activiteRecente.length === 0 ? (
           <div style={{ padding: '48px 24px', textAlign: 'center' }}>
             <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>🚀</div>
-            <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F', margin: '0 0 6px' }}>
+            <p style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', margin: '0 0 6px' }}>
               {role === 'entreprise' ? 'Publiez votre première demande' : role === 'professionnel' ? 'Trouvez votre premier contrat' : 'Complétez votre profil'}
             </p>
             <p style={{ fontSize: '0.78rem', color: '#6B6860', margin: 0 }}>

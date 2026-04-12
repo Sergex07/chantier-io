@@ -36,14 +36,14 @@ export default function EmploisSection() {
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '40px' }}>
-          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>
             Offres d'emploi
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
-            <h2 style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)', fontWeight: 800, color: '#18170F', letterSpacing: '-0.04em', lineHeight: 1.15, margin: 0 }}>
+            <h2 style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)', fontWeight: 600, color: '#18170F', letterSpacing: '-0.04em', lineHeight: 1.15, margin: 0 }}>
               Emplois en vedette
             </h2>
-            <a href="/emplois" style={{ fontSize: '0.82rem', fontWeight: 600, color: '#6B6860', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+            <a href="/emplois" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#6B6860', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Voir toutes les offres →
             </a>
           </div>
@@ -56,18 +56,18 @@ export default function EmploisSection() {
               {/* Top row: badges + salaire */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 600, color: '#6B6860', background: '#F4F4F5', borderRadius: '100px', padding: '3px 10px' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', background: '#F4F4F5', borderRadius: '100px', padding: '3px 10px' }}>
                     {e.specialite}
                   </span>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 600, borderRadius: '100px', padding: '3px 10px', background: typeBadge[e.type]?.bg ?? '#F4F4F5', color: typeBadge[e.type]?.color ?? '#6B6860' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 500, borderRadius: '100px', padding: '3px 10px', background: typeBadge[e.type]?.bg ?? '#F4F4F5', color: typeBadge[e.type]?.color ?? '#6B6860' }}>
                     {e.type}
                   </span>
                 </div>
-                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#18170F', whiteSpace: 'nowrap' }}>{e.salaire}</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#18170F', whiteSpace: 'nowrap' }}>{e.salaire}</span>
               </div>
 
               {/* Title + company */}
-              <div style={{ marginTop: '10px', marginBottom: '4px', fontSize: '1rem', fontWeight: 700, color: '#18170F', lineHeight: 1.35 }}>
+              <div style={{ marginTop: '10px', marginBottom: '4px', fontSize: '1rem', fontWeight: 600, color: '#18170F', lineHeight: 1.35 }}>
                 {e.titre}
               </div>
               <div style={{ fontSize: '0.82rem', color: '#6B6860', flexGrow: 1 }}>{e.entreprise}</div>
@@ -81,7 +81,7 @@ export default function EmploisSection() {
               </div>
 
               {/* CTA */}
-              <a href="/emplois" style={{ marginTop: '16px', display: 'block', textAlign: 'center', padding: '8px 20px', fontSize: '0.82rem', fontWeight: 600, color: '#18170F', border: '1px solid #E8E6E1', borderRadius: '8px', textDecoration: 'none', background: 'white' }}>
+              <a href="/emplois" style={{ marginTop: '16px', display: 'block', textAlign: 'center', padding: '8px 20px', fontSize: '0.82rem', fontWeight: 500, color: '#18170F', border: '1px solid #E8E6E1', borderRadius: '8px', textDecoration: 'none', background: 'white' }}>
                 Voir l'offre →
               </a>
             </div>

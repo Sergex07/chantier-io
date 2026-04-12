@@ -27,7 +27,7 @@ export default function FooterSection() {
                   <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
                 </svg>
               </div>
-              <span style={{ fontWeight: 800, fontSize: '1.05rem', color: '#18170F', letterSpacing: '-0.03em' }}>
+              <span style={{ fontWeight: 600, fontSize: '1.05rem', color: '#18170F', letterSpacing: '-0.03em' }}>
                 Chantier.io
               </span>
             </div>
@@ -39,7 +39,7 @@ export default function FooterSection() {
           {/* Link columns */}
           {COLS.map((col) => (
             <div key={col.title}>
-              <h4 style={{ fontSize: '0.8rem', fontWeight: 700, color: '#18170F', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <h4 style={{ fontSize: '0.8rem', fontWeight: 600, color: '#18170F', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 {col.title}
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -58,7 +58,7 @@ export default function FooterSection() {
           <div style={{ fontSize: '0.78rem', color: '#B0B0B0' }}>© 2025 Chantier.io — Québec, Canada</div>
           <div style={{ display: 'flex', gap: '12px' }}>
             {['in', 'f', 'X'].map((s) => (
-              <a key={s} href="#" style={{ width: 34, height: 34, border: '1px solid #DDDDDD', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, color: '#6B6860', textDecoration: 'none' }}>
+              <a key={s} href="#" style={{ width: 34, height: 34, border: '1px solid #DDDDDD', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 500, color: '#6B6860', textDecoration: 'none' }}>
                 {s}
               </a>
             ))}

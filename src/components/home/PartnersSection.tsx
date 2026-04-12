@@ -93,10 +93,10 @@ export default function PartnersSection() {
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 52 }}>
-          <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#4A5568", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>
+          <div style={{ fontSize: "0.7rem", fontWeight: 500, color: "#4A5568", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>
             Fournisseurs partenaires
           </div>
-          <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#18170F", letterSpacing: "-0.03em", marginBottom: 12 }}>
+          <div style={{ fontSize: "1.8rem", fontWeight: 600, color: "#18170F", letterSpacing: "-0.03em", marginBottom: 12 }}>
             Les grandes enseignes font confiance à Chantier.io
           </div>
           <p style={{ fontSize: "0.9rem", color: "#6B6860", maxWidth: "46ch", margin: "0 auto", lineHeight: 1.65 }}>
@@ -120,7 +120,7 @@ export default function PartnersSection() {
         <div style={{ textAlign: "center" }}>
           <a
             href="#"
-            style={{ display: "inline-block", fontSize: "0.875rem", fontWeight: 700, color: "#18170F", padding: "12px 24px", borderRadius: 10, border: "1px solid #DDDDDD", background: "white", textDecoration: "none" }}
+            style={{ display: "inline-block", fontSize: "0.875rem", fontWeight: 500, color: "#18170F", padding: "12px 24px", borderRadius: 10, border: "1px solid #DDDDDD", background: "white", textDecoration: "none" }}
           >
             Devenir fournisseur partenaire →
           </a>

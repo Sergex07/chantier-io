@@ -33,7 +33,7 @@ export default function Navbar() {
     }}>
       <Link href="/" style={{
         display: 'flex', alignItems: 'center', gap: '8px',
-        fontWeight: 800, fontSize: '1.05rem',
+        fontWeight: 700, fontSize: '1.05rem',
         color: isWhite ? '#18170F' : '#fff',
         textDecoration: 'none', transition: 'color 0.3s'
       }}>
@@ -57,7 +57,7 @@ export default function Navbar() {
           <a key={l} href="#" style={{
             color: isWhite ? '#6B6860' : 'rgba(255,255,255,0.85)',
             textDecoration: 'none',
-            fontSize: '0.875rem', fontWeight: 500,
+            fontSize: '0.875rem', fontWeight: 400,
             padding: '6px 14px', borderRadius: '8px',
             transition: 'color 0.3s'
           }}>{l}</a>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <Link href="/connexion" style={{
-          fontSize: '0.875rem', fontWeight: 500,
+          fontSize: '0.875rem', fontWeight: 400,
           color: isWhite ? '#6B6860' : 'rgba(255,255,255,0.85)',
           textDecoration: 'none', padding: '6px 14px',
           transition: 'color 0.3s'
@@ -76,7 +76,7 @@ export default function Navbar() {
         <Link href="/inscription" style={{
           background: isWhite ? '#18170F' : 'white',
           color: isWhite ? 'white' : '#18170F',
-          fontSize: '0.875rem', fontWeight: 600,
+          fontSize: '0.875rem', fontWeight: 500,
           padding: '8px 18px', borderRadius: '8px',
           textDecoration: 'none', transition: 'all 0.3s'
         }}>

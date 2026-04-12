@@ -141,7 +141,7 @@ export default function DemandesTableauInteractif() {
         {/* Header */}
         <div style={{ display: 'grid', gridTemplateColumns: cols, gap: '0', padding: '10px 20px', background: '#F9F8F6', borderBottom: '1px solid #F0EEEA' }}>
           {['Projet', 'Ville', 'Début', 'Secteur', 'Offres', 'Statut', ''].map((h, i) => (
-            <div key={i} style={{ fontSize: '0.7rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', paddingLeft: i === 0 ? '48px' : '0', paddingRight: '12px' }}>
+            <div key={i} style={{ fontSize: '0.7rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', paddingLeft: i === 0 ? '48px' : '0', paddingRight: '12px' }}>
               {h}
             </div>
           ))}
@@ -165,7 +165,7 @@ export default function DemandesTableauInteractif() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, paddingRight: '12px' }}>
               <SpecialiteIcon specialite={d.specialite} />
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#18170F', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.name}</div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.name}</div>
                 <div style={{ fontSize: '0.75rem', color: isConnected ? '#6B6860' : '#B8B5AF', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontStyle: isConnected ? 'normal' : 'italic' }}>
                   {masquerNom(d.gc, isConnected)}
                 </div>
@@ -189,7 +189,7 @@ export default function DemandesTableauInteractif() {
 
             {/* Offres */}
             <div style={{ paddingRight: '12px' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#18170F', lineHeight: 1.2 }}>{d.offres.split(' ')[0]}</div>
+              <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#18170F', lineHeight: 1.2 }}>{d.offres.split(' ')[0]}</div>
               <div style={{ fontSize: '0.68rem', color: '#6B6860' }}>offres</div>
             </div>
 
@@ -215,13 +215,13 @@ export default function DemandesTableauInteractif() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.12)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', flexShrink: 0 }}>🔒</div>
             <div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#fff', marginBottom: '3px' }}>Accédez aux informations complètes</div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#fff', marginBottom: '3px' }}>Accédez aux informations complètes</div>
               <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>Créez un compte gratuit pour voir les noms des demandeurs et soumettre des offres</div>
             </div>
           </div>
           <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
             <a href="/connexion" style={{ padding: '9px 18px', borderRadius: '9px', border: '1px solid rgba(255,255,255,0.25)', background: 'transparent', color: 'rgba(255,255,255,0.85)', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>Se connecter</a>
-            <a href="/inscription" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>S'inscrire gratuitement →</a>
+            <a href="/inscription" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>S'inscrire gratuitement →</a>
           </div>
         </div>
       )}
@@ -239,26 +239,26 @@ export default function DemandesTableauInteractif() {
           >
             <button onClick={() => setSelected(null)} style={{ position: 'absolute', top: '16px', right: '16px', width: '32px', height: '32px', borderRadius: '50%', border: '1px solid #DDDDDD', background: 'white', cursor: 'pointer', fontSize: '0.85rem', color: '#6B6860' }}>✕</button>
 
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.68rem', fontWeight: 700, padding: '4px 12px', borderRadius: '999px', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', background: demande.badgeBg, color: demande.badgeColor }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.68rem', fontWeight: 500, padding: '4px 12px', borderRadius: '999px', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.05em', background: demande.badgeBg, color: demande.badgeColor }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: STATUT_COLORS[demande.badge] || '#6B6860' }} />
               {demande.badge}
             </span>
-            <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.03em', marginBottom: '6px', lineHeight: 1.25 }}>{demande.name}</div>
+            <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.03em', marginBottom: '6px', lineHeight: 1.25 }}>{demande.name}</div>
             <div style={{ fontSize: '0.875rem', color: '#6B6860', marginBottom: '24px' }}>{masquerNom(demande.gc, isConnected)} · {demande.region}</div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
               {[['Budget', demande.budget], ['Début des travaux', demande.date], ['Région', demande.region], ['Offres reçues', demande.offres]].map(([label, val]) => (
                 <div key={label} style={{ background: '#F7F7F7', borderRadius: '10px', padding: '14px 16px' }}>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>{label}</div>
-                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#18170F' }}>{val}</div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>{label}</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 600, color: '#18170F' }}>{val}</div>
                 </div>
               ))}
             </div>
 
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>Description</div>
+            <div style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>Description</div>
             <p style={{ fontSize: '0.875rem', color: '#18170F', lineHeight: 1.7, marginBottom: '16px' }}>{demande.desc}</p>
 
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px', marginTop: '16px' }}>Exigences</div>
+            <div style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px', marginTop: '16px' }}>Exigences</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px' }}>
               {demande.reqs.map(r => (
                 <div key={r} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: '#18170F' }}>
@@ -269,15 +269,15 @@ export default function DemandesTableauInteractif() {
 
             {demande.files.length > 0 && (
               <>
-                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '10px', marginTop: '20px' }}>Documents</div>
+                <div style={{ fontSize: '0.72rem', fontWeight: 500, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '10px', marginTop: '20px' }}>Documents</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '4px' }}>
                   {demande.files.map(f => (
                     <div key={f.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#F7F7F7', border: '1px solid #DDDDDD', borderRadius: '10px' }}>
                       <div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#18170F' }}>{f.name}</div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 500, color: '#18170F' }}>{f.name}</div>
                         <div style={{ fontSize: '0.72rem', color: '#6B6860' }}>{f.size}</div>
                       </div>
-                      <a href="#" style={{ fontSize: '0.75rem', fontWeight: 600, color: '#18170F', padding: '6px 12px', borderRadius: '7px', border: '1px solid #DDDDDD', background: 'white', textDecoration: 'none' }}>Télécharger</a>
+                      <a href="#" style={{ fontSize: '0.75rem', fontWeight: 500, color: '#18170F', padding: '6px 12px', borderRadius: '7px', border: '1px solid #DDDDDD', background: 'white', textDecoration: 'none' }}>Télécharger</a>
                     </div>
                   ))}
                 </div>
@@ -285,10 +285,10 @@ export default function DemandesTableauInteractif() {
             )}
 
             <div style={{ display: 'flex', gap: '10px', marginTop: '28px', paddingTop: '24px', borderTop: '1px solid #DDDDDD' }}>
-              <a href="/inscription" style={{ flex: 1, textAlign: 'center', background: '#18170F', color: 'white', fontSize: '0.875rem', fontWeight: 700, padding: '13px 0', borderRadius: '10px', textDecoration: 'none', display: 'block' }}>
+              <a href="/inscription" style={{ flex: 1, textAlign: 'center', background: '#18170F', color: 'white', fontSize: '0.875rem', fontWeight: 500, padding: '13px 0', borderRadius: '10px', textDecoration: 'none', display: 'block' }}>
                 Soumettre une offre
               </a>
-              <a href="#" style={{ flex: 1, textAlign: 'center', border: '1px solid #DDDDDD', color: '#18170F', fontSize: '0.875rem', fontWeight: 600, padding: '13px 0', borderRadius: '10px', textDecoration: 'none', display: 'block' }}>
+              <a href="#" style={{ flex: 1, textAlign: 'center', border: '1px solid #DDDDDD', color: '#18170F', fontSize: '0.875rem', fontWeight: 500, padding: '13px 0', borderRadius: '10px', textDecoration: 'none', display: 'block' }}>
                 Poser une question
               </a>
             </div>
