@@ -4,7 +4,7 @@ const CATEGORIES = [
   { icon: '🍳', label: 'Rénover sa cuisine', href: '/demande-soumission?type=Cuisine' },
   { icon: '🚿', label: 'Rénover sa salle de bain', href: '/demande-soumission?type=Salle+de+bain' },
   { icon: '🔨', label: 'Rénovation générale', href: '/demande-soumission?type=Rénovation' },
-  { icon: '🎨', label: 'Peinture', href: '/demande-soumission?type=Peinture' },
+  { icon: '🏡', label: 'Rénovation extérieure', href: '/demande-soumission?type=Rénovation+extérieure' },
 ]
 
 export default function FeaturedSection() {
