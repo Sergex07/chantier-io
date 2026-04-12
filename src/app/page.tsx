@@ -6,7 +6,6 @@ import DetaillantsSection from '@/components/home/DetaillantsSection'
 import ProfessionnelsSection from '@/components/home/ProfessionnelsSection'
 import EmploisSection from '@/components/home/EmploisSection'
 import TravailleursSection from '@/components/home/TravailleursSection'
-import PartnersSection from '@/components/home/PartnersSection'
 import CTAFinalSection from '@/components/home/CTAFinalSection'
 import FooterSection from '@/components/home/FooterSection'
 
@@ -21,7 +20,6 @@ export default function Home() {
         <ProfessionnelsSection />
         <EmploisSection />
         <TravailleursSection />
-        <PartnersSection />
         <CTAFinalSection />
         <FooterSection />
       </main>
