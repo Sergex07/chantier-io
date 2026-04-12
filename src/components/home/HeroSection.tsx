@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const CTA_ITEMS = [
   {
-    href: '/dashboard/demandes/nouvelle',
+    href: '/demande-soumission',
     icon: '📋',
     title: 'Publier une demande de soumission',
     desc: 'Trouvez des sous-traitants qualifiés en quelques heures',
