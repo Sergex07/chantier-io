@@ -14,19 +14,19 @@ const PROS_VEDETTE = [
 
 export default function PartenaireVedetteSection() {
   return (
-    <section style={{ padding: '80px 40px', background: 'white' }}>
+    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
           <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 8px' }}>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
               PARTENAIRES
             </p>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-              Partenaires en vedette
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              Nos partenaires
             </h2>
           </div>
-          <a href="/partenaires" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
+          <a href="/partenaires" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>
             Devenir partenaire →
           </a>
         </div>

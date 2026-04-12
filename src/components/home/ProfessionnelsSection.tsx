@@ -32,11 +32,20 @@ function Card({ p }: { p: typeof PROS[0] }) {
 
 export default function ProfessionnelsSection() {
   return (
-    <section style={{ padding: '0 40px 64px', background: '#fff' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.03em' }}>Professionnels en vedette</h2>
-          <a href="#" style={{ fontSize: '0.875rem', color: '#18170F', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: 3 }}>Voir tous les professionnels →</a>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
+          <div>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
+              DESIGNERS &amp; ARCHITECTES
+            </p>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              Professionnels créatifs
+            </h2>
+          </div>
+          <a href="/profil/demo-id" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>
+            Voir tous les profils →
+          </a>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
           {PROS.map((p, i) => <Card key={i} p={p} />)}

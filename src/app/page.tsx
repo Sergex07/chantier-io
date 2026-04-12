@@ -12,6 +12,8 @@ import DetaillantsSection from '@/components/home/DetaillantsSection'
 import CTAFinalSection from '@/components/home/CTAFinalSection'
 import TemoignagesSection from '@/components/home/TemoignagesSection'
 import PartenaireVedetteSection from '@/components/home/PartenaireVedetteSection'
+import ProcessSection from '@/components/home/ProcessSection'
+import ProfessionnelsSection from '@/components/home/ProfessionnelsSection'
 import FooterSection from '@/components/home/FooterSection'
 
 export default function HomePage() {
@@ -24,8 +26,11 @@ export default function HomePage() {
       {mode === 'public' && (
         <>
           <CategoriesSection />
+          <ProcessSection />
           <SousTraitantsSection />
-          <AppelsSoumissionsSection />
+          <DetaillantsSection />
+          <ProfessionnelsSection />
+          <EmploisSection />
           <TemoignagesSection />
           <PartenaireVedetteSection />
           <CTAFinalSection />

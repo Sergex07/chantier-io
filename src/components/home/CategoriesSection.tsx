@@ -20,23 +20,18 @@ export default function CategoriesSection() {
     <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-        <div style={{ marginBottom: '40px' }}>
-          <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 8px' }}>
-            TYPES DE TRAVAUX
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <div>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: '0 0 4px' }}>
-                Parcourez par catégorie
-              </h2>
-              <p style={{ fontSize: '0.875rem', color: '#6B6860', margin: 0 }}>
-                Trouvez le bon spécialiste pour chaque type de travaux
-              </p>
-            </div>
-            <a href="/demande-soumission" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              Publier une demande →
-            </a>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
+          <div>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
+              TYPES DE TRAVAUX
+            </p>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              Parcourez par catégorie
+            </h2>
           </div>
+          <a href="/demande-soumission" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>
+            Publier une demande →
+          </a>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>

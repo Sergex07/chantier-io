@@ -32,16 +32,18 @@ const TEMOIGNAGES = [
 
 export default function TemoignagesSection() {
   return (
-    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-        <div style={{ marginBottom: '40px' }}>
-          <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 8px' }}>
-            TÉMOIGNAGES
-          </p>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-            Ce qu'ils en disent
-          </h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
+          <div>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
+              TÉMOIGNAGES
+            </p>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              Ce qu'ils en disent
+            </h2>
+          </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>

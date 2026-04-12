@@ -32,19 +32,19 @@ function Card({ p }: { p: typeof PROS[0] }) {
 
 export default function SousTraitantsSection() {
   return (
-    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px' }}>
           <div>
-            <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', margin: '0 0 6px' }}>
+            <p style={{ fontSize: '0.7rem', fontWeight: 600, color: '#9B9891', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 6px' }}>
               ENTREPRENEUR GÉNÉRAL
             </p>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
-              En vedette cette semaine
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 500, color: '#18170F', letterSpacing: '-0.02em', margin: 0 }}>
+              Professionnels en vedette
             </h2>
           </div>
-          <a href="/professionnels" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none' }}>
-            Voir tout →
+          <a href="/profil/demo-id" style={{ fontSize: '0.82rem', color: '#6B6860', textDecoration: 'none', fontWeight: 400 }}>
+            Voir tous les profils →
           </a>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
