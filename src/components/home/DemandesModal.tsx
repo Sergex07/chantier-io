@@ -207,24 +207,45 @@ export default function DemandesTableauInteractif() {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Lock banner */}
-      {!isConnected && (
-        <div style={{ marginTop: '16px', padding: '18px 24px', background: 'linear-gradient(135deg, #18170F 0%, #4A5568 100%)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.12)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', flexShrink: 0 }}>🔒</div>
-            <div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#fff', marginBottom: '3px' }}>Accédez aux informations complètes</div>
-              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)' }}>Créez un compte gratuit pour voir les noms des demandeurs et soumettre des offres</div>
+        {/* Lock banner */}
+        {!isConnected && (
+          <div style={{
+            marginTop: '0',
+            borderTop: '1px solid #E8E6E1',
+            padding: '20px 24px',
+            background: '#FAFAFA',
+            borderRadius: '0 0 14px 14px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '16px',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ width: '36px', height: '36px', background: '#18170F', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 500, color: '#18170F', marginBottom: '1px' }}>
+                  Connectez-vous pour voir les noms complets
+                </div>
+                <div style={{ fontSize: '0.75rem', color: '#9B9891' }}>
+                  Créez un compte gratuit — accès immédiat, aucune carte requise
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
+              <a href="/connexion" style={{ padding: '8px 16px', borderRadius: '8px', border: '1px solid #E8E6E1', background: 'white', color: '#6B6860', fontSize: '0.78rem', fontWeight: 400, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                Se connecter
+              </a>
+              <a href="/inscription" style={{ padding: '8px 16px', borderRadius: '8px', background: '#18170F', color: 'white', fontSize: '0.78rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                S'inscrire gratuitement →
+              </a>
             </div>
           </div>
-          <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
-            <a href="/connexion" style={{ padding: '9px 18px', borderRadius: '9px', border: '1px solid rgba(255,255,255,0.25)', background: 'transparent', color: 'rgba(255,255,255,0.85)', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>Se connecter</a>
-            <a href="/inscription" style={{ padding: '9px 18px', borderRadius: '9px', background: '#fff', color: '#18170F', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none', whiteSpace: 'nowrap' }}>S'inscrire gratuitement →</a>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Modal */}
       {demande && (
