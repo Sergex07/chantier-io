@@ -19,6 +19,12 @@ import ProProcessSection from '@/components/home/ProProcessSection'
 import FeaturedSection from '@/components/home/FeaturedSection'
 import ValuePropSection from '@/components/home/ValuePropSection'
 import FooterSection from '@/components/home/FooterSection'
+import TravailleurHeroSection from '@/components/home/TravailleurHeroSection'
+import OffresEmploiSection from '@/components/home/OffresEmploiSection'
+import FormationSection from '@/components/home/FormationSection'
+import BlogSection from '@/components/home/BlogSection'
+import TravailleurPartenairesSection from '@/components/home/TravailleurPartenairesSection'
+import TravailleurCTASection from '@/components/home/TravailleurCTASection'
 
 export default function HomePage() {
   const { mode } = useMode()
@@ -52,9 +58,12 @@ export default function HomePage() {
 
       {mode === 'travailleur' && (
         <>
-          <TravailleursSection />
-          <EmploisSection />
-          <CTAFinalSection />
+          <TravailleurHeroSection />
+          <OffresEmploiSection />
+          <FormationSection />
+          <BlogSection />
+          <TravailleurPartenairesSection />
+          <TravailleurCTASection />
         </>
       )}
 
