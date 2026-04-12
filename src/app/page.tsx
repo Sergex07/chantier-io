@@ -40,8 +40,8 @@ export default function HomePage() {
       {mode === 'pro' && (
         <>
           <ProDoubleCtaSection />
-          <ProProcessSection />
           <AppelsSoumissionsSection />
+          <ProProcessSection />
           <ProStatsSection />
           <CTAFinalSection />
         </>
