@@ -14,10 +14,10 @@ const MODES = {
   pro: {
     label: 'Professionnel',
     ctas: [
-      { icon: '📂', title: 'Demandes disponibles', desc: 'Soumissionnez sur des projets', href: '/dashboard/demandes-disponibles' },
-      { icon: '👤', title: 'Mon profil Pro', desc: 'Gérez votre vitrine', href: '/dashboard/profil' },
-      { icon: '💼', title: 'Trouver un contrat', desc: "Parcourez les appels d'offres", href: '/demandes' },
-      { icon: '🤝', title: 'Trouver un sous-traitant', desc: 'Élargissez votre réseau', href: '/trouver-travailleur' },
+      { icon: '📋', title: 'Demande de soumission', desc: 'Publiez votre projet et recevez des offres', href: '/demande-soumission' },
+      { icon: '💼', title: 'Trouver un contrat', desc: "Parcourez les appels d'offres disponibles", href: '/demandes' },
+      { icon: '👷', title: 'Trouver des employés', desc: 'Recrutez des travailleurs qualifiés', href: '/trouver-travailleur' },
+      { icon: '📢', title: "Afficher une offre d'emploi", desc: 'Publiez un poste sur la plateforme', href: '/emplois/publier' },
     ],
   },
   travailleur: {
