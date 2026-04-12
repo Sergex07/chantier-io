@@ -70,7 +70,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           {/* Greeting */}
           <div style={{ marginBottom: '32px' }}>
             <h1 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#18170F', letterSpacing: '-0.04em', margin: '0 0 4px' }}>
-              Bonjour, {prenom} 👋
+              Bonjour {prenom}, 👋
             </h1>
             <p style={{ fontSize: '0.82rem', color: '#6B6860', margin: 0, textTransform: 'capitalize' }}>
               {dateAujourdhui}
