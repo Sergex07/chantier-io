@@ -1,6 +1,5 @@
 'use client'
 import { useMode } from './ModeContext'
-import CommentCaMarche from './CommentCaMarche'
 import SousTraitantsSection from './SousTraitantsSection'
 import AppelsSoumissionsSection from './AppelsSoumissionsSection'
 import EmploisSection from './EmploisSection'
@@ -81,7 +80,6 @@ export default function HomepageAdaptive() {
 
   return (
     <>
-      <CommentCaMarche />
       <SousTraitantsSection />
       <AppelsSoumissionsSection />
       <EmploisSection />
