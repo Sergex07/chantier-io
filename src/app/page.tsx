@@ -29,10 +29,9 @@ export default function HomePage() {
 
       {mode === 'pro' && (
         <>
-          <SousTraitantsSection />
-          <ProWowSection />
           <AppelsSoumissionsSection />
-          <DetaillantsSection />
+          <ProStatsSection />
+          <SousTraitantsSection />
           <CTAFinalSection />
         </>
       )}
