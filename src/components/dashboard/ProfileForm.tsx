@@ -30,6 +30,7 @@ const inp: React.CSSProperties = {
 export default function ProfileForm({ profile, specialites, selectedSpecialites }: Props) {
   const [state, formAction, pending] = useActionState(updateProfile, initialState)
   const [preview, setPreview] = useState<string | null>(profile.avatar_url ?? null)
+  const [ccq, setCcq] = useState(!!profile.ccq_numero)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -113,7 +114,25 @@ export default function ProfileForm({ profile, specialites, selectedSpecialites 
         <SectionTitle>Licences & certifications</SectionTitle>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
           <Field label="Numéro RBQ" name="rbq_numero" defaultValue={profile.rbq_numero ?? ''} placeholder="5678-0987-01" hint="Régie du bâtiment du Québec" />
-          <Field label="Numéro CCQ" name="ccq_numero" defaultValue={profile.ccq_numero ?? ''} placeholder="123456" hint="Commission de la construction du Québec" />
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#18170F', marginBottom: '6px' }}>Membre CCQ</label>
+            <div
+              style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', border: '1px solid #E8E6E1', borderRadius: '9px', cursor: 'pointer' }}
+              onClick={() => setCcq(!ccq)}
+            >
+              <input
+                type="checkbox"
+                checked={ccq}
+                onChange={() => setCcq(!ccq)}
+                style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: '#18170F' }}
+              />
+              <div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: '#18170F' }}>Membre CCQ</div>
+                <div style={{ fontSize: '0.75rem', color: '#6B6860' }}>Commission de la construction du Québec</div>
+              </div>
+            </div>
+            <input type="hidden" name="ccq_numero" value={ccq ? 'membre' : ''} />
+          </div>
         </div>
       </div>
 

@@ -108,11 +108,12 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('role')
+    .select('role, full_name')
     .eq('id', user.id)
     .single()
 
   const role = (profile?.role ?? 'professionnel') as Role
+  const prenom = profile?.full_name?.split(' ')[0] || 'vous'
 
   const [statsProf, statsEntreprise] = await Promise.all([
     role === 'professionnel' ? fetchStatsProf(supabase, user.id) : null,
@@ -123,6 +124,11 @@ export default async function DashboardPage() {
 
   return (
     <div style={{ maxWidth: '960px' }}>
+
+      {/* Greeting */}
+      <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#18170F', letterSpacing: '-0.03em', marginBottom: '4px', marginTop: 0 }}>
+        Bonjour, {prenom} 👋
+      </h1>
 
       {/* Stat cards — Professionnel */}
       {statsProf && (
