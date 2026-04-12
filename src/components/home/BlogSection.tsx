@@ -19,15 +19,9 @@ const articles = [
   },
 ]
 
-const categorieColor = (cat: string) => ({
-  'Carrière':       { bg: '#EFF6FF', text: '#1D4ED8' },
-  'Réglementation': { bg: '#FFF7ED', text: '#C2410C' },
-  'Formation':      { bg: '#F0FDF4', text: '#16A34A' },
-}[cat] ?? { bg: '#F4F4F5', text: '#6B6860' })
-
 export default function BlogSection() {
   return (
-    <section style={{ padding: '80px 40px', background: 'white' }}>
+    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -47,59 +41,49 @@ export default function BlogSection() {
 
         {/* Grille 3 colonnes */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
-          {articles.map((a, i) => {
-            const badge = categorieColor(a.categorie)
-            return (
-              <div key={i} style={{
-                background: 'white', border: '1px solid #E8E6E1',
-                borderRadius: '14px', overflow: 'hidden',
-                display: 'flex', flexDirection: 'column',
+          {articles.map((a, i) => (
+            <div key={i} style={{
+              background: 'white', border: 'none',
+              borderRadius: '14px', overflow: 'hidden',
+              display: 'flex', flexDirection: 'column',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+            }}>
+              {/* Image avec overlay catégorie */}
+              <div style={{
+                height: '180px',
+                backgroundImage: `url(${a.img})`,
+                backgroundSize: 'cover', backgroundPosition: 'center',
+                borderRadius: '14px 14px 0 0', position: 'relative', flexShrink: 0,
               }}>
-                {/* Image */}
-                <div style={{
-                  height: '180px',
-                  backgroundImage: `url(${a.img})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  flexShrink: 0,
-                }} />
+                <span style={{
+                  position: 'absolute', top: '12px', left: '12px',
+                  padding: '4px 10px', borderRadius: '100px',
+                  background: 'rgba(0,0,0,0.55)', color: 'white',
+                  fontSize: '0.68rem', fontWeight: 600, backdropFilter: 'blur(4px)',
+                }}>
+                  {a.categorie}
+                </span>
+              </div>
 
-                {/* Contenu */}
-                <div style={{ padding: '18px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  {/* Badge catégorie */}
-                  <span style={{
-                    alignSelf: 'flex-start',
-                    padding: '3px 10px', borderRadius: '100px', fontSize: '0.68rem', fontWeight: 600,
-                    background: badge.bg, color: badge.text, marginBottom: '10px',
-                  }}>
-                    {a.categorie}
+              {/* Contenu */}
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <h3 style={{ fontSize: '0.9rem', fontWeight: 500, color: '#18170F', lineHeight: 1.4, margin: '0 0 8px' }}>
+                  {a.titre}
+                </h3>
+                <p style={{ fontSize: '0.78rem', color: '#6B6860', lineHeight: 1.55, margin: '0 0 16px', flex: 1 }}>
+                  {a.extrait}
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.72rem', color: '#9B9891' }}>
+                    {a.date} · {a.tempsLecture}
                   </span>
-
-                  {/* Titre */}
-                  <h3 style={{ fontSize: '0.9rem', fontWeight: 500, color: '#18170F', lineHeight: 1.4, margin: '0 0 8px' }}>
-                    {a.titre}
-                  </h3>
-
-                  {/* Extrait */}
-                  <p style={{ fontSize: '0.78rem', color: '#6B6860', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>
-                    {a.extrait}
-                  </p>
-
-                  {/* Footer */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.72rem', color: '#9B9891' }}>
-                      {a.date} · {a.tempsLecture}
-                    </span>
-                    <a href="/blogue" style={{
-                      fontSize: '0.78rem', color: '#18170F', textDecoration: 'none', fontWeight: 500,
-                    }}>
-                      Lire →
-                    </a>
-                  </div>
+                  <a href="/blogue" style={{ fontSize: '0.78rem', color: '#18170F', textDecoration: 'none', fontWeight: 500 }}>
+                    Lire →
+                  </a>
                 </div>
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

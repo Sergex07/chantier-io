@@ -7,15 +7,15 @@ const offres = [
   { titre: 'Soudeur certifié', entreprise: 'Industries Côté', ville: 'Rive-Sud', type: 'Permanent', salaire: '40–48$/h', specialite: 'Soudage', urgent: false },
 ]
 
-const typeColor = (type: string) => ({
-  Permanent:  { bg: '#F0FDF4', text: '#16A34A' },
-  Contrat:    { bg: '#EFF6FF', text: '#1D4ED8' },
-  Saisonnier: { bg: '#FFF7ED', text: '#C2410C' },
-}[type] ?? { bg: '#F4F4F5', text: '#6B6860' })
+const typeColor = (type: string): { bg: string; text: string } =>
+  ({ Permanent: { bg: '#F0FDF4', text: '#16A34A' },
+     Contrat:   { bg: '#FFF7ED', text: '#EA580C' },
+     Saisonnier:{ bg: '#F0F9FF', text: '#0284C7' },
+  }[type] ?? { bg: '#F4F4F5', text: '#6B6860' })
 
 export default function OffresEmploiSection() {
   return (
-    <section style={{ padding: '80px 40px', background: 'white' }}>
+    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -39,56 +39,48 @@ export default function OffresEmploiSection() {
             const colors = typeColor(o.type)
             return (
               <div key={i} style={{
-                background: 'white', border: '1px solid #E8E6E1',
-                borderRadius: '12px', padding: '20px',
-                position: 'relative',
+                background: 'white', border: 'none',
+                borderRadius: '14px', padding: '20px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+                display: 'flex', flexDirection: 'column', gap: '10px',
               }}>
-                {/* Badge urgent */}
-                {o.urgent && (
-                  <span style={{
-                    position: 'absolute', top: '16px', right: '16px',
-                    padding: '2px 10px', borderRadius: '100px',
-                    fontSize: '0.68rem', fontWeight: 600,
-                    background: '#FEF2F2', color: '#DC2626',
-                  }}>
-                    Urgent
-                  </span>
-                )}
 
-                {/* Badges spécialité + type */}
-                <div style={{ display: 'flex', gap: '6px', marginBottom: '12px', flexWrap: 'wrap' }}>
-                  <span style={{
-                    padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 500,
-                    background: '#F4F4F5', color: '#6B6860',
-                  }}>
-                    {o.specialite}
-                  </span>
-                  <span style={{
-                    padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 500,
-                    background: colors.bg, color: colors.text,
-                  }}>
-                    {o.type}
-                  </span>
+                {/* Header : badges + urgent */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                    <span style={{ padding: '3px 10px', borderRadius: '100px', fontSize: '0.68rem', fontWeight: 500, background: '#F4F4F5', color: '#6B6860' }}>
+                      {o.specialite}
+                    </span>
+                    <span style={{ padding: '3px 10px', borderRadius: '100px', fontSize: '0.68rem', fontWeight: 500, background: colors.bg, color: colors.text }}>
+                      {o.type}
+                    </span>
+                  </div>
+                  {o.urgent && (
+                    <span style={{ padding: '2px 10px', borderRadius: '100px', fontSize: '0.68rem', fontWeight: 600, background: '#FEF2F2', color: '#DC2626', flexShrink: 0 }}>
+                      Urgent
+                    </span>
+                  )}
                 </div>
 
                 {/* Titre */}
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 500, color: '#18170F', margin: '0 0 6px' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 500, color: '#18170F', margin: '2px 0 2px' }}>
                   {o.titre}
                 </h3>
 
                 {/* Entreprise + ville */}
-                <p style={{ fontSize: '0.8rem', color: '#6B6860', margin: '0 0 12px' }}>
+                <p style={{ fontSize: '0.78rem', color: '#6B6860', margin: 0 }}>
                   {o.entreprise} · 📍 {o.ville}
                 </p>
 
-                {/* Salaire + bouton */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                {/* Séparateur */}
+                <div style={{ borderTop: '1px solid #F0EEEA', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#18170F' }}>
                     {o.salaire}
                   </span>
                   <a href="/emplois" style={{
-                    padding: '7px 14px', border: '1px solid #E8E6E1', borderRadius: '8px',
-                    textDecoration: 'none', fontSize: '0.78rem', color: '#18170F', fontWeight: 400,
+                    padding: '7px 16px', border: '1px solid #E8E6E1', borderRadius: '100px',
+                    textDecoration: 'none', fontSize: '0.78rem', color: '#18170F',
+                    fontWeight: 400, background: 'white',
                   }}>
                     Postuler →
                   </a>

@@ -7,12 +7,12 @@ const formations = [
 
 const formatBadge = (format: string) =>
   format === 'En ligne'
-    ? { bg: '#EFF6FF', text: '#1D4ED8' }
+    ? { bg: '#EFF6FF', text: '#2563EB' }
     : { bg: '#F0FDF4', text: '#16A34A' }
 
 export default function FormationSection() {
   return (
-    <section style={{ padding: '80px 40px', background: '#F9F8F6' }}>
+    <section style={{ padding: '80px 40px', background: 'white' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -25,17 +25,17 @@ export default function FormationSection() {
           </h2>
         </div>
 
-        {/* Grille 2×2 */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+        {/* Grille 2 colonnes */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
           {formations.map((f, i) => {
             const badge = formatBadge(f.format)
             return (
               <div key={i} style={{
                 background: 'white', border: '1px solid #E8E6E1',
-                borderRadius: '12px', padding: '20px',
-                display: 'flex', flexDirection: 'column', gap: '12px',
+                borderRadius: '14px', padding: '24px',
+                display: 'flex', flexDirection: 'column', gap: '14px',
               }}>
-                {/* Icône + titre */}
+                {/* Icône + titre + org */}
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <div style={{
                     width: '44px', height: '44px', borderRadius: '10px',
@@ -45,7 +45,7 @@ export default function FormationSection() {
                     {f.icon}
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '0.9rem', fontWeight: 500, color: '#18170F', margin: '0 0 3px' }}>
+                    <h3 style={{ fontSize: '0.9rem', fontWeight: 500, color: '#18170F', margin: '0 0 3px', lineHeight: 1.35 }}>
                       {f.titre}
                     </h3>
                     <p style={{ fontSize: '0.78rem', color: '#6B6860', margin: 0 }}>
@@ -54,28 +54,23 @@ export default function FormationSection() {
                   </div>
                 </div>
 
-                {/* Détails */}
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <span style={{
-                    padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 500,
-                    background: badge.bg, color: badge.text,
-                  }}>
+                {/* Footer : badge + durée + prix + bouton */}
+                <div style={{ borderTop: '1px solid #F0EEEA', paddingTop: '14px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <span style={{ padding: '3px 10px', borderRadius: '100px', fontSize: '0.68rem', fontWeight: 500, background: badge.bg, color: badge.text }}>
                     {f.format}
                   </span>
                   <span style={{ fontSize: '0.75rem', color: '#9B9891' }}>⏱ {f.duree}</span>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#18170F', marginLeft: 'auto' }}>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#18170F', marginLeft: 'auto' }}>
                     {f.prix}
                   </span>
+                  <a href="/formations" style={{
+                    padding: '6px 14px', border: '1px solid #E8E6E1', borderRadius: '100px',
+                    textDecoration: 'none', fontSize: '0.75rem', color: '#18170F', fontWeight: 400,
+                    background: 'white', whiteSpace: 'nowrap',
+                  }}>
+                    En savoir plus →
+                  </a>
                 </div>
-
-                {/* Bouton */}
-                <a href="/formations" style={{
-                  alignSelf: 'flex-start',
-                  padding: '7px 14px', border: '1px solid #E8E6E1', borderRadius: '8px',
-                  textDecoration: 'none', fontSize: '0.78rem', color: '#18170F', fontWeight: 400,
-                }}>
-                  En savoir plus →
-                </a>
               </div>
             )
           })}
