@@ -73,6 +73,25 @@ export default function DemoProfilPage() {
         {/* CONTENU PRINCIPAL */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
+          {/* Photos de réalisations */}
+          <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8E6E1', overflow: 'hidden' }}>
+            <div style={{ height: '200px', backgroundImage: 'url(https://images.unsplash.com/photo-1621905252472-943afaa20e20?w=900&q=80)', backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3) 100%)' }} />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px', padding: '2px' }}>
+              {[
+                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+                'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=80',
+                'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80',
+              ].map((url, i) => (
+                <div key={i} style={{ height: '100px', backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: i === 0 ? '0 0 0 14px' : i === 2 ? '0 0 14px 0' : '0', cursor: 'pointer' }} />
+              ))}
+            </div>
+            <div style={{ padding: '12px 16px', borderTop: '1px solid #F0EEEA' }}>
+              <span style={{ fontSize: '0.75rem', color: '#9B9891' }}>📸 4 photos de réalisations</span>
+            </div>
+          </div>
+
           <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8E6E1', padding: '28px' }}>
             <h2 style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6B6860', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>À propos</h2>
             <p style={{ fontSize: '0.9rem', color: '#3D3C38', lineHeight: 1.65, margin: 0 }}>{profil.description}</p>
