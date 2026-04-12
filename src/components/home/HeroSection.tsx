@@ -59,7 +59,7 @@ const HERO_SUBTITLES: Record<Mode, string> = {
 }
 
 export default function HeroSection() {
-  const { mode, setMode } = useMode()
+  const { mode } = useMode()
   const current = MODES[mode]
 
   return (
@@ -97,40 +97,6 @@ export default function HeroSection() {
         }}>
           {HERO_SUBTITLES[mode]}
         </p>
-
-        {/* Pills mode switcher */}
-        <div style={{
-          display: 'inline-flex',
-          background: 'rgba(255,255,255,0.15)',
-          backdropFilter: 'blur(8px)',
-          borderRadius: '100px',
-          padding: '4px',
-          marginBottom: '32px',
-          gap: '2px',
-        }}>
-          {(Object.entries(MODES) as [Mode, typeof MODES[Mode]][]).map(([key, val]) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setMode(key)}
-              style={{
-                padding: '7px 20px',
-                borderRadius: '100px',
-                border: 'none',
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-                fontSize: '0.82rem',
-                fontWeight: mode === key ? 500 : 400,
-                background: mode === key ? 'white' : 'transparent',
-                color: mode === key ? '#18170F' : 'rgba(255,255,255,0.8)',
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {val.label}
-            </button>
-          ))}
-        </div>
 
         {/* CTA cards grid */}
         <div style={{

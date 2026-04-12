@@ -10,6 +10,8 @@ import CategoriesSection from '@/components/home/CategoriesSection'
 import ProWowSection from '@/components/home/ProWowSection'
 import DetaillantsSection from '@/components/home/DetaillantsSection'
 import CTAFinalSection from '@/components/home/CTAFinalSection'
+import TemoignagesSection from '@/components/home/TemoignagesSection'
+import PartenaireVedetteSection from '@/components/home/PartenaireVedetteSection'
 import FooterSection from '@/components/home/FooterSection'
 
 export default function HomePage() {
@@ -23,6 +25,9 @@ export default function HomePage() {
         <>
           <CategoriesSection />
           <SousTraitantsSection />
+          <AppelsSoumissionsSection />
+          <TemoignagesSection />
+          <PartenaireVedetteSection />
           <CTAFinalSection />
         </>
       )}
