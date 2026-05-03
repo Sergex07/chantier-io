@@ -4,11 +4,10 @@ import { createClient } from '@/lib/supabase/client'
 import { activateProTrial } from '@/app/actions/profile'
 
 const PLANS = [
-  { id: 'travailleur', label: '👷 Travailleur', prix: 'Gratuit', desc: 'Électricien, plombier, charpentier...' },
-  { id: 'public',      label: 'Grand public',  prix: 'Gratuit',   desc: 'Propriétaires qui cherchent un entrepreneur' },
   { id: 'pro',         label: 'Professionnel', prix: '10$/mois',  desc: 'Sous-traitants, designers, architectes' },
   { id: 'entreprise',  label: 'Entreprise',    prix: '25$/mois',  desc: 'Entrepreneurs et promoteurs' },
   { id: 'detaillant',  label: 'Détaillant',    prix: '29$/mois',  desc: 'Fournisseurs de matériaux' },
+  { id: 'travailleur', label: '👷 Travailleur', prix: 'Gratuit',   desc: 'Électricien, plombier, charpentier...' },
 ]
 
 const inputStyle = {
@@ -28,7 +27,6 @@ export default function InscriptionPage() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const isPublic = plan === 'public'
   const isTravailleur = plan === 'travailleur'
 
   async function handleSubmit(e: React.FormEvent) {
@@ -51,7 +49,7 @@ export default function InscriptionPage() {
         phone: telephone,
         company_name: entreprise || null,
       }).eq('id', data.user.id)
-      if (!isPublic && !isTravailleur) await activateProTrial(data.user.id)
+      if (!isTravailleur) await activateProTrial(data.user.id)
     }
     window.location.href = '/connexion?registered=1'
   }
@@ -70,12 +68,7 @@ export default function InscriptionPage() {
 
         {/* Badge */}
         <div style={{ marginBottom: '20px' }}>
-          {plan === null ? null : isTravailleur ? null : isPublic ? (
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '100px', padding: '5px 12px', fontSize: '0.78rem', fontWeight: 600, color: '#16A34A' }}>
-              <span>✅</span>
-              <span>Toujours gratuit — aucune carte requise</span>
-            </div>
-          ) : (
+          {plan === null ? null : isTravailleur ? null : (
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '100px', padding: '5px 12px', fontSize: '0.78rem', fontWeight: 600, color: '#16A34A' }}>
               <span>🎁</span>
               <span>30 jours gratuits — aucune carte de crédit requise</span>
@@ -179,7 +172,6 @@ export default function InscriptionPage() {
           <button type="submit" disabled={loading} style={{ width: '100%', padding: '13px', background: '#18170F', color: 'white', border: 'none', borderRadius: '9px', fontSize: '0.95rem', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.6 : 1 }}>
             {loading ? 'Création…'
               : plan === 'pro' ? 'Commencer mon essai gratuit →'
-              : plan === 'public' ? 'Créer mon compte gratuit →'
               : plan === 'travailleur' ? 'Créer mon profil travailleur →'
               : plan === 'entreprise' || plan === 'detaillant' ? 'Commencer mon essai de 30 jours →'
               : 'Créer mon compte →'}

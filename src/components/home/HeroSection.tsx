@@ -1,14 +1,5 @@
 'use client'
-import { useState } from 'react'
 import { useMode, type Mode } from '@/lib/ModeContext'
-
-const PRO_SUBTABS = [
-  { id: 'entrepreneur' as const, label: 'Entrepreneur' },
-  { id: 'professionnel' as const, label: 'Professionnel' },
-  { id: 'soustraitant' as const, label: 'Sous-traitant' },
-  { id: 'detaillant' as const, label: 'Détaillant' },
-]
-const PRO_MODES = PRO_SUBTABS.map(t => t.id)
 
 const PRO_CTAS = [
   { icon: '📋', title: 'Demande de soumission', desc: 'Trouver un sous-traitant pour votre projet', href: '/demande-soumission' },
@@ -17,86 +8,41 @@ const PRO_CTAS = [
   { icon: '📢', title: "Afficher une offre d'emploi", desc: 'Publiez un poste sur la plateforme', href: '/emplois/publier' },
 ]
 
-const MODES: Record<Mode, { label: string; ctas: { icon: string; title: string; desc: string; href: string }[] }> = {
-  public: {
-    label: 'Grand public',
-    ctas: [
-      { icon: '📋', title: 'Publier une demande', desc: 'Trouvez un entrepreneur qualifié', href: '/demande-soumission' },
-      { icon: '🔍', title: 'Trouver un pro', desc: 'Sous-traitants, designers, architectes', href: '/trouver-professionnel' },
-      { icon: '⭐', title: 'Voir les évaluations', desc: 'Profils vérifiés et notés', href: '/profil/demo-id' },
-      { icon: '💬', title: 'Comment ça marche', desc: 'Gratuit et sans engagement', href: '#comment' },
-    ],
-  },
-  entrepreneur: { label: 'Entrepreneur', ctas: PRO_CTAS },
-  professionnel: { label: 'Professionnel', ctas: PRO_CTAS },
-  soustraitant: { label: 'Sous-traitant', ctas: PRO_CTAS },
-  detaillant: { label: 'Détaillant', ctas: PRO_CTAS },
-  travailleur: {
-    label: 'Travailleur',
-    ctas: [
-      { icon: '👷', title: 'Mon profil travailleur', desc: 'Créez votre profil gratuit', href: '/inscription?type=travailleur' },
-      { icon: '🏗️', title: "Offres d'emploi", desc: 'Trouvez du travail près de chez vous', href: '/emplois' },
-      { icon: '📍', title: 'Entreprises qui recrutent', desc: 'Contactez directement les entrepreneurs', href: '/trouver-travailleur' },
-      { icon: '🚀', title: 'Passer au Pro', desc: 'Badge disponible + priorité', href: '/inscription?type=travailleur' },
-    ],
-  },
+const TRAVAILLEUR_CTAS = [
+  { icon: '👷', title: 'Mon profil travailleur', desc: 'Créez votre profil gratuit', href: '/inscription?type=travailleur' },
+  { icon: '🏗️', title: "Offres d'emploi", desc: 'Trouvez du travail près de chez vous', href: '/emplois' },
+  { icon: '📍', title: 'Entreprises qui recrutent', desc: 'Contactez directement les entrepreneurs', href: '/trouver-travailleur' },
+  { icon: '🚀', title: 'Passer au Pro', desc: 'Badge disponible + priorité', href: '/inscription?type=travailleur' },
+]
+
+const MODES: Record<Mode, { ctas: { icon: string; title: string; desc: string; href: string }[] }> = {
+  pro: { ctas: PRO_CTAS },
+  travailleur: { ctas: TRAVAILLEUR_CTAS },
 }
 
 const HERO_TITLES: Record<Mode, React.ReactNode> = {
-  public: (
-    <>
-      <span style={{ fontWeight: 300 }}>Trouvez les bons</span><br />
-      <span style={{ fontWeight: 600 }}>partenaires pour vos projets immobiliers</span>
-    </>
-  ),
-  entrepreneur: (
+  pro: (
     <>
       <span style={{ fontWeight: 300 }}>Trouvez des contrats</span><br />
       <span style={{ fontWeight: 600 }}>dans votre spécialité</span>
-    </>
-  ),
-  professionnel: (
-    <>
-      <span style={{ fontWeight: 300 }}>Trouvez des contrats</span><br />
-      <span style={{ fontWeight: 600 }}>dans votre spécialité</span>
-    </>
-  ),
-  soustraitant: (
-    <>
-      <span style={{ fontWeight: 300 }}>Décrochez des contrats</span><br />
-      <span style={{ fontWeight: 600 }}>en sous-traitance au Québec</span>
-    </>
-  ),
-  detaillant: (
-    <>
-      <span style={{ fontWeight: 300 }}>Rejoignez le réseau</span><br />
-      <span style={{ fontWeight: 600 }}>de détaillants du Québec</span>
     </>
   ),
   travailleur: (
     <>
-      <span style={{ fontWeight: 300 }}>Votre profil construction</span><br />
-      <span style={{ fontWeight: 600 }}>· Gratuit</span>
+      <span style={{ fontWeight: 300 }}>Votre réseau</span><br />
+      <span style={{ fontWeight: 600 }}>professionnel construction</span>
     </>
   ),
 }
 
 const HERO_SUBTITLES: Record<Mode, string> = {
-  public: "Entrepreneurs généraux, professionnels, boutiques — tous vos partenaires au Québec",
-  entrepreneur: "Accédez aux demandes de soumissions d'entrepreneurs et de clients directs",
-  professionnel: "Accédez aux demandes de soumissions d'entrepreneurs et de clients directs",
-  soustraitant: "Trouvez des entrepreneurs généraux qui cherchent vos services au Québec",
-  detaillant: "Connectez-vous avec les entrepreneurs et propriétaires du Québec",
-  travailleur: "Rejoignez le réseau de travailleurs qualifiés du Québec · Gratuit",
+  pro: "Accédez aux demandes de soumissions d'entrepreneurs et de clients",
+  travailleur: "Profil gratuit, offres d'emploi, formations — tout pour votre carrière",
 }
 
 export default function HeroSection() {
   const { mode, setMode } = useMode()
-  const [proDropdownOpen, setProDropdownOpen] = useState(false)
   const current = MODES[mode]
-
-  const isProMode = PRO_MODES.includes(mode as typeof PRO_MODES[number])
-  const activeProLabel = PRO_SUBTABS.find(t => t.id === mode)?.label ?? 'Entrepreneur'
 
   return (
     <section style={{
@@ -144,86 +90,22 @@ export default function HeroSection() {
           gap: '2px',
           marginBottom: '28px',
         }}>
-          {/* Grand public */}
           <button
-            onClick={() => { setMode('public'); setProDropdownOpen(false) }}
+            onClick={() => setMode('pro')}
             style={{
               padding: '8px 18px', borderRadius: '100px', border: 'none',
               cursor: 'pointer', fontSize: '0.82rem',
-              fontWeight: mode === 'public' ? 600 : 400,
-              background: mode === 'public' ? 'white' : 'transparent',
-              color: mode === 'public' ? '#18170F' : 'rgba(255,255,255,0.85)',
+              fontWeight: mode === 'pro' ? 600 : 400,
+              background: mode === 'pro' ? 'white' : 'transparent',
+              color: mode === 'pro' ? '#18170F' : 'rgba(255,255,255,0.85)',
               transition: 'all 0.15s', whiteSpace: 'nowrap',
             }}
           >
-            Grand public
+            Professionnel
           </button>
 
-          {/* Pro dropdown */}
-          <div style={{ position: 'relative' }}>
-            <button
-              onClick={() => setProDropdownOpen(!proDropdownOpen)}
-              style={{
-                display: 'flex', alignItems: 'center', gap: '5px',
-                padding: '8px 18px', borderRadius: '100px', border: 'none',
-                cursor: 'pointer', fontSize: '0.82rem',
-                fontWeight: isProMode ? 600 : 400,
-                background: isProMode ? 'white' : 'transparent',
-                color: isProMode ? '#18170F' : 'rgba(255,255,255,0.85)',
-                transition: 'all 0.15s', whiteSpace: 'nowrap',
-              }}
-            >
-              {isProMode ? activeProLabel : 'Professionnel'}
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2.5"
-                style={{ transform: proDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', flexShrink: 0 }}>
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-
-            {proDropdownOpen && (
-              <>
-                <div
-                  onClick={() => setProDropdownOpen(false)}
-                  style={{ position: 'fixed', inset: 0, zIndex: 8 }}
-                />
-                <div style={{
-                  position: 'absolute', top: 'calc(100% + 8px)', left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'white', borderRadius: '12px',
-                  border: '1px solid #E8E6E1',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                  minWidth: '160px', zIndex: 9, overflow: 'hidden',
-                  padding: '4px',
-                }}>
-                  {PRO_SUBTABS.map(sub => (
-                    <button
-                      key={sub.id}
-                      onClick={() => { setMode(sub.id); setProDropdownOpen(false) }}
-                      style={{
-                        display: 'block', width: '100%', textAlign: 'left',
-                        padding: '9px 14px', borderRadius: '8px',
-                        border: 'none', cursor: 'pointer', fontFamily: 'inherit',
-                        fontSize: '0.83rem',
-                        fontWeight: mode === sub.id ? 500 : 400,
-                        background: mode === sub.id ? '#F4F4F5' : 'transparent',
-                        color: mode === sub.id ? '#18170F' : '#6B6860',
-                        whiteSpace: 'nowrap',
-                      }}
-                      onMouseEnter={e => { if (mode !== sub.id) e.currentTarget.style.background = '#F9F8F6' }}
-                      onMouseLeave={e => { e.currentTarget.style.background = mode === sub.id ? '#F4F4F5' : 'transparent' }}
-                    >
-                      {sub.label}
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-
-          {/* Travailleur */}
           <button
-            onClick={() => { setMode('travailleur'); setProDropdownOpen(false) }}
+            onClick={() => setMode('travailleur')}
             style={{
               padding: '8px 18px', borderRadius: '100px', border: 'none',
               cursor: 'pointer', fontSize: '0.82rem',

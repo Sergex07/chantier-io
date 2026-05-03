@@ -1,18 +1,23 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-type Mode = 'public' | 'entrepreneur' | 'professionnel' | 'detaillant' | 'soustraitant' | 'travailleur'
+type Mode = 'pro' | 'travailleur'
 
 const ModeContext = createContext<{ mode: Mode; setMode: (m: Mode) => void }>({
-  mode: 'public', setMode: () => {}
+  mode: 'pro', setMode: () => {}
 })
 
 export function ModeProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<Mode>('public')
+  const [mode, setMode] = useState<Mode>('pro')
 
   useEffect(() => {
-    const saved = localStorage.getItem('chantier_mode') as Mode
-    if (saved) setMode(saved)
+    const saved = localStorage.getItem('chantier_mode')
+    if (saved === 'pro' || saved === 'travailleur') {
+      setMode(saved)
+    } else {
+      setMode('pro')
+      localStorage.setItem('chantier_mode', 'pro')
+    }
   }, [])
 
   const handleSetMode = (m: Mode) => {
