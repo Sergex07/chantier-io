@@ -81,7 +81,7 @@ export default function ExplicationSection() {
   return (
     <section style={{
       padding: '64px 40px',
-      background: 'white',
+      background: '#F9F8F6',
       borderBottom: '1px solid #F0EEEA'
     }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>

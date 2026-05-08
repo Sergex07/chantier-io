@@ -5,7 +5,6 @@ import ExplicationSection from '@/components/home/ExplicationSection'
 import AppelsSoumissionsSection from '@/components/home/AppelsSoumissionsSection'
 import ProStatsSection from '@/components/home/ProStatsSection'
 import CTAFinalSection from '@/components/home/CTAFinalSection'
-import ProDoubleCtaSection from '@/components/home/ProDoubleCtaSection'
 import ProProcessSection from '@/components/home/ProProcessSection'
 import FooterSection from '@/components/home/FooterSection'
 import TravailleurHeroSection from '@/components/home/TravailleurHeroSection'
@@ -25,7 +24,6 @@ export default function HomePage() {
 
       {mode === 'pro' && (
         <>
-          <ProDoubleCtaSection />
           <ProProcessSection />
           <AppelsSoumissionsSection />
           <ProStatsSection />
