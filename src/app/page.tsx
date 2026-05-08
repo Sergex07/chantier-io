@@ -1,6 +1,7 @@
 'use client'
 import { useMode } from '@/lib/ModeContext'
 import HeroSection from '@/components/home/HeroSection'
+import ExplicationSection from '@/components/home/ExplicationSection'
 import AppelsSoumissionsSection from '@/components/home/AppelsSoumissionsSection'
 import ProStatsSection from '@/components/home/ProStatsSection'
 import CTAFinalSection from '@/components/home/CTAFinalSection'
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
+      <ExplicationSection />
 
       {mode === 'pro' && (
         <>
