@@ -1,23 +1,22 @@
 export default function ExplicationSection() {
   return (
-    <section style={{ background: '#18170F', padding: '72px 40px' }}>
+    <section style={{
+      background: 'white', padding: '80px 40px',
+      borderBottom: '1px solid #F0EEEA',
+    }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
         {/* Titre section */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <p style={{
-            fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.14em',
-            color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: '10px',
-          }}>
-            COMMENT ÇA MARCHE
-          </p>
           <h2 style={{
-            fontSize: '2rem', fontWeight: 500, color: 'white',
+            fontSize: '1.8rem', fontWeight: 500, color: '#18170F',
             letterSpacing: '-0.03em', lineHeight: 1.2, margin: 0,
           }}>
-            Une plateforme,<br />
-            <span style={{ color: 'rgba(255,255,255,0.6)' }}>deux façons de l&apos;utiliser</span>
+            Une plateforme, deux façons de l&apos;utiliser
           </h2>
+          <p style={{ fontSize: '0.9rem', color: '#6B6860', marginTop: '10px', margin: '10px 0 0' }}>
+            Que vous cherchiez des contrats ou des sous-traitants — Chantier.io s&apos;adapte
+          </p>
         </div>
 
         {/* 2 cartes */}
@@ -25,40 +24,35 @@ export default function ExplicationSection() {
 
           {/* Carte 1 — Je cherche des contrats */}
           <div style={{
-            borderRadius: '20px', overflow: 'hidden',
-            border: '1px solid rgba(255,255,255,0.08)',
-            background: 'rgba(255,255,255,0.04)',
-            backdropFilter: 'blur(10px)',
-            position: 'relative',
+            borderRadius: '20px', border: '1px solid #E8E6E1',
+            overflow: 'hidden', background: '#FAFAFA',
+            display: 'flex', flexDirection: 'column',
           }}>
-            {/* Accent couleur haut */}
-            <div style={{ height: '3px', background: 'linear-gradient(90deg, #6366f1, #8b5cf6)' }} />
+            {/* Barre accent violet */}
+            <div style={{ height: '4px', background: 'linear-gradient(90deg, #6366f1, #8b5cf6)' }} />
 
-            <div style={{ padding: '40px' }}>
-              {/* Header */}
-              <div style={{ marginBottom: '32px' }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '8px',
-                  padding: '8px 16px', borderRadius: '100px',
-                  background: 'rgba(99,102,241,0.2)',
-                  border: '1px solid rgba(99,102,241,0.3)',
-                  marginBottom: '16px',
+            <div style={{ padding: '36px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+              {/* Badge profil */}
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '5px 12px', borderRadius: '100px',
+                background: '#EEF2FF', marginBottom: '20px', alignSelf: 'flex-start',
+              }}>
+                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#6366f1' }} />
+                <span style={{
+                  fontSize: '0.7rem', fontWeight: 600, color: '#4f46e5',
+                  letterSpacing: '0.08em',
                 }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#a5b4fc' }} />
-                  <span style={{
-                    fontSize: '0.75rem', fontWeight: 600, color: '#a5b4fc',
-                    letterSpacing: '0.08em',
-                  }}>
-                    SOUS-TRAITANT · PROFESSIONNEL
-                  </span>
-                </div>
-                <h3 style={{
-                  fontSize: '1.6rem', fontWeight: 500, color: 'white',
-                  letterSpacing: '-0.02em', margin: 0,
-                }}>
-                  Je cherche<br />des contrats
-                </h3>
+                  SOUS-TRAITANT · PROFESSIONNEL
+                </span>
               </div>
+
+              <h3 style={{
+                fontSize: '1.6rem', fontWeight: 500, color: '#18170F',
+                letterSpacing: '-0.02em', margin: '0 0 28px',
+              }}>
+                Je cherche<br />des contrats
+              </h3>
 
               {/* Étapes */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0', marginBottom: '32px' }}>
@@ -68,24 +62,24 @@ export default function ExplicationSection() {
                   { titre: 'Soumissionnez', desc: 'Envoyez votre offre en 1 clic. Le client vous contacte directement.' },
                 ].map((step, i) => (
                   <div key={i} style={{
-                    display: 'flex', gap: '16px', padding: '20px 0',
-                    borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                    display: 'flex', gap: '16px', padding: '18px 0',
+                    borderBottom: i < 2 ? '1px solid #EBE9E4' : 'none',
                   }}>
                     <div style={{
                       width: '32px', height: '32px', borderRadius: '8px', flexShrink: 0,
-                      background: 'rgba(99,102,241,0.2)',
+                      background: '#EEF2FF',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '0.8rem', fontWeight: 700, color: '#a5b4fc',
+                      fontSize: '0.8rem', fontWeight: 700, color: '#4f46e5',
                     }}>
                       {i + 1}
                     </div>
                     <div>
                       <div style={{
-                        fontSize: '0.95rem', fontWeight: 500, color: 'white',
+                        fontSize: '0.95rem', fontWeight: 500, color: '#18170F',
                         marginBottom: '4px',
                       }}>{step.titre}</div>
                       <div style={{
-                        fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)',
+                        fontSize: '0.82rem', color: '#6B6860',
                         lineHeight: 1.6,
                       }}>{step.desc}</div>
                     </div>
@@ -93,59 +87,58 @@ export default function ExplicationSection() {
                 ))}
               </div>
 
-              <a href="/inscription" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                gap: '8px', padding: '15px', borderRadius: '10px',
-                background: 'white', color: '#18170F',
-                textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600,
-                letterSpacing: '-0.01em',
-              }}>
-                Créer mon profil Pro →
-              </a>
-              <p style={{
-                fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)',
-                textAlign: 'center', marginTop: '10px',
-              }}>
-                ✓ 30 jours gratuits · ✓ Aucune carte requise
-              </p>
+              {/* CTA en bas */}
+              <div style={{ marginTop: 'auto' }}>
+                <a href="/inscription" style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  gap: '8px', padding: '15px', borderRadius: '10px',
+                  background: '#18170F', color: 'white',
+                  textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600,
+                  letterSpacing: '-0.01em',
+                }}>
+                  Créer mon profil Pro →
+                </a>
+                <p style={{
+                  fontSize: '0.75rem', color: '#9B9891',
+                  textAlign: 'center', margin: '10px 0 0',
+                }}>
+                  ✓ 30 jours gratuits · ✓ Aucune carte requise
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Carte 2 — Je cherche un sous-traitant */}
           <div style={{
-            borderRadius: '20px', overflow: 'hidden',
-            border: '1px solid rgba(255,255,255,0.08)',
-            background: 'rgba(255,255,255,0.04)',
-            position: 'relative',
+            borderRadius: '20px', border: '1px solid #E8E6E1',
+            overflow: 'hidden', background: '#FAFAFA',
+            display: 'flex', flexDirection: 'column',
           }}>
-            {/* Accent couleur haut */}
-            <div style={{ height: '3px', background: 'linear-gradient(90deg, #10b981, #059669)' }} />
+            {/* Barre accent vert */}
+            <div style={{ height: '4px', background: 'linear-gradient(90deg, #10b981, #059669)' }} />
 
-            <div style={{ padding: '40px' }}>
-              {/* Header */}
-              <div style={{ marginBottom: '32px' }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '8px',
-                  padding: '8px 16px', borderRadius: '100px',
-                  background: 'rgba(16,185,129,0.2)',
-                  border: '1px solid rgba(16,185,129,0.3)',
-                  marginBottom: '16px',
+            <div style={{ padding: '36px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+              {/* Badge profil */}
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '5px 12px', borderRadius: '100px',
+                background: '#ECFDF5', marginBottom: '20px', alignSelf: 'flex-start',
+              }}>
+                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
+                <span style={{
+                  fontSize: '0.7rem', fontWeight: 600, color: '#059669',
+                  letterSpacing: '0.08em',
                 }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#6ee7b7' }} />
-                  <span style={{
-                    fontSize: '0.75rem', fontWeight: 600, color: '#6ee7b7',
-                    letterSpacing: '0.08em',
-                  }}>
-                    ENTREPRENEUR · PROMOTEUR
-                  </span>
-                </div>
-                <h3 style={{
-                  fontSize: '1.6rem', fontWeight: 500, color: 'white',
-                  letterSpacing: '-0.02em', margin: 0,
-                }}>
-                  Je cherche<br />un sous-traitant
-                </h3>
+                  ENTREPRENEUR · PROMOTEUR
+                </span>
               </div>
+
+              <h3 style={{
+                fontSize: '1.6rem', fontWeight: 500, color: '#18170F',
+                letterSpacing: '-0.02em', margin: '0 0 28px',
+              }}>
+                Je cherche<br />un sous-traitant
+              </h3>
 
               {/* Étapes */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0', marginBottom: '32px' }}>
@@ -155,24 +148,24 @@ export default function ExplicationSection() {
                   { titre: 'Choisissez et démarrez', desc: 'Comparez les offres, choisissez le meilleur et démarrez votre projet.' },
                 ].map((step, i) => (
                   <div key={i} style={{
-                    display: 'flex', gap: '16px', padding: '20px 0',
-                    borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                    display: 'flex', gap: '16px', padding: '18px 0',
+                    borderBottom: i < 2 ? '1px solid #EBE9E4' : 'none',
                   }}>
                     <div style={{
                       width: '32px', height: '32px', borderRadius: '8px', flexShrink: 0,
-                      background: 'rgba(16,185,129,0.2)',
+                      background: '#ECFDF5',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '0.8rem', fontWeight: 700, color: '#6ee7b7',
+                      fontSize: '0.8rem', fontWeight: 700, color: '#059669',
                     }}>
                       {i + 1}
                     </div>
                     <div>
                       <div style={{
-                        fontSize: '0.95rem', fontWeight: 500, color: 'white',
+                        fontSize: '0.95rem', fontWeight: 500, color: '#18170F',
                         marginBottom: '4px',
                       }}>{step.titre}</div>
                       <div style={{
-                        fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)',
+                        fontSize: '0.82rem', color: '#6B6860',
                         lineHeight: 1.6,
                       }}>{step.desc}</div>
                     </div>
@@ -180,20 +173,23 @@ export default function ExplicationSection() {
                 ))}
               </div>
 
-              <a href="/demande-soumission" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                gap: '8px', padding: '15px', borderRadius: '10px',
-                background: '#059669', color: 'white',
-                textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600,
-              }}>
-                Publier une demande →
-              </a>
-              <p style={{
-                fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)',
-                textAlign: 'center', marginTop: '10px',
-              }}>
-                ✓ Gratuit · ✓ Sans engagement · ✓ Réponses en 24–48 h
-              </p>
+              {/* CTA en bas */}
+              <div style={{ marginTop: 'auto' }}>
+                <a href="/demande-soumission" style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  gap: '8px', padding: '15px', borderRadius: '10px',
+                  background: '#059669', color: 'white',
+                  textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600,
+                }}>
+                  Publier une demande →
+                </a>
+                <p style={{
+                  fontSize: '0.75rem', color: '#9B9891',
+                  textAlign: 'center', margin: '10px 0 0',
+                }}>
+                  ✓ Gratuit · ✓ Sans engagement · ✓ Réponses en 24–48 h
+                </p>
+              </div>
             </div>
           </div>
 
@@ -202,8 +198,8 @@ export default function ExplicationSection() {
         {/* Stats en bas */}
         <div style={{
           display: 'flex', justifyContent: 'center', gap: '64px',
-          marginTop: '48px', paddingTop: '40px',
-          borderTop: '1px solid rgba(255,255,255,0.08)',
+          marginTop: '56px', paddingTop: '40px',
+          borderTop: '1px solid #F0EEEA',
         }}>
           {[
             { num: '1 458', label: 'professionnels inscrits' },
@@ -213,12 +209,12 @@ export default function ExplicationSection() {
           ].map((stat, i) => (
             <div key={i} style={{ textAlign: 'center' }}>
               <div style={{
-                fontSize: '2rem', fontWeight: 600, color: 'white',
+                fontSize: '2rem', fontWeight: 600, color: '#18170F',
                 letterSpacing: '-0.03em', marginBottom: '4px',
               }}>
                 {stat.num}
               </div>
-              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)' }}>
+              <div style={{ fontSize: '0.78rem', color: '#9B9891' }}>
                 {stat.label}
               </div>
             </div>
